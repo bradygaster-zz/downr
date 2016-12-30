@@ -2,20 +2,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using downr.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace downr.Controllers
 {
-    public class HomeController : Controller
+    public class PostsController : Controller
     {
-        [Route("Home/Index")]
-        public IActionResult Index()
+        IMarkdownContentLoader _markdownLoader;
+
+        public PostsController(IMarkdownContentLoader markdownLoader)
         {
-            return View();
+            _markdownLoader = markdownLoader;
         }
 
         [Route("posts/{slug}")]
-        public IActionResult posts(string slug)
+        public IActionResult Index(string slug)
         {
             ViewData.Add("Slug", slug);
             return View();

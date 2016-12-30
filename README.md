@@ -13,7 +13,7 @@ dirt-simple markdown blog tool built using asp.net core
 ## debugging
 here are two ways to get downr running on your local workstation. 
 
-1. if have [visual studio code](http://code.visualstudio.com) installed, type the commands below to open the project using Visual Studio Code. Then, just start debugging
+1. if have [visual studio code](http://code.visualstudio.com) installed, type the commands below to open the project using Visual Studio Code and just start debugging via f5 (or whatever your shortcut is)
 
         cd ..
         code .
@@ -26,3 +26,6 @@ here are two ways to get downr running on your local workstation.
 
 ## using downr (to be expanded)
 take a look at the site's folder structure with the sample blog posts and start writing
+
+### stay tuned
+downr is a brand new project that has only a few basic features. your contributions and ideas are welcome. 
