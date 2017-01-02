@@ -1,10 +1,6 @@
-using System;
-using System.Diagnostics;
 using System.IO;
-using YamlDotNet.RepresentationModel;
 using System.Text;
 using YamlDotNet.Serialization;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace downr.Services
@@ -59,10 +55,5 @@ namespace downr.Services
                 }
             }
         }
-    }
-
-    public class MarkdownMetadata
-    {
-        public string Slug { get; set; }
     }
 }

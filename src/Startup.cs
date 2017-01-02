@@ -46,10 +46,6 @@ namespace downr
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            // get the path to the content directory so the yaml headers can be indexed
-            var contentPath = string.Format("{0}\\content\\", env.WebRootPath);
-            yamlIndexer.IndexContentFiles(contentPath);
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -68,6 +64,10 @@ namespace downr
                     name: "default",
                     template: "{controller=Posts}/{action=Index}/{slug?}");
             });
+
+            // get the path to the content directory so the yaml headers can be indexed as metadata
+            var contentPath = string.Format("{0}\\posts\\", env.WebRootPath);
+            yamlIndexer.IndexContentFiles(contentPath);
         }
     }
 }
