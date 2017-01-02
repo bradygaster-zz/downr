@@ -69,7 +69,7 @@ namespace downr.Services
                 }
             }
 
-            Metadata = Metadata.OrderByDescending(x => x.LastModified).ToList();
+            Metadata = Metadata.OrderByDescending(x => x.PublicationDate).ToList();
         }
     }
 }

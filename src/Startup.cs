@@ -62,7 +62,7 @@ namespace downr
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Posts}/{action=Index}/{slug?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
 
             // get the path to the content directory so the yaml headers can be indexed as metadata

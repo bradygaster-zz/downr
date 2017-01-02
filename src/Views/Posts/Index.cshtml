@@ -1,5 +1,22 @@
+@model downr.Models.Metadata 
 @{
     ViewData["Title"] = "Home Page";
 }
+
+<div>
+@if(!String.IsNullOrEmpty(ViewBag.Previous))
+{
+    string prevLink = string.Format("/posts/{0}", ViewBag.Previous);
+    <a href="@prevLink">Previous</a>
+}
+
+@if(!String.IsNullOrEmpty(ViewBag.Next))
+{
+    string nextLink = string.Format("/posts/{0}", ViewBag.Next);
+    <a href="@nextLink">Next</a>
+}
+</div>
+
+<h2>@Model.Title</h2>
 
 @Html.Raw(@ViewBag.HtmlContent)
