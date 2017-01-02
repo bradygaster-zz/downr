@@ -22,9 +22,10 @@ namespace downr.Controllers
         public IActionResult Index(string slug)
         {
             // make sure the post is found in the index
-            if (_indexer.Metadata.Any(x => x[Strings.MetadataNames.Slug] == slug))
+            if (_indexer.Metadata.Any(x => x.Slug == slug))
             {
                 ViewBag.HtmlContent = _markdownLoader.GetContentToRender(slug);
+                var meta = _indexer.Metadata.First(x => x.Slug == slug);
             }
             else
             {

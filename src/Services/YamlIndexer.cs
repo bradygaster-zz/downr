@@ -1,13 +1,16 @@
+using System;
 using System.IO;
+using System.Linq;
 using System.Text;
-using YamlDotNet.Serialization;
 using System.Collections.Generic;
+using downr.Models;
+using YamlDotNet.Serialization;
 
 namespace downr.Services
 {
     public interface IYamlIndexer
     {
-        List<Dictionary<string, string>> Metadata { get; set; }
+        List<Metadata> Metadata { get; set; }
         void IndexContentFiles(string contentPath);
     }
 
@@ -15,10 +18,10 @@ namespace downr.Services
     {
         public DefaultYamlIndexer()
         {
-            Metadata = new List<Dictionary<string, string>>();
+            Metadata = new List<Metadata>();
         }
 
-        public List<Dictionary<string, string>> Metadata { get; set; }
+        public List<Metadata> Metadata { get; set; }
 
         public void IndexContentFiles(string contentPath)
         {
@@ -49,11 +52,24 @@ namespace downr.Services
                         var yaml = stringBuilder.ToString();
                         var de = new Deserializer();
                         var result = de.Deserialize<Dictionary<string, string>>(new StringReader(yaml));
-                        
-                        Metadata.Add(result);
+
+                        // convert the dictionary into a model
+                        var metadata = new Metadata
+                        {
+                            Slug = result[Strings.MetadataNames.Slug],
+                            Title = result[Strings.MetadataNames.Title],
+                            Author = result[Strings.MetadataNames.Author],
+                            PublicationDate = DateTime.Parse(result[Strings.MetadataNames.PublicationDate]),
+                            LastModified = DateTime.Parse(result[Strings.MetadataNames.LastModified]),
+                            Categories = result[Strings.MetadataNames.Categories].Split(',')
+                        };
+
+                        Metadata.Add(metadata);
                     }
                 }
             }
+
+            Metadata = Metadata.OrderByDescending(x => x.LastModified).ToList();
         }
     }
 }
