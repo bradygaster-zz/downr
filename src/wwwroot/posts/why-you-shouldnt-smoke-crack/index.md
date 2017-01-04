@@ -8,4 +8,4 @@ categories: Personal
 ---
 
 If you smoke crack you might end up having to get
-<a>saved from alligator jaws</a> .
+<a href="http://news.bbc.co.uk/2/hi/americas/6159225.stm" title="BBC NEWS | Americas | US man saved from alligator jaws">saved from alligator jaws</a> .

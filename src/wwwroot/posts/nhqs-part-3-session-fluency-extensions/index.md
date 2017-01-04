@@ -1,5 +1,5 @@
 ---
-title: NHQS Part 3 - Session Fluency Extensions
+title: NHQS Part 3- Session Fluency Extensions
 slug: nhqs-part-3-session-fluency-extensions
 author: bradygaster
 lastModified: 2012-10-05 18:15:13
@@ -53,7 +53,7 @@ categories: .NET,NHibernate
 <p>Just take a look at all the work NHibernate&#x2019;s doing under the hood from the debugging log generated at run-time when this unit test (and the setup) are executed. As you&#x2019;ll see, NHQS makes CRUD activities a lot simpler than doing multiple methods of database
   logic. Obviously, it makes such processes a little more testable, too. </p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/ec0ad61d4aad_CF5B/image_31.png">
     <img alt="Click to zoom" src="/posts/nhqs-part-3-session-fluency-extensions/media/image_thumb_10.png">
   </a> 
 </p>

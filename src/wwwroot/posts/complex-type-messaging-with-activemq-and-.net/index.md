@@ -8,8 +8,8 @@ categories: .NET
 ---
 
 <p>
-  <a>Mark Bloodworth</a>  wrote a few blogs on the art of using ActiveMQ within .NET. Those posts are the origination for my ability to produce this post, so thanks, Mark. I&#x2019;d highly advise going to read Mark&#x2019;s
-  <a>introductory post on the topic</a>  first. I&#x2019;ll paraphrase a good deal of Mark&#x2019;s post in this one so look to him for the details and deeper explanation, he&#x2019;s the man.</p>
+  <a href="http://remark.wordpress.com/about/">Mark Bloodworth</a>  wrote a few blogs on the art of using ActiveMQ within .NET. Those posts are the origination for my ability to produce this post, so thanks, Mark. I&#x2019;d highly advise going to read Mark&#x2019;s
+  <a href="http://remark.wordpress.com/articles/messaging-with-net-and-activemq/" title="Messaging with ActiveMQ and .NET">introductory post on the topic</a>  first. I&#x2019;ll paraphrase a good deal of Mark&#x2019;s post in this one so look to him for the details and deeper explanation, he&#x2019;s the man.</p>
 <p>Mark&#x2019;s post shows at a high level how to pass simple string messages via ActiveMQ. This post will answer the question of passing more complicated types via ActiveMQ so that you can use strongly-typed instances as your messages.</p>
 <h3>
   <strong>Getting Started</strong> 
@@ -17,10 +17,10 @@ categories: .NET
 <p>It sounds a bit scary, especially if you&#x2019;re not akin to using non-MSMQ messaging engines. Don&#x2019;t freak out, ActiveMQ actually quite easy. I&#x2019;m a Java troglodyte, so if I can do this, <em>you can do this. </em> </p>
 <ol>
   <li>
-    <a>Download ActiveMQ</a>  (as of this post the current release was 5.5.0)
+    <a href="http://activemq.apache.org/download.html">Download ActiveMQ</a>  (as of this post the current release was 5.5.0)
     <br>It&#x2019;ll come as a ZIP file. I just unzipped mine to my root drive, so C:\ActiveMQ</li>
   <li>
-    <a>Download Spring.NET</a> 
+    <a href="http://www.springframework.net/">Download Spring.NET</a> 
     <br>I placed mine again, in my system root, at C:\SpringNet</li>
   <li>In the ActiveMQ\conf you&#x2019;ll find the file activemq.xml, and in that file you&#x2019;ll need to make sure you set the file as displayed in the screenshot below. This is explained in the comments of Mark&#x2019;s post in more detail, but for now, just trust me.
     <br>

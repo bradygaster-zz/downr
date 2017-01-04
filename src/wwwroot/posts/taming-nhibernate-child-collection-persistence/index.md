@@ -11,15 +11,15 @@ categories: .NET,NHibernate
   NH isn&#x2019;t exactly a simple ORM layer and does have some confusing aspects. One of these aspects &#x2013; at least for me &#x2013; has been that I&#x2019;ve seen inconsistent behavior in the persistence of child collection properties. I think I concluded via a series of unit
   tests this evening for myself how to gain the typical desired outcome and I felt it was something I should share.</p>
 <p>Take, for example, the traditional order-to-order-detail relationship. The screenshot below shows a code example of a
-  <a>POCO</a>  domain object organization exemplifying this sort of relationship. The Product domain object has been included for the sake of completeness for this discussion.</p>
+  <a title="Plain Old CLR Object" href="http://en.wikipedia.org/wiki/Plain_Old_CLR_Object">POCO</a>  domain object organization exemplifying this sort of relationship. The Product domain object has been included for the sake of completeness for this discussion.</p>
 <p>
   <img src="/posts/taming-nhibernate-child-collection-persistence/media/image.png" alt="image">
 </p>
 <p>Following in typical NHibernate/ORM style I&#x2019;ve created a series of repository interfaces and implementations to provide persistence functionality for these objects; though a discussion of those implementations is somewhat beyond the scope of this article
   I&#x2019;m relatively certain that with a bit of ORM and TDD experience the remainder of this text should still make sense. I tend to use base classes when I&#x2019;m working up my unit tests. The base class below is one that I use in this storefront project example
   that exposes references to local instances of those repositories. Likewise, it inherits from one of the classes provided via the
-  <a>S#arp</a>  architecture, the
-  <a>RepositoryTestsBase</a>  class.</p>
+  <a title="S#arp Architecture" href="http://sharparchitecture.net/">S#arp</a>  architecture, the
+  <a href="http://wiki.sharparchitecture.net/ClassLibraries.ashx">RepositoryTestsBase</a>  class.</p>
 <p>
   <img src="/posts/taming-nhibernate-child-collection-persistence/media/image_3.png" alt="image">
 </p>
@@ -33,7 +33,7 @@ categories: .NET,NHibernate
   <img src="/posts/taming-nhibernate-child-collection-persistence/media/image_5.png" alt="image">
 </p>
 <p>Seems simple enough but when the tests are executed via
-  <a>TestDriven.NET</a>  the tests indicate a failure to save the order details simultaneously when the order is persisted.</p>
+  <a title="Thank you, Jamie, for TestDriven.NET" href="http://TestDriven.NET">TestDriven.NET</a>  the tests indicate a failure to save the order details simultaneously when the order is persisted.</p>
 <p>
   <img src="/posts/taming-nhibernate-child-collection-persistence/media/image_6.png" alt="image">
 </p>
@@ -43,7 +43,7 @@ categories: .NET,NHibernate
   <img src="/posts/taming-nhibernate-child-collection-persistence/media/image_7.png" alt="image">
 </p>
 <p>In this case, my problem was in the way I was mapping the relationship between the Order and OrderDetail classes. I&#x2019;m using
-  <a>Fluent NHibernate and Auto Mapping</a>, so the changes should be minimal and made within the mapping override for my Order object. The code for my Order mapping override is below.</p>
+  <a href="http://blog.jagregory.com/2009/01/10/fluent-nhibernate-auto-mapping-introduction/">Fluent NHibernate and Auto Mapping</a>, so the changes should be minimal and made within the mapping override for my Order object. The code for my Order mapping override is below.</p>
 <p>
   <img src="/posts/taming-nhibernate-child-collection-persistence/media/image_8.png" alt="image">&#xA0;</p>
 <p>Once I add in the single line informing the mapping that it should cascade all changes via the Cascade.All() method call, the test passes and the order detail records are created alongside the Order.</p>

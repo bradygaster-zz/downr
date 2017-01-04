@@ -8,15 +8,15 @@ categories: NDecision
 ---
 
 <p>If you&apos;ve not gotten up to speed with the core functionality provided via NDecision it might be good to take a look at the release announcement,
-  <a>which you can find here.</a> 
+  <a href="http://bradygaster.com/announcing-the-ndecision-1.0-release" title="NDecision Release Announcement">which you can find here.</a> 
 </p>
 <p>If you&apos;re into Aspect-Oriented Programming or you like things to be a little more dynamic and automatic, a second option exists that you might find interesting. The NDecision.Aspects package makes use of the amazing AOP product
-  <a>PostSharp</a>, by
-  <a>SharpCrafters</a>, to enable logic execution automatically at run-time. Rather than write your logical specifications inline, you implement the IHasSpec
+  <a href="http://www.sharpcrafters.com/postsharp" title="PostSharp, the best AOP framework for .NET">PostSharp</a>, by
+  <a href="http://www.sharpcrafters.com/" title="SharpCrafters, makers of PostSharp">SharpCrafters</a>, to enable logic execution automatically at run-time. Rather than write your logical specifications inline, you implement the IHasSpec
    interface. This interface&apos;s single method, GetSpec(), allows you the freedom of wiring up your logic in one place (or in many places, if you prefer to have your specifications split into individual classes based on your own need or preferences).&#xA0;</p>
 Refactoring the Example for NDecision.Aspects
 <p>I&apos;ll build on the
-  <a>previous example</a>  and refactor the code to use the NDecision.Aspects package and to provide some insight into the difference. First of all, the logic from the original code has been moved into an implementation of the IHasSpec
+  <a title="The original NDecision example" href="http://bradygaster.com/announcing-the-ndecision-1.0-release">previous example</a>  and refactor the code to use the NDecision.Aspects package and to provide some insight into the difference. First of all, the logic from the original code has been moved into an implementation of the IHasSpec
    interface.&#xA0;</p>
 <p>
   <img src="/posts/ndecision-with-aop/media/bunny_spec_implementation.png" alt="Implementing the rules for an object in an IHasSpec implementation">
@@ -48,11 +48,11 @@ NDecision with AOP, Option Two - Self-Awareness
   <img src="/posts/ndecision-with-aop/media/ndecision_demo_output.png" alt="Output of the demonstration code">
 </p>
 <p>Just like the NDecision core project,
-  <a>NDecision.Aspects is available for free via NuGet</a> . Don&apos;t worry about the dependencies or having to install both packages; simply installing NDecision.Aspects will bring down everything you need, including the PostSharp assembly, as SharpCrafters
+  <a title="NDecision.Aspects on NuGet" href="http://nuget.org/List/Packages/NDecision.Aspects">NDecision.Aspects is available for free via NuGet</a> . Don&apos;t worry about the dependencies or having to install both packages; simply installing NDecision.Aspects will bring down everything you need, including the PostSharp assembly, as SharpCrafters
   so generously offer it up as a NuGet package too.&#xA0;</p>
 <p>
   <img alt="NDecision.Aspects NuGet install " src="/posts/ndecision-with-aop/media/ndecision-aspects-install.png">
 </p>
 <p>Happy coding! I hope you give NDecision a spin. If you do take the time to play with it, please let me know how it works out for you via the comments form. Or, you can find me on
-  <a>Twitter at @bradygaster.</a> 
+  <a href="http://twitter.com/#!/bradygaster">Twitter at @bradygaster.</a> 
 </p>

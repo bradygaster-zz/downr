@@ -9,8 +9,8 @@ categories: Personal
 
 <p>Things are going well. I&apos;m finding a good deal of leads and getting back into the technology I&apos;ve for so long enjoyed only to have been forced to abandon for the last year in my daily work life.</p>
 <p>I&apos;ve gotten back into the web browser and I have to say I&apos;m enjoying it, as much as I&apos;m enjoying learning about
-  <a>NHibernate</a>,
-  <a>Ninject</a>, and a host of other topics I&apos;ve somewhat disregarded as a result of being pretty sure they wouldn&apos;t be of much use to my previous job anyway. I actually discovered Ninject some time back when it was still under initial development and didn&apos;t
+  <a href="http://www.hibernate.org/343.html" title="NHibernate">NHibernate</a>,
+  <a href="http://ninject.org/" title="Ninject">Ninject</a>, and a host of other topics I&apos;ve somewhat disregarded as a result of being pretty sure they wouldn&apos;t be of much use to my previous job anyway. I actually discovered Ninject some time back when it was still under initial development and didn&apos;t
   give it the time it deserved so I&apos;m excited to get into it now to learn.</p>
 <p>Ultimately, I&apos;m happy I&apos;m no longer working in an environment where my own professional goals aren&apos;t totally in accordance with those of my employer and I feel pretty certain I&apos;m going to have an exciting few weeks getting re-acquainted with the technologies
   I&apos;ve been bookmarking and finding interesting, only to lack the ability to put to use in my work life.</p>

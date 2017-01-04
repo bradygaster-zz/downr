@@ -9,8 +9,8 @@ categories: JavaScript,SignalR
 
 <p>SignalR is one of the latest (and sexiest) elements in the .NET stack. Expect to hear more about SignalR if you haven&#x2019;t already, because it delivers on the promise of push technology without the requirement of a fat client. If you&#x2019;ve not yet read much
   about SignalR,
-  <a>clone the source code from GitHub</a>  or read
-  <a>Scott Hanselman&#x2019;s post on SignalR</a>  for an introduction. The scope and inner-workings of SignalR are somewhat out of scope here, so I&#x2019;ll just assume you&#x2019;ve at least heard <em>something </em> about SignalR and that you&#x2019;re interested in it but have a
+  <a title="SignalR was originally developed within Microsoft, is hosted on GitHub, and is completely and totally open source." href="https://github.com/SignalR/SignalR">clone the source code from GitHub</a>  or read
+  <a title="I mean, come on. You gotta trust this guy." href="http://www.hanselman.com/blog/AsynchronousScalableWebApplicationsWithRealtimePersistentLongrunningConnectionsWithSignalR.aspx">Scott Hanselman&#x2019;s post on SignalR</a>  for an introduction. The scope and inner-workings of SignalR are somewhat out of scope here, so I&#x2019;ll just assume you&#x2019;ve at least heard <em>something </em> about SignalR and that you&#x2019;re interested in it but have a
   few questions. I mean, if you&#x2019;re into BDD/TDD, you should definitely be wondering:</p>
 <blockquote>
   <p>
@@ -19,10 +19,10 @@ categories: JavaScript,SignalR
   </p>
 </blockquote>
 <p>There&#x2019;s this amazing TDD/BDD micro-framework called
-  <a>Jasmine</a>  that lends itself extremely well to all sorts of different JavaScript problem domains. I learned about Jasmine from some colleagues in the Ruby community, then found some
-  <a>pretty</a> 
-  <a>awesome</a> 
-  <a>resources</a>  on Jasmine, and have been waiting for an opportunity to try it out. This seemed like a perfect opportunity, so I dove in.</p>
+  <a title="Jasmine is a behavior-driven development framework for testing your JavaScript code" href="http://pivotal.github.com/jasmine/">Jasmine</a>  that lends itself extremely well to all sorts of different JavaScript problem domains. I learned about Jasmine from some colleagues in the Ruby community, then found some
+  <a title="Pragmatic JavaScript Testing with Jasmine" href="http://blog.carbonfive.com/2011/07/06/pragmatic-javascript-testing-with-jasmine/">pretty</a> 
+  <a title="Testing Your JavaScript with Jasmine" href="http://net.tutsplus.com/tutorials/javascript-ajax/testing-your-javascript-with-jasmine/">awesome</a> 
+  <a title="How do I verify jQuery AJAX events with Jasmine?" href="http://stackoverflow.com/questions/4662641/how-do-i-verify-jquery-ajax-events-with-jasmine">resources</a>  on Jasmine, and have been waiting for an opportunity to try it out. This seemed like a perfect opportunity, so I dove in.</p>
 
 The Calculator SignalR Hub
 <p>This example will offer a solution to the simple problem of providing basic numeric calculations. Obviously, the first operation most users will need is some addition functionality.</p>
@@ -55,8 +55,8 @@ Bring on the BDD!
 <p>As if SignalR isn&#x2019;t nifty enough, Jasmine gives us the ability to set up specifications and unit tests to make sure things are working properly and to guide development. Now, we get to put them together to answer the problem of <em>how to test the client. </em> (I&#x2019;m
   not knocking other methods, like WaTiN or other automated testing implementations, here, this is just another way of skinning the same kitty.)</p>
 <p>We&#x2019;ll need to include the basic script references and CSS file to make Jasmine light up. You can download those from the
-  <a>Jasmine site</a>, or they&#x2019;re included in the
-  <a>GitHub repository</a>  I&#x2019;ve created for the purpose of my continued tinkering in SignalR. </p>
+  <a title="Jasmine standalone downloads" href="http://pivotal.github.com/jasmine/download.html">Jasmine site</a>, or they&#x2019;re included in the
+  <a title="My GitHub SignalR.Demo repository." href="https://github.com/bradygaster/SignalR.Demo">GitHub repository</a>  I&#x2019;ve created for the purpose of my continued tinkering in SignalR. </p>
 <p>
   <img alt="image" src="/posts/doing-bdd-with-signalr-and-jasmine/media/image_73.png">
 </p>
@@ -88,7 +88,7 @@ Bring on the BDD!
   <img alt="image" src="/posts/doing-bdd-with-signalr-and-jasmine/media/image_79.png">
 </p>
 <p>It&#x2019;d help at this point to take a
-  <a>peek at the Jasmine Wiki article on Spies</a>  to get an idea of how this sort of verification can be accomplished. Jasmine&#x2019;s Fluent syntax makes it pretty self-explanatory (and including vsdoc files to provide Intellisense in Visual Studio brings in
+  <a title="The Matchers section is really the important part here. You don&apos;t need to KNOW this, just have an idea of it and a reference bookmark." href="https://github.com/pivotal/jasmine/wiki/Spies">peek at the Jasmine Wiki article on Spies</a>  to get an idea of how this sort of verification can be accomplished. Jasmine&#x2019;s Fluent syntax makes it pretty self-explanatory (and including vsdoc files to provide Intellisense in Visual Studio brings in
   the Jasmine methods). Jasmine, like Moq and other mocking frameworks, offers unit tests the capability of checking to see if methods have been executed properly.</p>
 <p>
   <img alt="image" src="/posts/doing-bdd-with-signalr-and-jasmine/media/image_80.png">

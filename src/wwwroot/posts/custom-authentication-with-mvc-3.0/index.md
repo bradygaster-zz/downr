@@ -24,7 +24,7 @@ categories: .NET
 <p>The first class needed in any custom implementation is the identity class. The main purpose of this implementation is to represent the user&#x2019;s name, really, as well as how the user was authenticated and if they <em>are </em> authenticated. Should the <em>IsAuthenticated </em> property
   be set to false at run-time, code later on assumes the user is an anonymous user.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/Custom-Authentication-with-MVC-3.0_12B49/image_2.png">
     <img src="/posts/custom-authentication-with-mvc-3.0/media/image_thumb.png" alt="image">
   </a> 
 </p>
@@ -66,4 +66,4 @@ categories: .NET
   <li>Override the <em>OnAuthorization </em> method in a base controller and then use that base controller in future controllers</li>
 </ul>
 <p>Happy Coding! If you&#x2019;d like to take a peek at the code for this demo and debug it for better observation as to how it all works together
-  <a>you can download the code from my DropBox account</a> .</p>
+  <a href="http://dl.dropbox.com/u/3597725/MVCCustomAuthSample.zip">you can download the code from my DropBox account</a> .</p>

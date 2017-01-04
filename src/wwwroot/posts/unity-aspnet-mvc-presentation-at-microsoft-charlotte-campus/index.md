@@ -8,8 +8,8 @@ categories: Community
 ---
 
 <p>Today I gave a short presentation today at Microsoft Charlotte on using Unity and ASP.NET MVC together.
-  <a>I promised to post the code and presentation</a>, so this is the requisite blog post doing that very thing. Thanks a lot to
-  <a>Brian Hitney</a>,
-  <a>Chad Brooks</a>,
-  <a>Glen Gordon</a>, and the
-  <a>Southern Fried Road Show</a>  crew for the invitation, it was an honor and a pleasure to be allowed the time to speak.</p>
+  <a href="http://bradygaster.com/downloads/unity_mvc.zip" title="Code and Presentation">I promised to post the code and presentation</a>, so this is the requisite blog post doing that very thing. Thanks a lot to
+  <a href="http://blog.structuretoobig.com/">Brian Hitney</a>,
+  <a href="http://blogs.msdn.com/chabrook/">Chad Brooks</a>,
+  <a href="http://blogs.msdn.com/glengordon/" title="Glen Gordon">Glen Gordon</a>, and the
+  <a href="http://www.facebook.com/group.php?gid=25541521364" title="Southern Fried Roadshow Facebook Group">Southern Fried Road Show</a>  crew for the invitation, it was an honor and a pleasure to be allowed the time to speak.</p>

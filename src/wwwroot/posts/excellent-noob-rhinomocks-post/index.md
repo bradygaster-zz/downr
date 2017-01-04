@@ -8,5 +8,5 @@ categories: .NET
 ---
 
 <p>Buddy, the Beginnermediate developer (I love that tagline BTW) has written an
-  <a>excellent blog post on Rhino Mocks</a> . For someone like myself who understands TDD, implements it at a &quot;B-minus&quot; level and who thinks that mocks could help but have no idea how to get started, this post is a must-read. I can&apos;t wait to download RM now
+  <a href="http://buddylindsey.com/Blog/post/Hello-World-of-Rhino-Mocks.aspx" title="Rhino for noobs like me">excellent blog post on Rhino Mocks</a> . For someone like myself who understands TDD, implements it at a &quot;B-minus&quot; level and who thinks that mocks could help but have no idea how to get started, this post is a must-read. I can&apos;t wait to download RM now
   and get started. Excellent work!</p>

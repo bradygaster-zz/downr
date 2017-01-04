@@ -9,7 +9,7 @@ categories: Personal
 
 <p>
   Even though they can&apos;t pronounce the name of
-  <a>my alma mater</a>  properly, these
-  <a>Buckeyes fans in DC watching Michigan lose to Appalachian State</a>  seem to be some of our newest fans. Sure is a good day to be a Mountaineer!
+  <a href="http://www.appstate.edu" title="AP-PUH-LAH-CHEN">my alma mater</a>  properly, these
+  <a href="http://www.youtube.com/watch?v=MOBjdka9uEw" title="YouTube - Buckeye fans in DC watch Michigan lose to Appalachian State">Buckeyes fans in DC watching Michigan lose to Appalachian State</a>  seem to be some of our newest fans. Sure is a good day to be a Mountaineer!
   <br>
 </p>

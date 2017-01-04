@@ -7,6 +7,6 @@ pubDate: 2012-10-05 18:14:45
 categories: Personal
 ---
 
-<a>10 Seconds with TylerDurden</a>  is a product written by
-<a>OpenSoft Development</a> . I need this app. I&apos;m not sure how it works so I may have to install it on my wife&apos;s Mac to get an idea of how it works. Bottom line is, this app sounds awesome and it needs to be copied so us PC users can have little hints of
+<a href="http://www.dbachrach.com/opensoft/index.php?page=TylerDurden" title="OpenSoft Development: TylerDurden">10 Seconds with TylerDurden</a>  is a product written by
+<a href="http://www.dbachrach.com/opensoft/">OpenSoft Development</a> . I need this app. I&apos;m not sure how it works so I may have to install it on my wife&apos;s Mac to get an idea of how it works. Bottom line is, this app sounds awesome and it needs to be copied so us PC users can have little hints of
 wisdom every so often.

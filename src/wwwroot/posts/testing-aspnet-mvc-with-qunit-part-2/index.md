@@ -8,7 +8,7 @@ categories: .NET,JavaScript
 ---
 
 <p>In
-  <a>Part 1 of this series</a>  I demonstrated how QUnit can be used to test JsonResult action methods in ASP.NET MVC applications. Part 2 will take the idea a little further by showing an example of how QUnit can be used to inspect potential user-input areas
+  <a href="/post/Testing-ASPNET-MVC-with-QUnit-Part-1.aspx" title="ASP.NET MVC and QUnit - Part 1">Part 1 of this series</a>  I demonstrated how QUnit can be used to test JsonResult action methods in ASP.NET MVC applications. Part 2 will take the idea a little further by showing an example of how QUnit can be used to inspect potential user-input areas
   on your MVC forms and to use those values in tests that will verify the requirements have been met.</p>
 <p>The scenario will be a search form that will search a database of people. To use the mindset from a post I made earlier this week, the application will need to meet the following requirements:</p>
 <ul>

@@ -7,4 +7,4 @@ pubDate: 2012-10-05 18:15:00
 categories: Personal
 ---
 
-<a>the periodic table of funk</a>, baby. ooooooh yeaaaaaah.
+<a href="http://www.toshistation.com/funk/funk.htm">the periodic table of funk</a>, baby. ooooooh yeaaaaaah.

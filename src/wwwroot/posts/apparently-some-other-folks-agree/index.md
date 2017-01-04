@@ -8,4 +8,4 @@ categories: Music
 ---
 
 apparently some other folks
-<a>agree with me</a>  on this property rights thing.
+<a href="http://www.arguewithsigns.net/archives/2005/06/23/scotus_property_rights/">agree with me</a>  on this property rights thing.

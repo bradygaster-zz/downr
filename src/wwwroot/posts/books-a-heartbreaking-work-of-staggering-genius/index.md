@@ -1,5 +1,5 @@
 ---
-title: a heartbreaking work of staggering genius
+title: books - a heartbreaking work of staggering genius
 slug: books-a-heartbreaking-work-of-staggering-genius
 author: bradygaster
 lastModified: 2009-12-21 07:24:52
@@ -7,10 +7,10 @@ pubDate: 2012-10-05 18:15:00
 categories: Personal
 ---
 
-<a>
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0375725784/ref=sib_rdr_dp/103-2555603-4893419?%5Fencoding=UTF8&amp;no=283155&amp;me=ATVPDKIKX0DER&amp;st=books">
   <img src="http://www.tatochip.com/images/books/ahwosg.gif" alt="book cover : ahwosg">
 </a> every now and then you hear of a new book. a friend tells you about it, you read about it on someone else&apos;s web site, or amazon spams you and you find a gem or two within the lines of the message. a co-worker dropped dave eggers&apos;
-<a>ahwosg</a>  (i&apos;m using the abbreviation eggers himself uses frequently) on my desk and said &quot;it&apos;s depressing, but really, really good.&quot; the co-worker in question is kind a west coast, ex-surfer, scientific kind of guy who never really gets excited or rapid-fire
+<a href="http://www.amazon.com/exec/obidos/tg/detail/-/0375725784/ref=sib_rdr_dp/103-2555603-4893419?%5Fencoding=UTF8&amp;no=283155&amp;me=ATVPDKIKX0DER&amp;st=books">ahwosg</a>  (i&apos;m using the abbreviation eggers himself uses frequently) on my desk and said &quot;it&apos;s depressing, but really, really good.&quot; the co-worker in question is kind a west coast, ex-surfer, scientific kind of guy who never really gets excited or rapid-fire
 about anything really. he&apos;s just a mellow beach bum who meanders about his day coming up with new inventions and electrical doodads. so the fact that he didn&apos;t get too excited about it didn&apos;t raise any alarms. i took the book and started reading it that
 night, having no idea what the book was about, the author&apos;s style, the subject matter - nothing. within the pages of the book i found a truly discomforting catharsis. as i read eggers&apos; never-ending rant about death, loss, and dissatisfaction, i felt relieved;
 in the moments when his pain and anguish over the loss of parental figures and the frustration in having to care for his little brother are most obvious, my own demons - the loss of my mother some two years ago - were inexplicably made tangible through

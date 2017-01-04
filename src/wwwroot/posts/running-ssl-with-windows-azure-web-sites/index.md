@@ -23,16 +23,16 @@ Architectural Overview
     I&#x2019;m no expert at most of the things involved in this exercise, but the Web Sites team literally put together a &#x201C;starter project&#x201D; for me to use, and it took me 1 hour to get it working. If I can do this, <strong>you can do this</strong> .</p>
 </blockquote>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/The-SSL-on-Web-Sites-Workaround_79F0/SSL-Forwarder-Diagram_4.png">
     <img alt="SSL-Forwarder-Diagram" src="/posts/running-ssl-with-windows-azure-web-sites/media/SSL-Forwarder-Diagram_thumb_1.png">
   </a> The idea of the SSL Forwarder is pretty simple. You set up a
-  <a>Cloud Service</a>  using the Azure portal that redirects traffic to your Azure Web Site. You can use all the niceties of Web Sites (like Git deployment,
-  <a>DropBox integration</a>, and publishing directly to your site using
-  <a>Visual Studio</a>  or
-  <a>WebMatrix</a> ) to actually build your web site, but the requests actually resolve to your Cloud Service endpoint, which then proxies HTTP traffic into your Web Site.</p>
+  <a href="http://www.windowsazure.com/en-us/home/features/cloud-services/">Cloud Service</a>  using the Azure portal that redirects traffic to your Azure Web Site. You can use all the niceties of Web Sites (like Git deployment,
+  <a href="http://channel9.msdn.com/Series/Windows-Azure-Web-Sites-Tutorials/Dropbox-Deployment-to-Windows-Azure-Web-Sites">DropBox integration</a>, and publishing directly to your site using
+  <a href="http://www.microsoft.com/visualstudio/">Visual Studio</a>  or
+  <a href="http://www.microsoft.com/web/webmatrix/">WebMatrix</a> ) to actually build your web site, but the requests actually resolve to your Cloud Service endpoint, which then proxies HTTP traffic into your Web Site.</p>
 <p>The diagram to the right shows how this solution works, at a high level. The paragraph below explains it in pretty simple terms. I think you&#x2019;ll agree that it isn&#x2019;t that complicated and that the magic that occurs works because of tried-and-true IIS URL
   Rewrite functionality. In order to obtain the 99.9% uptime as outlined in the
-  <a>Azure SLA</a>, you&#x2019;ll need to deploy at least 2 instances of the Cloud Service, so the diagram shows 2 instances running. As well, the code provided with this blog post as a starting point is defaulted to start 2 instances. You can back this off or
+  <a href="http://www.windowsazure.com/en-us/support/legal/sla/">Azure SLA</a>, you&#x2019;ll need to deploy at least 2 instances of the Cloud Service, so the diagram shows 2 instances running. As well, the code provided with this blog post as a starting point is defaulted to start 2 instances. You can back this off or
   increase it however you want, but the 99.9% uptime is only guaranteed if you deploy the Cloud Service in 2 instances or more (and there&#x2019;s no SLA in place yet for Web Sites, since it&#x2019;s still in preview at the time of this blog post&#x2019;s release, so you
   can host your Web Site on as many or as few instances as you like).</p>
 <p>You map your domain name to your Cloud Service. Traffic resolves to the Cloud Service, and is then reverse-proxied back to your Web Site. The Cloud Service has 1 Web Role in it, and the Web Role consists of a single file, the Web.config file. The Web.config
@@ -40,8 +40,8 @@ Architectural Overview
   to serve. Since Cloud Services support the use of custom SSL certificates, you can place a certificate into the Cloud Service, and serve up content via an HTTPS connection.</p>
 Setup
 <p>To go along with this blog post, there&#x2019;s a
-  <a>GitHub.com</a> 
-  <a>repository</a>  containing a Visual Studio 2012 solution you can use to get started. This solution contains three projects:</p>
+  <a href="http://github.com">GitHub.com</a> 
+  <a href="https://github.com/WindowsAzure-Samples/WawsSslForwarder">repository</a>  containing a Visual Studio 2012 solution you can use to get started. This solution contains three projects:</p>
 <ul>
   <li>A Azure Cloud Project</li>
   <li>A web site that&#x2019;s used as a Web Role for the Cloud Project</li>
@@ -50,14 +50,14 @@ Setup
 <h3>Create the Cloud Service and Web Site</h3>
 <p>First thing is, I&#x2019;ll need to create a Web Site to host the site&#x2019;s code. Below is a screen shot of me creating a simple web site myself using the Azure portal.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/The-SSL-on-Web-Sites-Workaround_79F0/1_2.png">
     <img alt="1" src="/posts/running-ssl-with-windows-azure-web-sites/media/1_thumb.png">
   </a> 
 </p>
 <p>Obviously, I&#x2019;ll need to create a Azure Cloud Service, too. In this demo, I&#x2019;ll be using a new Cloud Service called <em>SSLForwarder</em>, since I&#x2019;m not too good at coming up with funky names for things that don&#x2019;t end in a capital R (and when I do,
-  <a>Phil teases me</a>, so I&#x2019;ll spare him the ammunition). Below is another screen shot of the Azure portal, with the new Cloud Service being created.</p>
+  <a href="https://twitter.com/haacked/status/241179056291323905">Phil teases me</a>, so I&#x2019;ll spare him the ammunition). Below is another screen shot of the Azure portal, with the new Cloud Service being created.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/The-SSL-on-Web-Sites-Workaround_79F0/2_2.png">
     <img alt="2" src="/posts/running-ssl-with-windows-azure-web-sites/media/2_thumb.png">
   </a> 
 </p>
@@ -69,25 +69,25 @@ Setup
     certificate, you shouldn&#x2019;t have to worry about that error when you go through this process (and I trust you&#x2019;ll forgive a later screen shot where the error is visible).</p>
 </blockquote>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/The-SSL-on-Web-Sites-Workaround_79F0/4_2.png">
     <img alt="4" src="/posts/running-ssl-with-windows-azure-web-sites/media/4_thumb.png">
   </a> 
 </p>
 <p>Once that applet loads up in the manager, I&#x2019;ll click the link in the actions pane labeled <em>Create Self-Signed Certificate</em> .</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/The-SSL-on-Web-Sites-Workaround_79F0/5_4.png">
     <img alt="5" src="/posts/running-ssl-with-windows-azure-web-sites/media/5_thumb_1.png">
   </a> 
 </p>
 <p>I&#x2019;ll name my certificate <em>SSLForwarderTesting</em>, and then it appears in the list of certificates I have installed on my local development machine. I select that certificate from the list and click the link in the Actions pane labeled <em>Export</em>   to save the cert somewhere as a file.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/The-SSL-on-Web-Sites-Workaround_79F0/6_2.png">
     <img alt="6" src="/posts/running-ssl-with-windows-azure-web-sites/media/6_thumb.png">
   </a> 
 </p>
 <p>Then I find the location where I&#x2019;ll save the file and provide it with a password (which I&#x2019;ll need to remember for the next step).</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/The-SSL-on-Web-Sites-Workaround_79F0/7_2.png">
     <img alt="7" src="/posts/running-ssl-with-windows-azure-web-sites/media/7_thumb.png">
   </a> 
 </p>
@@ -96,19 +96,19 @@ Setup
 <p>To activate SSL on the Cloud Service I&#x2019;ll need to install an SSL certificate into the service using the Azure portal. Don&#x2019;t panic, this is easier than it sounds. Promise. Five minutes, tops.</p>
 <p>Back in my browser, on the Azure portal page, I&#x2019;ll click the Cloud Service that&#x2019;ll be answering HTTP/S requests for my site. The service&#x2019;s dashboard page will open up.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/Running-SSL-with-Windows-Azure-Web-Sites_13B78/8_4.png">
     <img alt="8" src="/posts/running-ssl-with-windows-azure-web-sites/media/8_thumb_1.png">
   </a> 
 </p>
 <p>I&#x2019;ll click the <em>Certificates<strong> </strong> </em> tab in the navigation bar.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/Running-SSL-with-Windows-Azure-Web-Sites_13B78/9_2.png">
     <img alt="9" src="/posts/running-ssl-with-windows-azure-web-sites/media/9_thumb.png">
   </a> 
 </p>
 <p>I&#x2019;m going to want to upload my certificate, so this next step should be self-explanatory.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/Running-SSL-with-Windows-Azure-Web-Sites_13B78/10_2.png">
     <img alt="10" src="/posts/running-ssl-with-windows-azure-web-sites/media/10_thumb.png">
   </a> 
 </p>
@@ -117,13 +117,13 @@ Setup
   <p>( cue the sound of hands ruffling through hundreds of post-its)</p>
 </blockquote>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/Running-SSL-with-Windows-Azure-Web-Sites_13B78/11_4.png">
     <img alt="11" src="/posts/running-ssl-with-windows-azure-web-sites/media/11_thumb_1.png">
   </a> 
 </p>
 <p>Once the certificate is uploaded, I&#x2019;ll click the new cert and copy the thumbprint to my clipboard, maybe paste it into Notepad just for the moment&#x2026;</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/Running-SSL-with-Windows-Azure-Web-Sites_13B78/13_2.png">
     <img alt="13" src="/posts/running-ssl-with-windows-azure-web-sites/media/13_thumb.png">
   </a> 
 </p>
@@ -131,7 +131,7 @@ Setup
 <p>With the SSL cert installed and the thumbprint copied, I&#x2019;ll open up the <em>ServiceConfiguration.cloud.cscfg</em>  file in Visual Studio 2012 and set the thumbprint&#x2019;s configuration. I could also do this using the built-in Azure tools in Visual Studio,
   but since I&#x2019;ve got the thumbprint copied this is just as easy to do directly editing the files. Plus, the Web Sites team made it pretty obvious where to put the thumbprint, as you&#x2019;ll see from the screen shot below.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/Running-SSL-with-Windows-Azure-Web-Sites_13B78/14_2.png">
     <img alt="14" src="/posts/running-ssl-with-windows-azure-web-sites/media/14_thumb.png">
   </a> 
 </p>
@@ -140,13 +140,13 @@ Setup
   bad, especially when I&#x2019;ve got the code the team handed me. I just look for all the places in the Web.config file from the Web Role project that mentions <em>foo</em> .com or <em>foo</em> .azurewebsites.net or <em>foo&#x2026;</em> well, you get the idea.</p>
 <p>Here&#x2019;s the Web.config file from the Web Role project before I edit it to comply with the Web Site and Cloud Service I created to demonstrate this solution open in Visual Studio 2012. I&#x2019;ve marked all the spots you&#x2019;ll need to change in the screen shot.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/Running-SSL-with-Windows-Azure-Web-Sites_13B78/15_2.png">
     <img alt="15" src="/posts/running-ssl-with-windows-azure-web-sites/media/15_thumb.png">
   </a> 
 </p>
 <p>Here&#x2019;s the file after being edited. Again, I&#x2019;ll indicate the places where I made changes.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/Running-SSL-with-Windows-Azure-Web-Sites_13B78/16_2.png">
     <img alt="16" src="/posts/running-ssl-with-windows-azure-web-sites/media/16_thumb.png">
   </a> 
 </p>
@@ -156,7 +156,7 @@ Setup
 <h3>Publish the Cloud Service</h3>
 <p>Within Visual Studio 2012, I right-click the Cloud project and select the <em>Publish</em>  context menu item.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/Running-SSL-with-Windows-Azure-Web-Sites_13B78/22_2.png">
     <img alt="22" src="/posts/running-ssl-with-windows-azure-web-sites/media/22_thumb.png">
   </a> 
 </p>
@@ -168,13 +168,13 @@ Setup
 <h3>Publish a Azure Web Site</h3>
 <p>I&#x2019;ll go back into the Azure portal and go specifically to the <em>SSLForwarder</em>  Web Site I created earlier on in the post.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/Running-SSL-with-Windows-Azure-Web-Sites_13B78/17_2.png">
     <img alt="17" src="/posts/running-ssl-with-windows-azure-web-sites/media/17_thumb.png">
   </a> 
 </p>
 <p>Once the site&#x2019;s dashboard opens up, I&#x2019;ll find the link labeled <em>download publishing profile</em> . This file will be used by Visual Studio during publishing to make the process very simple.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/Running-SSL-with-Windows-Azure-Web-Sites_13B78/18_2.png">
     <img alt="18" src="/posts/running-ssl-with-windows-azure-web-sites/media/18_thumb.png">
   </a> 
 </p>
@@ -182,25 +182,25 @@ Setup
 <p>Once the publish settings file has been downloaded, it&#x2019;s easy to push the site to Web Sites using Visual Studio 2012 or WebMatrix. With the sample project provided I&#x2019;ll open up the Web Application project I want to publish to Web Sites. Then, I&#x2019;ll right-click
   the web site project and select the <em>Publish</em>  menu item.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/Running-SSL-with-Windows-Azure-Web-Sites_13B78/19_2.png">
     <img alt="19" src="/posts/running-ssl-with-windows-azure-web-sites/media/19_thumb.png">
   </a> 
 </p>
 <p>Then, the publish process will make the remainder of the publishing experience pretty simple.</p>
 <blockquote>
   <p>Remember to thank
-    <a>Sayed Hashimi</a>  if you need him out and about, he loves to hear thoughts on publishing and uses suggestions to make the experience an improved one for you. He also has a stupendous team of people working with him to execute great publishing experiences,
+    <a href="https://twitter.com/sayedihashimi">Sayed Hashimi</a>  if you need him out and about, he loves to hear thoughts on publishing and uses suggestions to make the experience an improved one for you. He also has a stupendous team of people working with him to execute great publishing experiences,
     who love feedback.</p>
 </blockquote>
 <p>The publish process dialogs will walk you through the simple act of publishing your site up to Azure. Once it completes (which usually takes 30-60 seconds for a larger site) the site will open up in a web browser.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/Running-SSL-with-Windows-Azure-Web-Sites_13B78/21_2.png">
     <img alt="21" src="/posts/running-ssl-with-windows-azure-web-sites/media/21_thumb.png">
   </a> 
 </p>
 <p>Note the URL still shows HTTP, and it also shows the URL of the Azure Web Site you created. You&#x2019;ll need to manually enter in the URL for the Cloud Service you created.</p>
 <p>For me, that&#x2019;s
-  <a>www.sslforwarder.com</a> . So long as the domain name you enter <em>resolves to </em> Cloud Service you should be alright. You can also opt for the *.cloudapp.net approach too, as the domain name of the site you want to put out. Whatever your preference
+  <a href="http://www.sslforwarder.com">www.sslforwarder.com</a> . So long as the domain name you enter <em>resolves to </em> Cloud Service you should be alright. You can also opt for the *.cloudapp.net approach too, as the domain name of the site you want to put out. Whatever your preference
   for solving this particular issue.</p>
 <p>I&#x2019;m going to go ahead and change the domain name <em>and </em> the protocol, so our hit to the site being hosted in Web Sites will respond to it receiving an SSL-encrypted request, then load the site in the browser.</p>
 <blockquote>
@@ -208,7 +208,7 @@ Setup
     address bar, where it says &#x201C;Certificate Error.&#x201D; If I&#x2019;d used a real SSL cert, from a real authority, the error wouldn&#x2019;t be there.</p>
 </blockquote>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/Running-SSL-with-Windows-Azure-Web-Sites_13B78/23_2.png">
     <img alt="23" src="/posts/running-ssl-with-windows-azure-web-sites/media/23_thumb.png">
   </a> 
 </p>

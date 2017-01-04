@@ -12,5 +12,5 @@ categories: .NET,NHibernate
   <img src="/posts/nhqs-nuget-package/media/install-nhqs.PNG">
 </p>
 <p>I&apos;ll be maintaining most of the general information about NHQS on the
-  <a>main NHQS page here on my site</a>, which you can see in the navigation bar above. Hope NHQS makes your life with NHibernate a little easier!</p>
+  <a href="http://bradygaster.com/nhqs">main NHQS page here on my site</a>, which you can see in the navigation bar above. Hope NHQS makes your life with NHibernate a little easier!</p>
 <p>Happy coding!</p>

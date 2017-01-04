@@ -8,7 +8,7 @@ categories: Azure
 ---
 
 <p>The third post in the
-  <a>Solving Real-world Problems with Azure Web Sites blog series</a>  I&#x2019;ll demonstrate one manner in which a web site can be connected to an on-premises enterprise. A common use-case for a web site is to collect data for storage in a database in an enterprise
+  <a href="http://www.bradygaster.com/solving-real-world-problems-with-windows-azure-web-sites">Solving Real-world Problems with Azure Web Sites blog series</a>  I&#x2019;ll demonstrate one manner in which a web site can be connected to an on-premises enterprise. A common use-case for a web site is to collect data for storage in a database in an enterprise
   environment. Likewise, the first thing most customers want to move into the cloud is their web site. Ironically, the idea of moving a whole enterprise architecture into the cloud can appear to be a daunting task. So, if one wants to host their site
   in the cloud but keep their data in their enterprise, what&#x2019;s the solution? This post will address that question and point out how the Azure Service Bus between a Azure Web Site and an on-premises database can be a great glue between your web site and
   your enterprise.</p>
@@ -32,7 +32,7 @@ Solving the Problem using Azure Service Bus
 <p>The first thing I needed to think about when I was brought this problem would be the sample scenario. I needed to come up with something realistic, a problem I had seen customers already experiencing. Here&#x2019;s a high-level diagram of the idea in place.
   There&#x2019;s not much to it, really, just a few simple steps.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/Connecting-Windows-Azure-Web-Sites-to-On_13D7D/on-prem-data-flow_2.png">
     <img alt="on-prem-data-flow" src="/posts/windowsazurewebsites-onprem-servicebus/media/on-prem-data-flow_thumb.png">
   </a> 
 </p>
@@ -43,11 +43,11 @@ Solving the Problem using Azure Service Bus
   basically persists the data to a SQL Server installation on their enterprise.</p>
 Code Summary and Walk-through
 <p>This example code consists of three projects, and is
-  <a>all available for your perusal as a GitHub.com repository</a> . The first of these projects is a simple MVC web site, the second is console application. The final project is a core project that gives these two projects a common language via a domain
+  <a href="https://github.com/bradygaster/WebSitesAndOnPremWithServiceBus">all available for your perusal as a GitHub.com repository</a> . The first of these projects is a simple MVC web site, the second is console application. The final project is a core project that gives these two projects a common language via a domain
   object and a few helper classes. Realistically, the solution could be divided into 4 projects; the core project could be divided into 2 projects, one being the service bus utilities and the other being the on-premises data access code. For the purposes
   of this demonstration, though, the common core project approach was good enough. The diagram below shows how these projects are organized and how they depend on one another.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/Connecting-Windows-Azure-Web-Sites-to-On_13D7D/on-prem-project-structure_2.png">
     <img alt="on-prem-project-structure" src="/posts/windowsazurewebsites-onprem-servicebus/media/on-prem-project-structure_thumb.png">
   </a> 
 </p>
@@ -79,41 +79,41 @@ Create the Service Bus Topic
 <p>Creating a Service Bus topic using the Azure portal is relatively painless. The first step is to use the <strong>New</strong>  menu in the portal to create the actual Service Bus topic. The screen shot below, from the portal, demonstrates the single step
   I need to take to create my own namespace in the Azure Service Bus.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/Connecting-Windows-Azure-Web-Sites-to-On_13D7D/creating-service-bus-topic_2.png">
     <img alt="creating-service-bus-topic" src="/posts/windowsazurewebsites-onprem-servicebus/media/creating-service-bus-topic_thumb.png">
   </a> 
 </p>
 <p>Once I click the <strong>Create a New Topic</strong>  button, the Azure portal will run off and create my very own area within the Service Bus. The process won&#x2019;t take long, but while the Service Bus namespace is being created, the portal will make sure
   I know it hasn&#x2019;t forgotten about me.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/Connecting-Windows-Azure-Web-Sites-to-On_13D7D/service-%20bus-getting-created_2.png">
     <img alt="service- bus-getting-created" src="/posts/windowsazurewebsites-onprem-servicebus/media/service-%20bus-getting-created_thumb.png">
   </a> 
 </p>
 <p>After a few seconds, the namespace will be visible in the Azure portal. If I select the new namespace and click the button at the bottom of the portal labeled <strong>Access Key</strong>, a dialog will open that shows me the connection string I&#x2019;ll need
   to use to connect to the Service Bus.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/Connecting-Windows-Azure-Web-Sites-to-On_13D7D/image_2.png">
     <img alt="image" src="/posts/windowsazurewebsites-onprem-servicebus/media/image_thumb.png">
   </a> 
 </p>
 <p>I&#x2019;ll copy that connection string out of the dialog. Then, I&#x2019;ll paste that connection string into the appropriate place in the <em>Web.config</em>  file of the web application. The screen shot below shows the <em>Web.config </em> file from the project, with
   the appropriate <em>appSettings</em>  node highlighted.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/Connecting-Windows-Azure-Web-Sites-to-On_13D7D/image_4.png">
     <img alt="image" src="/posts/windowsazurewebsites-onprem-servicebus/media/image_thumb_1.png">
   </a> 
 </p>
 <p>A similar node also needs to be configured in the console application&#x2019;s <em>App.config </em> file, as shown below.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/Connecting-Windows-Azure-Web-Sites-to-On_13D7D/image_6.png">
     <img alt="image" src="/posts/windowsazurewebsites-onprem-servicebus/media/image_thumb_2.png">
   </a> 
 </p>
 <p>In all, there are only two <em>*.config</em>  files that need to be edited in the solution to get this working &#x2013; the console application&#x2019;s <em>App.config</em>  file and the web application&#x2019;s <em>Web.config</em>  file. Both of these files are highlighted
   in the solution explorer view of the solution included with this blog post.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/Connecting-Windows-Azure-Web-Sites-to-On_13D7D/image_8.png">
     <img alt="image" src="/posts/windowsazurewebsites-onprem-servicebus/media/image_thumb_3.png">
   </a> 
 </p>
@@ -122,39 +122,39 @@ Running the Code
 <p>Since I&#x2019;ll be using Entity Framework to scaffold the SQL Server database on the fly, all I&#x2019;ll need to do to set up my local enterprise environment is to create a new database. The screen shot below shows my new SQL database before running the console
   application on my machine. Note, there are no tables or objects in the database yet.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/Connecting-Windows-Azure-Web-Sites-to-On_13D7D/image_12.png">
     <img alt="image" src="/posts/windowsazurewebsites-onprem-servicebus/media/image_thumb_5.png">
   </a> 
 </p>
 <p>The first thing I&#x2019;ll do to get running is to debug the console application in Visual Studio. I could just hit F5, but I&#x2019;ll be running the web application in debug mode next. The idea here is to go ahead and fire up the console application so that it can
   create the database objects and prepare my enterprise for incoming messages.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/Connecting-Windows-Azure-Web-Sites-to-On_13D7D/image_14.png">
     <img alt="image" src="/posts/windowsazurewebsites-onprem-servicebus/media/image_thumb_6.png">
   </a> 
 </p>
 <p>The&#xA0; console application will open up, but will display no messages until it begins processing Customer objects that land on the Service Bus. To send it some messages, I&#x2019;ll now debug the web application, while leaving the console application running locally.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/Connecting-Windows-Azure-Web-Sites-to-On_13D7D/image_16.png">
     <img alt="image" src="/posts/windowsazurewebsites-onprem-servicebus/media/image_thumb_7.png">
   </a> 
 </p>
 <p>When the web site fires up and opens in my web browser, I&#x2019;ll be presented the simple form used to collect customer data. If I fill out that form and click the <strong>Save</strong>  button, the data will be sent into the Service Bus.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/Connecting-Windows-Azure-Web-Sites-to-On_13D7D/image_18.png">
     <img alt="image" src="/posts/windowsazurewebsites-onprem-servicebus/media/image_thumb_8.png">
   </a> 
 </p>
 <p>By leaving the console application running as I submit the form, I can see the data coming into my enterprise environment.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/Connecting-Windows-Azure-Web-Sites-to-On_13D7D/SNAGHTMLcceb1f2.png">
     <img alt="SNAGHTMLcceb1f2" src="/posts/windowsazurewebsites-onprem-servicebus/media/SNAGHTMLcceb1f2_thumb.png">
   </a> 
 </p>
 <p>Going back into SQL Server Management Studio and refreshing the list of tables I can see that the Entity Framework migrations ran&#xA0; perfectly, and created the table into which the data will be saved. If I select the data out of that table using a SQL query,
   I can verify that indeed, the data was persisted into my on-premises database.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/Connecting-Windows-Azure-Web-Sites-to-On_13D7D/SNAGHTMLcd1045e.png">
     <img alt="SNAGHTMLcd1045e" src="/posts/windowsazurewebsites-onprem-servicebus/media/SNAGHTMLcd1045e_thumb.png">
   </a> 
 </p>
@@ -164,4 +164,4 @@ Summary
   but they want to take some steps towards getting their applications into the cloud. This sort of <em>hybrid cloud</em>  setup is one that&#x2019;s perfect for Service Bus. As you&#x2019;ve seen in this demonstration, the process of connecting a Azure Web Site to your
   on-premises enterprise isn&#x2019;t difficult, and it allows you the option of moving individual pieces as you&#x2019;re ready. Getting started is easy, cheap, and will allow for infinite scaling opportunities. Find out how easy Azure can be for Web Sites, mobile
   applications, or hybrid situations such as this by getting a
-  <a>free trial account today</a> . I&#x2019;m sure you&#x2019;ll see that pretty much anything&#x2019;s possible with Azure.</p>
+  <a href="http://bit.ly/windowsazuretrial">free trial account today</a> . I&#x2019;m sure you&#x2019;ll see that pretty much anything&#x2019;s possible with Azure.</p>

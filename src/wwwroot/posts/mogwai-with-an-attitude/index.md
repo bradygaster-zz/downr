@@ -8,4 +8,4 @@ categories: Music
 ---
 
 I&apos;m stoked to be seeing one of my favorite groups soon, but
-<a>this article discusses a pretty blatant attitude problem</a>  via my boys. Pretty funny, actually, but damn, how many groups can you slam in one interview?
+<a href="http://www.nme.com/news/22251" title="NME.COM - News - Mogwai attack BRIT Award winners">this article discusses a pretty blatant attitude problem</a>  via my boys. Pretty funny, actually, but damn, how many groups can you slam in one interview?

@@ -12,9 +12,9 @@ categories: .NET
   process pretty easy. I&apos;ll try to be pretty short and sweet here and will keep the code discussion to a bare minimum.</p>
 <h3>Environment Setup&#xA0;</h3>
 <p>First and foremost, you&apos;ll need to learn the basics of the ASP.NET MVC approach and find the two downloads over at
-  <a>ScottGu&apos;s blog post on the topic</a> . That&apos;s about the best place to start.&#xA0; Once you&apos;ve got everything installed you should create a new MVC project. Add a folder to the <em>Views </em> folder called <em>Login</em> . This is a relatively simple topic
+  <a href="http://weblogs.asp.net/scottgu/archive/2008/05/27/asp-net-mvc-preview-3-release.aspx" title="ScottGu blogs about MVC Preview 3">ScottGu&apos;s blog post on the topic</a> . That&apos;s about the best place to start.&#xA0; Once you&apos;ve got everything installed you should create a new MVC project. Add a folder to the <em>Views </em> folder called <em>Login</em> . This is a relatively simple topic
   that all must implement at some point or another. I&apos;ll use the Prototype JavaScript framework for this. So make sure you
-  <a>download Prototype</a>  and put it into your web project. Finally, add a reference to the script in your <em>Site.Master</em>  page, which should be in the <em>Views/Shared</em>  folder.&#xA0;</p>
+  <a href="http://www.prototypejs.org/assets/2008/1/25/prototype-1.6.0.2.js" title="The Prototype JS Library">download Prototype</a>  and put it into your web project. Finally, add a reference to the script in your <em>Site.Master</em>  page, which should be in the <em>Views/Shared</em>  folder.&#xA0;</p>
 <h3>Creating the Login Index View and Controller</h3>
 <p>Within the new Login folder, create an <em>MVC View Content Page </em> named Index.aspx.&#xA0; This page will contain some HTML code, as you&apos;ll see below. This code contains some form elements and some JavaScript code. The JavaScript code is what will perform
   the duty of packing up the data collected from the form in the structure of a JavaScript object called Login. Once the object is created, it will be shipped over HTTP to the server.</p>
@@ -61,7 +61,7 @@ categories: .NET
 <p>&#xA0;</p>
 <p>This one&apos;s pretty obvious - the call to View() will just render the Index view I already created, with the login form and JavaScript call. The next one isn&apos;t so obvious and requires a quick glance at some helper methods I&apos;ve written into a JsonHelper
   class. This class just makes some of the heavy lifting easier in a moment. The ToJson extension method wouldn&apos;t have been possible without a
-  <a>post from ScottGu&apos;s blog</a> .</p>
+  <a href="http://weblogs.asp.net/scottgu/archive/2007/10/01/tip-trick-building-a-tojson-extension-method-using-net-3-5.aspx" title="ScottGu on JSON">post from ScottGu&apos;s blog</a> .</p>
 <p>&#xA0;</p>
 <pre>public static class JsonHelper
 {

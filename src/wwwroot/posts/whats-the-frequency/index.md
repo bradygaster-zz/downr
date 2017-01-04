@@ -8,5 +8,5 @@ categories: Music
 ---
 
 wow. this article at harpers attempts to explain the ever-so-puzzling mystery of
-<a>dan rather&apos;s beating and the statement &quot;what&apos;s the frequency, kenneth?&quot;</a> . part essay, part commentary on the character that is dan rather, part mystery solution, this is a must-read. took me about 10 minutes and i&apos;m a seriously slow reader. well worth
+<a href="http://harpers.org/TheFrequency.html">dan rather&apos;s beating and the statement &quot;what&apos;s the frequency, kenneth?&quot;</a> . part essay, part commentary on the character that is dan rather, part mystery solution, this is a must-read. took me about 10 minutes and i&apos;m a seriously slow reader. well worth
 it.

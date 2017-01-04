@@ -8,7 +8,7 @@ categories: NDecision
 ---
 
 <p>A pet project of mine for a few months, NDecision is finally going to be allowed to see the light of day. You can get it as a
-  <a>NuGet package</a>  right now.</p>
+  <a href="http://nuget.org/List/Packages/NDecision">NuGet package</a>  right now.</p>
 <p>
   <img alt="NDecision NuGet Install" src="/posts/announcing-the-ndecision-1.0-release/media/ndecision-install.png">
 </p>

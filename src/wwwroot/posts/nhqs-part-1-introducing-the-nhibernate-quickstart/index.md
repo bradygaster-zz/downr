@@ -18,12 +18,12 @@ categories: .NET,NHibernate
   at the stake for failing to follow <em>someone&#x2019;s </em> NHibernate Best Practice 101 list, so I&#x2019;ll apologize up front. With that, here&#x2019;s the synopsis of the blog series, which I aim to complete by the end of this week.</p>
 <ol>
   <li>
-    <a>Introduction (this post) </a> 
+    <a href="http://bradygaster.com/nhqs-part-1-introducing-the-nhibernate-quickstart">Introduction (this post) </a> 
     </li><li>
-      <a>Session Factory Creation and Containment </a> 
+      <a href="http://bradygaster.com/nhqs-part-2-sessionfactory-creation-and-containment">Session Factory Creation and Containment </a> 
       </li><li>
-        <a>Session Fluency Extensions </a> 
-        </li><li> <a>Transactions and Multiple Database Support</a>  </li>
+        <a href="http://bradygaster.com/nhqs-part-3-session-fluency-extensions">Session Fluency Extensions </a> 
+        </li><li> <a href="http://bradygaster.com/nhqs-part-4-multiple-database-connectivity-and-transaction-management">Transactions and Multiple Database Support</a>  </li>
 </ol>
 NHQS in 30 Seconds
 <p>There are a few steps one must follow to get their persistence mechanism accessible via NHQS. Here they are:</p>
@@ -35,4 +35,4 @@ NHQS in 30 Seconds
 </ol>
 <p>The second post in this series will begin the process of using NHQS in a real-world situation by simplifying the art of creating <em>ISessionFactories </em> and storing them in a container, so check back soon.</p>
 <p>If you&#x2019;d like to skip the blogs and look at the source, feel free, I keep the
-  <a>NHQS source in Github</a> .</p>
+  <a href="https://github.com/bradygaster/NHibernate-QuickStart">NHQS source in Github</a> .</p>

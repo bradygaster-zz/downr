@@ -8,4 +8,4 @@ categories: Personal
 ---
 
 = A do-it-yourself representation of a [rather sticky] copy of the Bellagio&apos;s dancing water fountains. Video
-<a>here</a> .
+<a href="http://eepybird.com/dcm1.html" title="EepyBird.com">here</a> .

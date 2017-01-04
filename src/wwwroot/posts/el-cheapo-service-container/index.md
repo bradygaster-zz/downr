@@ -8,10 +8,10 @@ categories: .NET
 ---
 
 <p>A few days ago
-  <a>a collegaue of mine blogged about performing DI on the cheap</a> . His post got me to thinking about the various IoC containers and DI frameworks that have sprung up (no pun intended, sorry for that heinous attempt at geek humor). As I&apos;ve been working
+  <a href="http://bojordan.com/log/?p=597" title="DI on the cheap">a collegaue of mine blogged about performing DI on the cheap</a> . His post got me to thinking about the various IoC containers and DI frameworks that have sprung up (no pun intended, sorry for that heinous attempt at geek humor). As I&apos;ve been working
   through the Social Timeline architecture I&apos;ve concluded the importance that&apos;ll reside on being able to snap in time line data providers with ease. Inspired by Bo&apos;s post, I&apos;ve named the project <em>El Cheapo</em> . Though it doesn&apos;t make use of any of
   the popular IoC/DI frameworks out there it does borrow some of the general ideas from their implementations. I was specifically inspired by
-  <a>Nikola Malovic&apos;s discussion of Unity</a>, namely the way interfaces are resolved to types.&#xA0;</p>
+  <a href="http://blog.vuscode.com/malovicn/archive/2008/05/18/design-for-testability-microsoft-unity-part-7.aspx" title="Nikola&apos;s Unity Post">Nikola Malovic&apos;s discussion of Unity</a>, namely the way interfaces are resolved to types.&#xA0;</p>
 <p>As you&apos;ll see, the only significant difference between a typical service container implementation and this custom version is that this implementation takes into account the concern of having multiple implementations of a given interface. In Social Timeline
   for instance, I&apos;ve listed the various time line data providers as tabs in the GUI layer. In this way a user can see all that they could represent on the timeline below the tabs. I had intended to use the Unity framework in this implementation but decided
   it was a little more lightweight to just build what I needed myself. Below, you&apos;ll see the code for the El Cheapo service container in its [current] entirety.</p>

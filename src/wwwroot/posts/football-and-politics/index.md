@@ -8,4 +8,4 @@ categories: Personal
 ---
 
 according to
-<a>Urban Legends Reference Pages: Sports (Winning Tradition)</a>, we should definitely be pulling for the packers on my birthday. take note.
+<a href="http://www.snopes.com/sports/football/election.asp">Urban Legends Reference Pages: Sports (Winning Tradition)</a>, we should definitely be pulling for the packers on my birthday. take note.

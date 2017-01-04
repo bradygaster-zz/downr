@@ -8,5 +8,5 @@ categories: Personal
 ---
 
 I just noticed, when looking at the
-<a>Amtrak web site</a>, that there was something familliar about the logo. Something about the wave. I recalled the logo of
-<a>my bank</a> . When I looked at my bank&apos;s site, it hit me where I&apos;d seen it.
+<a href="http://www.amtrak.com">Amtrak web site</a>, that there was something familliar about the logo. Something about the wave. I recalled the logo of
+<a href="http://www.bankofamerica.com">my bank</a> . When I looked at my bank&apos;s site, it hit me where I&apos;d seen it.

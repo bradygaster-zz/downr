@@ -8,11 +8,11 @@ categories: .NET
 ---
 
 <p>Scott does an excellent job in
-  <a>his introduction blog post</a>  to the new features in the ASP.NET MVC beta release. The Model Binder support is an excellent feature for which I wanted to put forth a simple example.&#xA0;</p>
+  <a href="http://weblogs.asp.net/scottgu/archive/2008/10/16/asp-net-mvc-beta-released.aspx" title="ScottGu ASP.NET MVC Beta">his introduction blog post</a>  to the new features in the ASP.NET MVC beta release. The Model Binder support is an excellent feature for which I wanted to put forth a simple example.&#xA0;</p>
 <p>In essence, Model Binding allows you to pass an object into your controller methods rather than be required to pass the values of each property for your model that you intend to set within your Controller method. In retrospect, that description sounds
   pretty harsh and confusing, doesn&apos;t it? For now I&apos;ll spare you an introduction to Model Binding, Scott&apos;s already done an excellent job of that via these
-  <a>two</a> 
-  <a>posts</a> .&#xA0;</p>
+  <a href="http://weblogs.asp.net/scottgu/archive/2008/09/02/asp-net-mvc-preview-5-and-form-posting-scenarios.aspx" title="ScottGu - MVC Preview 5">two</a> 
+  <a href="http://weblogs.asp.net/scottgu/archive/2008/10/16/asp-net-mvc-beta-released.aspx" title="ScottGu - MVC Beta">posts</a> .&#xA0;</p>
 <p>For this example I&apos;ll continue with Scott&apos;s Person class example. I&apos;ll have my Controller method, which takes instances of Person classes. The code below contains all of the Controller and Person Model code for this form-posting scenario. Pay special
   attention to the <strong>Save </strong> method, as it demonstrates usage of Model Binding; an instance of the Person class is passed into this method via a parameter named <strong>person</strong> .&#xA0;</p>
 <p>&#xA0;</p>

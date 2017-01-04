@@ -8,8 +8,8 @@ categories: .NET
 ---
 
 I like the idea of automated builds a lot.
-<a>Cory Foy</a>  taught me a lot about the idea, and I&apos;ve only recently really had a lot of time to dedicate to learning more about the whole process of setting up an automated build. Today I decided to fire off
-<a>NDoc</a>  during a CCNet build. It took awhile to get it down-pat (and required a little help from Cory, to boot). In the spirit of trying to make life as easy as possible, here&apos;s the code to do it in as simple-and-direct-a-method as I could come up with.
+<a href="http://www.cornetdesign.com">Cory Foy</a>  taught me a lot about the idea, and I&apos;ve only recently really had a lot of time to dedicate to learning more about the whole process of setting up an automated build. Today I decided to fire off
+<a href="http://NDoc.sourceforge.net">NDoc</a>  during a CCNet build. It took awhile to get it down-pat (and required a little help from Cory, to boot). In the spirit of trying to make life as easy as possible, here&apos;s the code to do it in as simple-and-direct-a-method as I could come up with.
 <br>
 <br> First of all, here&apos;s the CruiseControl.Net server configuration file in its entirety.
 <br>

@@ -8,4 +8,4 @@ categories: Personal
 ---
 
 how 99.9999999% of my colleagues feel about the
-<a>process of developing software.</a>  funny though it is to me that, despite the widespread agreement that such a problem exists it continues to thrive. you&apos;d think.... oh forget about it.
+<a href="http://twasink.net/blog/archives/2004/10/if_architects_h.html">process of developing software.</a>  funny though it is to me that, despite the widespread agreement that such a problem exists it continues to thrive. you&apos;d think.... oh forget about it.

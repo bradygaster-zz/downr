@@ -8,4 +8,4 @@ categories: Blogging
 ---
 
 Thanks a lot to Mark for his tutorial on
-<a>blogger-to-movable-type conversion</a> . Nice and easy to follow via the animated demo. And like MovableType, the shit worked on the first try. Excellent.
+<a href="http://neologasm.org/b2mt/">blogger-to-movable-type conversion</a> . Nice and easy to follow via the animated demo. And like MovableType, the shit worked on the first try. Excellent.

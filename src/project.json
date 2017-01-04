@@ -23,7 +23,8 @@
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
     "Markdig": "0.10.4",
-    "YamlDotNet": "4.0.0"
+    "YamlDotNet.NetCore": "1.0.0",
+    "System.Xml.ReaderWriter": "4.3.0",
   },
   "tools": {
     "BundlerMinifier.Core": "2.0.238",

@@ -20,7 +20,7 @@ categories: Azure,Kinect,SignalR
 </blockquote>
 <p>Good news! It isn&#x2019;t that difficult. To start with, take a look at the Kinectonitor Visual Studio solution below.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/The-Kinecto_13AA2/image_4.png">
     <img alt="image" src="/posts/the-kinectonitor/media/image_thumb_1.png">
   </a> 
 </p>
@@ -35,21 +35,21 @@ The Kinectonitor Core Project
   the Kinect will be publishing messages containing image data to the Azure Service Bus, and allow subscribers (which we&#x2019;ll get to in a moment) their own autonomy. The <em>ImageMessage</em>  class below illustrates the message that&#x2019;ll be transmitted through
   the Azure Service Bus.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/The-Kinecto_13AA2/image_6.png">
     <img alt="image" src="/posts/the-kinectonitor/media/image_thumb_2.png">
   </a> 
 </p>
 <p>A high-level abstraction will be needed to represent consumption of image messages coming from the Azure cloud. The purpose of the <em>IImageMessageProcessor </em> service is to receive messages from the cloud and to then notify it&#x2019;s own listeners that
   an image has been received.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/The-Kinecto_13AA2/image_8.png">
     <img alt="image" src="/posts/the-kinectonitor/media/image_thumb_3.png">
   </a> 
 </p>
 <p>A simple implementation is needed to receive image messages and to notify observers when they&#x2019;re received. This implementation will allow the SignalR hub, which we&#x2019;ll look at next, to get updates from the service bus; this abstraction and implementation
   are the custom glue that binds the service bus subscriber to the web site.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/The-Kinecto_13AA2/image_10.png">
     <img alt="image" src="/posts/the-kinectonitor/media/image_thumb_4.png">
   </a> 
 </p>
@@ -57,10 +57,10 @@ The Kinectonitor Core Project
 
 Wiring Up a SignalR Hub
 <p>Just before we dive into the MVC code itself, take a quick look at the solution again and note the <em>ServiceBusSimplifier </em> project. This is a super na&#xEF;ve, demo-class wrapper around the Azure Service Bus that was inspired by the
-  <a>far-more-complete implementation Joe Feser shares on GitHub</a> . I used Joe&#x2019;s library to get started with Azure Service Bus and really liked some of his hooks, but his implementation was overkill for my needs so I borrowed some of his ideas in a tinier
+  <a href="https://github.com/ProjectExtensions/ProjectExtensions.Azure.ServiceBus">far-more-complete implementation Joe Feser shares on GitHub</a> . I used Joe&#x2019;s library to get started with Azure Service Bus and really liked some of his hooks, but his implementation was overkill for my needs so I borrowed some of his ideas in a tinier
   implementation. If you&#x2019;re deep into Azure Service Bus, though, you should totally look into Joe&#x2019;s code.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/The-Kinecto_13AA2/image_12.png">
     <img alt="image" src="/posts/the-kinectonitor/media/image_thumb_5.png">
   </a> 
 </p>
@@ -68,13 +68,13 @@ Wiring Up a SignalR Hub
   but collapsed. The idea is <em>just to get the idea </em> of how this abstraction is going to simplify things from here on out. I&#x2019;ll post a link to download the source code for this article in a later section. For now, just understand that the projects
   will be using this abstraction to streamline development and form a convention around the Azure Service Bus usage.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/The-Kinecto_13AA2/image_14.png">
     <img alt="image" src="/posts/the-kinectonitor/media/image_thumb_6.png">
   </a> 
 </p>
 <p>A few calls are going to be made in calls to the <em>ServiceBus.Setup </em> method, specifically to provide Azure Service Bus authentication details. The classes that represent this sort of thing are below.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/The-Kinecto_13AA2/image_16.png">
     <img alt="image" src="/posts/the-kinectonitor/media/image_thumb_7.png">
   </a> 
 </p>
@@ -83,53 +83,53 @@ Wiring Up a SignalR Hub
   an instance of the service) for use later on in the SignalR Hub. Once the service instance is created, the Azure Service Bus wrapper is created and the <em>ImageMessage</em>  messages are subscribed to by the site <em>MessageProcessor </em> instance&#x2019;s
   <em>Process </em> method.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/The-Kinecto_13AA2/image_18.png">
     <img alt="image" src="/posts/the-kinectonitor/media/image_thumb_8.png">
   </a> 
 </p>
 <p>When the application starts up, the instance is created and shared with the web site&#x2019;s server-side code. The SignalR Hub, then, can make use of that service implementation. The SignalR Hub listens for <em>ImageReceived </em> events coming from the service.
   Whenever the Hub handles the event, it turns around and notifies the clients connected to it that a new photo has arrived.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/The-Kinecto_13AA2/image_20.png">
     <img alt="image" src="/posts/the-kinectonitor/media/image_thumb_9.png">
   </a> 
 </p>
 <p>With the Hub created, a simple Index view (and controller action) will provide the user-facing side of the Kinectonitor. The HTML/JQuery code below demonstrates how the client responds when messages arrive. There isn&#x2019;t much to this part, really. The code
   just changes the <em>src </em> attribute of an <em>img </em> element in the HTML document, then fades the image in using JQuery sugar.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/The-Kinecto_13AA2/image_22.png">
     <img alt="image" src="/posts/the-kinectonitor/media/image_thumb_10.png">
   </a> 
 </p>
 <p>Now that the web client code has been created, we&#x2019;ll take a quick look at the Kinect code that captures the images and transmits them to the service bus.</p>
 The Kinectonitor Monitor WPF Client
 <p>Most of the Kinect-interfacing code comes straight from the samples available with the
-  <a>Kinect SDK download</a> . The main points to be looked at in the examination of the WPF client is to see how it publishes the image messages into the Azure cloud.</p>
+  <a href="http://kinectforwindows.org/">Kinect SDK download</a> . The main points to be looked at in the examination of the WPF client is to see how it publishes the image messages into the Azure cloud.</p>
 <p>The XAML code for the main form of the WPF app is about as dirt-simple as you could get. It just needs a way to display the image being taken by the Kinect and the skeletal diagram (the code available from the Kinect SDK samples). The XAML for this sample
   client app is below.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/The-Kinecto_13AA2/image_24.png">
     <img alt="image" src="/posts/the-kinectonitor/media/image_thumb_11.png">
   </a> 
 </p>
 <p>When the WPF client opens, the first step is, of course, to connect to the Kinect device and the Azure Service Bus. The <em>OnLoad </em> event handler below is how this work is done. Note that this code also instantiates a <em>Timer</em>  instance. That
   timer will be used to control the delay between photographs, and will be looked at in a moment.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/The-Kinecto_13AA2/image_28.png">
     <img alt="image" src="/posts/the-kinectonitor/media/image_thumb_13.png">
   </a> 
 </p>
 <p>Whenever image data is collected from the camera it&#x2019;ll be displayed in the WPF Image control shown earlier. The <em>OnKinectVideoReady </em> handler method below is where the image processing/display takes place. Take note of the highlighted area; this
   code sets an instance of a <em>BitmapSource </em> object, which will be used to persist the image data to disk later.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/The-Kinecto_13AA2/image_30.png">
     <img alt="image" src="/posts/the-kinectonitor/media/image_thumb_14.png">
   </a> 
 </p>
 <p>Each time the Kinect video image is processed a new <em>BitmapSource </em> instance is created. Remember the <em>Timer </em> instance from the class earlier? That timer&#x2019;s handler method is where the image data is saved to disk and transmitted to the cloud.
   Note the check being performed on the <em>AreSkeletonsBeingTracked </em> property. That&#x2019;s the last thing that&#x2019;ll be looked at next, that&#x2019;ll tie the WPF functionality together.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/The-Kinecto_13AA2/image_32.png">
     <img alt="image" src="/posts/the-kinectonitor/media/image_thumb_15.png">
   </a> 
 </p>
@@ -138,20 +138,20 @@ The Kinectonitor Monitor WPF Client
   that the skeleton might be continually tracked for a few seconds (or minutes, or longer), the Kinect will continue to photograph while a skeleton is being tracked. As soon as the tracking stops, a final photo is taken, too. The code that sets the <em>AreSkeletonsBeingTracked </em> property
   value during the skeleton-ready event handler is below.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/The-Kinecto_13AA2/image_34.png">
     <img alt="image" src="/posts/the-kinectonitor/media/image_thumb_16.png">
   </a> 
 </p>
 <p>Some logic occurs during the setter of the <em>AreSkeletonsBeingTracked </em> method, just to sound the alarms whenever a skeleton is tracked, without having to wait the typical few seconds until the next timer tick.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/The-Kinecto_13AA2/image_36.png">
     <img alt="image" src="/posts/the-kinectonitor/media/image_thumb_17.png">
   </a> 
 </p>
 <p>That&#x2019;s it for the code! One more note &#x2013; it helps if the Kinect is up high or in front of a room (or both). During development of this article I just placed mine on top of the fridge, which is next to the kitchen bar where I do a lot of work. It could
   see the whole room pretty well and picked up skeletons rather quickly. Just a note for your environment testing phase.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/The-Kinecto_13AA2/IMAG0356_2.jpg">
     <img alt="IMAG0356" src="/posts/the-kinectonitor/media/IMAG0356_thumb.jpg">
   </a> 
 </p>
@@ -160,5 +160,5 @@ Summary
 <p>This article took a few of the more recent techniques and tools to be released to .NET developers. With a little creativity and some time, it&#x2019;s not difficult to use those components to make something pretty neat at home in the physical computing world.
   Pairing these disciplines up to create something new (or something old someway different) is great fodder for larger projects using the same technologies later.</p>
 <p>
-  <a>If you&#x2019;d like to view the Kinectonitor GitHub source code, it&#x2019;s right here.</a> 
+  <a href="https://github.com/bradygaster/Kinectonitor">If you&#x2019;d like to view the Kinectonitor GitHub source code, it&#x2019;s right here.</a> 
 </p>

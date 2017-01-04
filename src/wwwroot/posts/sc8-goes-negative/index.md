@@ -8,4 +8,4 @@ categories: Personal
 ---
 
 Scott Cate (Sc8) always blasts me for my negativity towards Microsoft. I love it that he&apos;s
-<a>taking the black pill</a>  with me today.
+<a href="http://weblogs.asp.net/scottcate/archive/2007/05/29/surface-com-microsoft-com-surface-uses-flash.aspx" title="Surface.com ( Microsoft.com/surface ) uses flash - Scott Cate&apos;s WebLog">taking the black pill</a>  with me today.

@@ -9,7 +9,7 @@ categories: Personal
 
 <p>
   Thanks to
-  <a>Scott Cate</a>  and his desire to maintain a cool e-ego I&apos;ve been tagged and now am forced to maintain my own e-ego by disclosing five little-known facts about myself. So here goes....
+  <a href="http://weblogs.asp.net/scottcate/archive/2007/01/04/five-not-so-well-known-items-about-scott-cate.aspx">Scott Cate</a>  and his desire to maintain a cool e-ego I&apos;ve been tagged and now am forced to maintain my own e-ego by disclosing five little-known facts about myself. So here goes....
 </p>
 <p>
   1. Skating. Like Scott, I too grew up roller skating when I was a yute. I loved it. I had two-tone Zinger wheels, the low-top black with white stripes, and all that. I think it may have been the perfect solution for a single mom who parented an extremely
@@ -29,5 +29,5 @@ categories: Personal
 <p>
   5. I had an email read on CNN. Remember when Pat Robertson said something about how we needed to assassinate Chavez? I was working at home that day and when CNN asked for people to send in emails, I did so. The email was pretty straight-up, but they read
   it anyway. That was a few seconds ripped out of my 15 minutes. Hopefully the other 14.3 minutes will be used one day by me playing guitar in front of a lot of people. Who knows? And with that, I will tag my current boss,
-  <a>Harvey</a> .
+  <a href="http://waxingcatatonic.blogspot.com/">Harvey</a> .
 </p>

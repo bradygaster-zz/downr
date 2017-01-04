@@ -1,5 +1,5 @@
 ---
-title: NHQS Part 2 - SessionFactory Creation and Containment
+title: NHQS Part 2- SessionFactory Creation and Containment
 slug: nhqs-part-2-sessionfactory-creation-and-containment
 author: bradygaster
 lastModified: 2012-10-05 18:15:15
@@ -8,13 +8,13 @@ categories: .NET,NHibernate
 ---
 
 <p>As explained in various posts all over the internet (
-  <a>like this one at StackOverflow</a> ) the <em>ISessionFactory </em> interface is fundamental to how NHibernate works. As the StackOverflow links points out, creating a session factory is possibly the most expensive of the things NHibernate does during
+  <a href="http://stackoverflow.com/questions/2931036/multiple-sessionfactories-in-windows-service-with-nhibernate">like this one at StackOverflow</a> ) the <em>ISessionFactory </em> interface is fundamental to how NHibernate works. As the StackOverflow links points out, creating a session factory is possibly the most expensive of the things NHibernate does during
   execution. A frequent misstep of developers new to NHibernate is to write code that will frequently &#x2013; <em>sometimes prior to each database call for the more heinous abusers</em>  &#x2013; create session factory instances. As with any technology, that which
   isn&#x2019;t used properly will probably result in less-than-favorable outcomes. NHQS simplifies this step for the developer, as well as facades the complexity associated with session factory storage once the application using the session factory has instantiated
   it.</p>
 Example Domains
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/NHQS-Part-2_8C38/image_18.png">
     <img alt="image" src="/posts/nhqs-part-2-sessionfactory-creation-and-containment/media/image_thumb_6.png">
   </a> Throughout this blog series the Visual Studio 2010 solution pictured to the left will be used. The solution consists of the NHQS framework, two domain projects, two data access projects to accommodate those domain projects, and a unit test project.
   To demonstrate how NHQS can connect not only to multiple database instances, but to multiple database platforms agnostically, the domain/data-access examples use 2 different databases; the <em>People </em> scenario will be backed by a SQL Server Compact
@@ -27,8 +27,8 @@ Session Factory Creation via a Convention
 </p>
 <p>The implementation of the session factory creator interface isn&#x2019;t too difficult. For the People domain we&#x2019;re using SQLCE, so the code below set up the session factory instance for that particular data source using the SQLCE persistence configuration and
   fluent auto-mapping. An in-depth exploration into these topics is beyond the scope of this post; I can assure you there are
-  <a>far</a> 
-  <a>better</a>  resources out there to explain such techniques. For now, take a look at the implementation.</p>
+  <a title="from the Fluent NHibernate documentation - how to fluently configure NHibernate" href="http://wiki.fluentnhibernate.org/Getting_started#Configuration">far</a> 
+  <a title="Fluent NHibernate configuration in-depth" href="http://wiki.fluentnhibernate.org/Fluent_configuration">better</a>  resources out there to explain such techniques. For now, take a look at the implementation.</p>
 <p>
   <img alt="Creating a SQL Compact Edition-backed NHibernate Session Factory" src="/posts/nhqs-part-2-sessionfactory-creation-and-containment/media/image_10.png">
 </p>

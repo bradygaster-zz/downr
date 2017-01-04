@@ -8,4 +8,4 @@ categories: Personal
 ---
 
 according, of course, to
-<a>The Rude Pundit</a> . not quite work-safe. hell, neither is cnn most mornings any more.
+<a href="http://rudepundit.blogspot.com/2004/10/what-edwards-should-say-rude-version.html">The Rude Pundit</a> . not quite work-safe. hell, neither is cnn most mornings any more.

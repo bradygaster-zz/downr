@@ -8,4 +8,4 @@ categories: Personal
 ---
 
 yeah. human bones. like. no way. i love my girl and all that, but i&apos;m not going to give her a
-<a>wedding ring made out of my bone material</a> . somehow i doubt she&apos;d find the gift all that... um.. romantic.
+<a href="http://www.newscientist.com/article.ns?id=dn7050">wedding ring made out of my bone material</a> . somehow i doubt she&apos;d find the gift all that... um.. romantic.

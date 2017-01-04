@@ -8,4 +8,4 @@ categories: Music
 ---
 
 I was more than a little shocked to read
-<a>this article regarding the potential pairing-up of Ashlee Simpson and Robert Smith</a> . Forgive the music snobbery of yours truly, but this is most assuredly a sign of the coming apocalypse, is it not?
+<a href="http://www.pitchforkmedia.com/article/news/42069-ashlee-simpson-working-with-robert-smith" title="Pitchfork: Ashlee Simpson Working With Robert Smith?!?!">this article regarding the potential pairing-up of Ashlee Simpson and Robert Smith</a> . Forgive the music snobbery of yours truly, but this is most assuredly a sign of the coming apocalypse, is it not?

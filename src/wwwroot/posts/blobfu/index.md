@@ -9,7 +9,7 @@ categories: Azure
 
 <p>I came up with a little side project on the plane ride home from Belgium. The world needed a dirt-simple Fluent wrapper around Azure Blob Storage to make it dirt-simple, I decided, and this is my first pass at making such a handy resource helper available.
   I&apos;ll get this thing on NuGet in the next few days, but here&apos;s a quick run-through of what BlobFu can do for you. Take a closer look at the code, as it&apos;s up
-  <a>on GitHub.com right now</a> .&#xA0;</p>
+  <a href="https://github.com/bradygaster/BlobFu">on GitHub.com right now</a> .&#xA0;</p>
 <p>
   <a></a> 
 </p>

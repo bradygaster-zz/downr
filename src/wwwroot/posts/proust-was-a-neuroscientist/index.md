@@ -8,10 +8,10 @@ categories: Personal
 ---
 
 <p>I began reading a new book last night entitled
-  <a>Proust Was a Neuroscientist</a> . First some background...</p>
+  <a href="http://www.amazon.com/Proust-Was-Neuroscientist-Jonah-Lehrer/dp/0618620109" title="Amazon link to buy the book">Proust Was a Neuroscientist</a> . First some background...</p>
 <p>Once during my college education I envisioned something I&apos;ll refer to here as The Duality. At the time I had been doing a great deal of psychological research to satisfy my educational requirements. At the same time I was reading a good deal of philosophy,
   specifically some of
-  <a>Zeno&apos;s Paradoxes</a>, so it&apos;s a safe assumption that I was receiving a good deal of signals from sources that eventually collided. In a sense, during my personal periods of contemplation I had been evaluating the possibility of quantification of emotion.
+  <a href="http://en.wikipedia.org/wiki/Zeno%27s_paradoxes" title="WikiPedia Article on Zeno">Zeno&apos;s Paradoxes</a>, so it&apos;s a safe assumption that I was receiving a good deal of signals from sources that eventually collided. In a sense, during my personal periods of contemplation I had been evaluating the possibility of quantification of emotion.
   As I walked around campus, listened to music, or attended lectures, I was plagued by the continuous need to evaluate each stimulus from two angles - to think about the stimulus in a deductive, rational mindset while at the same time attempting to actively
   determine what emotional content the stimulus activated within me. During a particular &quot;thought session&quot; The Duality appeared to me as two bands of color that drew continuously closer to one another yet never actually met (I&apos;m sure this was inspired
   by Zeno&apos;s Paradox that motion is not possible). One of the colors in my mind represented the rational side of my thought process, while the other color represented my Emotional side (and I&apos;m not talking about left-brain-right-brain stuff here).&#xA0;</p>
@@ -29,8 +29,8 @@ categories: Personal
 <p>In my own summation, I gave up on the quest to comprehend how to two could exist together and be used together to understand everything. It just didn&apos;t seem possible.</p>
 <p>Back to the book, the one I began reading last night.</p>
 <p>It gave me a moment to digest this Duality in the words of a far-more polished author and researcher than I&apos;d ever have the patience to become. His name is Jonah Lehrer and he has a blog called
-  <a>The Frontal Cortex</a> .&#xA0; Recently
-  <a>he posted about recent book reviews he&apos;d been receiving</a>  and I felt like it couldn&apos;t just be chance that I started reading, thought of this blog post I wanted to write, and that he was blogging about incoming reviews. So this is mine, despite not
+  <a href="http://scienceblogs.com/cortex/" title="The Frontal Cortex Blog">The Frontal Cortex</a> .&#xA0; Recently
+  <a href="http://scienceblogs.com/cortex/2008/01/book_news.php" title="Jonah blogs about his book reviews">he posted about recent book reviews he&apos;d been receiving</a>  and I felt like it couldn&apos;t just be chance that I started reading, thought of this blog post I wanted to write, and that he was blogging about incoming reviews. So this is mine, despite not
   having finished the book yet.&#xA0;</p>
 <p>So far the book is amazing and I insist that you read this as your next book. Especially if you are anything like me and you&apos;re into the idea of meta-thought. PWAN discusses, in a sense, the mutual need for both art and science as a dualistic means to
   understand the world in which we live. Through careful examination of artists, writers, and other nifty people, he uses their art and the relevant science of the era in which their arts were produced to point out how one can&apos;t exist without the other.

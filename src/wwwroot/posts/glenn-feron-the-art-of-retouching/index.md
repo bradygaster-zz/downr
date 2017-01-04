@@ -8,6 +8,6 @@ categories: Personal
 ---
 
 So you think all those honies you&apos;ve been looking at in the magazines really look all that schnazzy?
-<a>Think again.</a> 
+<a href="http://glennferon.com.nyud.net:8090/portfolio1/index.html">Think again.</a> 
 This is for all the women out there who&apos;ve looked at the images their men (or sons) stare at for hours with a short rebuttal consisting of &quot;looks airbrushed.&quot; Turns out our women have been smarter than we were all the while (as if they didn&apos;t know this
 already).

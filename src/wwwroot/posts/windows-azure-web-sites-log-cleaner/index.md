@@ -10,8 +10,8 @@ categories: Azure
 <p>Azure Web Sites customers who run web sites in shared instance mode have a generous amount of storage space to use for multiple web sites. The 1GB limit for free customers is more than enough to get a site up and running with lots of room left over for
   storage. A site&#x2019;s log files contribute to the amount of space being used by a site. If a site has a lot of traffic, the log files could grow and eat into the space available for the important assets for a site &#x2013; the HTML, executables, images, and other
   relevant assets. That&#x2019;s the sole purpose for the Azure
-  <a>Web Sites Log Cleaner</a>, a
-  <a>NuGet</a>  utility you can grab and use in your site with little impact or work.</p>
+  <a href="https://nuget.org/packages/WindowsAzure.WebSites.LogCleaner">Web Sites Log Cleaner</a>, a
+  <a href="https://nuget.org/">NuGet</a>  utility you can grab and use in your site with little impact or work.</p>
 Potential Impacts of Not Backing Up Logs
 <p>Log analysis is important. It can show all sorts of things, from how much traffic you have to each section of your site, or if you&#x2019;re getting strange requests that indicate some sort of intrusion. If your logs are important to you, there are some important
   things to remember about Azure Web Sites:</p>
@@ -33,7 +33,7 @@ How to Set it Up
 <p>All you need to do is to create a storage account using the Azure Web Sites portal and to put the account name and key into the your Web.config file. The NuGet package adds placeholders to the file to point out what you&#x2019;ll need to add on your own. Once
   it&#x2019;s configured, you could set up a scheduled task to hit the URL on intervals, and you back up your logs and keep your sites tidy.</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/Windows-Azure-Web-Sites-Cleaner_117C1/web-config_2.png">
     <img alt="Placeholders in Web.config" src="/posts/windows-azure-web-sites-log-cleaner/media/web-config_thumb.png">
   </a> 
 </p>
@@ -46,13 +46,13 @@ How to Set it Up
 Scheduling
 <p>There are a multitude of methods you could use to schedule the call to the URL and execute the log cleanup process. You could script a Powershell cmdlet to do it, write some C# code, or use a separate Cron Job service to run the task routinely for you.
   Nathan Totten wrote a
-  <a>great blog post on how to achieve task scheduling using a Cron Job service</a> . Whatever your choice, one call to a URL does the entire job of saving and clearing your logs.</p>
+  <a href="http://blog.ntotten.com/2012/08/05/task-scheduling-with-windows-azure-web-sites-using-a-cron-job-service/">great blog post on how to achieve task scheduling using a Cron Job service</a> . Whatever your choice, one call to a URL does the entire job of saving and clearing your logs.</p>
 <p>I can&#x2019;t guide you on how often you should schedule your logs; each site is different. The guarantee is, if you put a site out there, you&#x2019;ll get some traffic even if it&#x2019;s only robot or search engine traffic, and with traffic comes log data. If you&#x2019;re getting
   a lot of traffic it stands to reason you could reach the 35mb limit in very little time. With a scheduled job like the one Nathan demonstrates in his post, you could set the log backup URL to be called as often as every 10 minutes.</p>
 Summary
 <p>You&#x2019;ve got a lot more room in Azure Storage space than you do in your web site folders, and you can use that space to store your logs permanently without using up your web site space. Hopefully this utility will solve that problem for you. If you have
   any issues setting it up, submit a comment below or
-  <a>find me on Twitter</a> .</p>
+  <a href="https://twitter.com/bradygaster">find me on Twitter</a> .</p>
 Update
 <p>The Azure Web Sites Log Cleaner source code has been published into a
-  <a>GitHub.com public repository</a> . If you want to see how it works, or you have an interest in changing the functionality in some way, feel free to clone the source code repository.&#xA0;</p>
+  <a href="https://github.com/WindowsAzure-Samples/WindowsAzure-WebSites-LogCleaner">GitHub.com public repository</a> . If you want to see how it works, or you have an interest in changing the functionality in some way, feel free to clone the source code repository.&#xA0;</p>

@@ -15,46 +15,46 @@ categories: Azure
 <iframe height="315" src="http://www.youtube.com/embed/E_XBHxgxDnE" frameborder="0" width="420" allowfullscreen></iframe>
 Usage and Source Code
 <p>If you&#x2019;re just trying to use the package to simplify your entry into using Azure&#x2019;s service bus, just pull down the
-  <a>package from NuGet</a> . </p>
+  <a title="The ServiceBusSimplifier NuGet Package Home Page" href="https://nuget.org/packages/ServiceBusSimplifier">package from NuGet</a> . </p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/The-Azure-Service-Bus-Simplifier_A39C/image_6.png">
     <img alt="image" src="/posts/service-bus-simplifier/media/image_thumb_2.png">
   </a> 
   <br>
   <br>If you&#x2019;d like to peruse the source code, which the remaining sections of this post will take a slightly deeper dive into an element at a time or you&#x2019;d like to add functionality to it, the code is available as a
-  <a>GitHub repository</a> .</p>
+  <a title="The ServiceBusSimplifier GitHub Repository" href="https://github.com/bradygaster/ServiceBusSimplifier">GitHub repository</a> .</p>
 Setting up the Connection
-<p>To set up the service bus connection, call the <em>Setup </em> method, passing it an instance of the class the package uses to supply authentication and connectivity information to the service bus, the <em><a>InitializationRequest</a>  </em> class.
+<p>To set up the service bus connection, call the <em>Setup </em> method, passing it an instance of the class the package uses to supply authentication and connectivity information to the service bus, the <em><a title="The code for the request class in GitHub" href="https://github.com/bradygaster/ServiceBusSimplifier/blob/master/ServiceBusSimplifier/InitializationRequest.cs">InitializationRequest</a>  </em> class.
   The <em>ServiceBus</em>  abstraction class offers a Fluent interface, so the methods could be chained together if need be. </p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/The-Azure-Service-Bus-Simplifier_A39C/image_8.png">
     <img alt="image" src="/posts/service-bus-simplifier/media/image_thumb_3.png">
   </a> 
 </p>
 Subscribing
 <p>As mentioned earlier, the <em>ServiceBus</em>  abstraction offers very simple usage via self-documenting methods. The code below has been augmented to subscribe to an instance of a custom class. </p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/The-Azure-Service-Bus-Simplifier_A39C/image_10.png">
     <img alt="image" src="/posts/service-bus-simplifier/media/image_thumb_4.png">
   </a> 
 </p>
 <p>Note, there are no special requirements or inheritance chain necessary for a class to be passed around within this implementation. The class below is the one being used in this example, and in the GitHub repository. </p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/The-Azure-Service-Bus-Simplifier_A39C/image_12.png">
     <img alt="image" src="/posts/service-bus-simplifier/media/image_thumb_5.png">
   </a> 
 </p>
 <p>Finally, here&#x2019;s the <em>HandleSimpleMessage </em> method from the program class. Note, this could have been passed as an anonymous method rather than a pointer to a class member or static member. The video demonstration above shows such a usage, but it&#x2019;s
   important to note that either a static, instance, or anonymous method would be appropriate being passed to the <em>Subscribe</em>  method. </p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/The-Azure-Service-Bus-Simplifier_A39C/image_14.png">
     <img alt="image" src="/posts/service-bus-simplifier/media/image_thumb_6.png">
   </a> 
 </p>
 Publishing
 <p>The final piece of this demonstration involves publishing messages into the Azure service bus. The code below shows how to publish a message to the bus, using the self-explanatory <em>Publish </em> method</p>
 <p>
-  <a>
+  <a href="/Media/Default/Windows-Live-Writer/The-Azure-Service-Bus-Simplifier_A39C/image_16.png">
     <img alt="image" src="/posts/service-bus-simplifier/media/image_thumb_7.png">
   </a> 
 </p>

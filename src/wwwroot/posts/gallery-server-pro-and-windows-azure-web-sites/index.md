@@ -8,7 +8,7 @@ categories: Azure
 ---
 
 <p>The Azure Web Sites team has added another web application to the growing list of options available for pre-configured web sites and applications you can use to get your site up and running in minutes. Today&#x2019;s addition is
-  <a>Gallery Server Pro</a>, a web-based tool for managing your image or video library. This post will walk you through the process of getting Gallery Server Pro running in Azure Web Sites, so if you have a huge collection of images you&#x2019;d like to post online,
+  <a href="http://www.galleryserverpro.com/">Gallery Server Pro</a>, a web-based tool for managing your image or video library. This post will walk you through the process of getting Gallery Server Pro running in Azure Web Sites, so if you have a huge collection of images you&#x2019;d like to post online,
   you won&#x2019;t want to miss this post.</p>
 The Gallery
 <p>Azure Web Sites makes it easy to get started with a new web site, and you can&#x2019;t beat the price and the ability to upgrade your horsepower whenever you need (or to downgrade whenever you don&#x2019;t need it). The web application gallery in the Azure portal adds
@@ -39,10 +39,10 @@ Using Gallery Server Pro
   <img src="/posts/gallery-server-pro-and-windows-azure-web-sites/media/galsrvpro-6.png" alt="">
 </p>
 <p>Whether you&apos;re just posting pictures of your family or you&#x2019;re an aspiring artist or designer who wants to publish their photos and artwork online for people to see, Gallery Server Pro is a great choice. Their web site offers
-  <a>documentation and an extensive user guide and administration reference</a>, and the product promises to continue adding new features and functionality. With Azure Web Sites now as the easiest hosting option around for creating these types of sites and
+  <a href="http://www.galleryserverpro.com/support.aspx">documentation and an extensive user guide and administration reference</a>, and the product promises to continue adding new features and functionality. With Azure Web Sites now as the easiest hosting option around for creating these types of sites and
   with deployment never being as easy as it is using the web sites application gallery, now is a good time to try out Gallery Server Pro for your online gallery needs.</p>
 Start Simple. Scale Up as Needed
 <p>If you haven&#x2019;t
-  <a>tried</a>  Azure yet, you can
-  <a>get started right now</a>, for free, and stay free for a year if all you really need is a gallery site. In 5 minutes you&#x2019;ll have your own online gallery up and running, without writing a single line of code or performing any complex configuration tasks.
+  <a href="http://bit.ly/windowsazuretrial">tried</a>  Azure yet, you can
+  <a href="http://bit.ly/windowsazuretrial">get started right now</a>, for free, and stay free for a year if all you really need is a gallery site. In 5 minutes you&#x2019;ll have your own online gallery up and running, without writing a single line of code or performing any complex configuration tasks.
   When you pair the ease of setup and deployment Azure Web Sites and the application gallery provide with the simplicity Gallery Server Pro provide, you can&#x2019;t go wrong.</p>

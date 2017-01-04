@@ -8,9 +8,9 @@ categories: Microcontrollers
 ---
 
 Must get this book, as it appears to explain electronics in a way that people who think like me might just understand:
-<a>Essential Electronics for Software Folk</a> 
+<a href="http://www.pragmaticprogrammer.com/titles/ctelec/index.html" title="Essential Electronics for Software Folk">Essential Electronics for Software Folk</a> 
 <p>
-  <a>
+  <a href="http://www.pragmaticprogrammer.com/titles/ctelec/index.html" title="Essential Electronics for Software Folk">
     <br>
   </a> 
 </p>

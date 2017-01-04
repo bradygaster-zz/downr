@@ -8,4 +8,4 @@ categories: Personal
 ---
 
 Its super to see that the SI guys are definitely hooking up the Panthers in the upcoming season picks. So far we look awesome and appear to be having a good deal better luck than last season. I&apos;m maintaining a great amount of hope that the
-<a>SI.com</a>  picks are right this time.
+<a href="http://sportsillustrated.cnn.com/2005/football/nfl/09/07/experts.picks/index.html">SI.com</a>  picks are right this time.

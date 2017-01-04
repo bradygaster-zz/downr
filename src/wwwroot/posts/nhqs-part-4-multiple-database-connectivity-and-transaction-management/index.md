@@ -1,5 +1,5 @@
 ---
-title: NHQS Part 4 - Multiple Database Connectivity and Transaction Management
+title: NHQS Part 4- Multiple Database Connectivity and Transaction Management
 slug: nhqs-part-4-multiple-database-connectivity-and-transaction-management
 author: bradygaster
 lastModified: 2011-05-29 02:44:23
@@ -31,7 +31,7 @@ Multiple Database Connectivity
 Transaction Management
 <p>Fans of the <em>Unit of Work </em> pattern/concept will appreciate this section of the post. Those with extensive NHibernate experience understand the idea of managing transactions explicitly rather than just expecting implicit transactions. If you&#x2019;ve
   ever used
-  <a>NHProf</a>  to profile and trace your NHibernate queries you&#x2019;ll know explicit transaction usage is an area it warns about repeatedly. </p>
+  <a title="NHProfiler" href="http://nhprof.com/">NHProf</a>  to profile and trace your NHibernate queries you&#x2019;ll know explicit transaction usage is an area it warns about repeatedly. </p>
 <p>Basically the rule of thumb with NHibernate is that, one should always perform the work of saving, updating, and deleting related entities to an underlying persistence mechanism, in the context of an explicit transaction. Most problems or misunderstandings
   about <em>when does my data truly get saved when I use NHibernate </em> can be mitigated by using explicit transactions. Most generic approaches yield problems when dealing with transactions, so NHQS had a goal of doing its best to allow the developer
   the right to manage their transactions separate to the internal workings of NHQS. </p>

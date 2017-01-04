@@ -17,6 +17,6 @@ categories: .NET
   <p>How do I call a generic method if I don&#x2019;t know the type I&#x2019;ll be providing the generic argument at run-time?</p>
 </blockquote>
 <p>The question&#x2019;s one I&#x2019;ve had to remember how to do a few times, so here&#x2019;s to hoping it helps someone else. The screen shot below contains a unit test class with a sample generic method. The test points to a type&#x2019;s generic method using reflection via the
-  <a>MethodInfo.MakeGenericMethod</a> <em></em>  method and then calls the method using the
-  <a>MethodInfo.Invoke</a>  method.</p>
+  <a href="http://msdn.microsoft.com/en-us/library/system.reflection.methodinfo.makegenericmethod(v=VS.100).aspx">MethodInfo.MakeGenericMethod</a> <em></em>  method and then calls the method using the
+  <a href="http://msdn.microsoft.com/en-us/library/system.reflection.methodinfo.invoke.aspx">MethodInfo.Invoke</a>  method.</p>
 <p>Happy coding!</p>

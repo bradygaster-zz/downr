@@ -8,7 +8,7 @@ categories: Azure
 ---
 
 <p>The first thing I had the opportunity to work on when I joined the Azure team was something that I&#x2019;m excited to show off today. I demonstrated the early bits of the Azure Management Libraries at the
-  <a>TechEd Australia Developer kick-off session</a>, and now that they&#x2019;re out I&#x2019;m really excited to walk you through getting started with their use. This post will sum up what the Azure Management Libraries are and why you should care to take a peek at
+  <a href="http://channel9.msdn.com/Events/TechEd/Australia/2013/KOS002">TechEd Australia Developer kick-off session</a>, and now that they&#x2019;re out I&#x2019;m really excited to walk you through getting started with their use. This post will sum up what the Azure Management Libraries are and why you should care to take a peek at
   them, and then I&#x2019;ll dive into some code to show you how to get started. </p>
 What are these libraries you speak of?
 <p>With this release, a broad surface area of the Azure cloud infrastructure can be accessed and automated using the same technology that was previously available only from the Azure PowerShell Cmdlets or directly from the REST API. Today&#x2019;s initial preview
@@ -42,9 +42,9 @@ Getting Started
   <img>
 </p>
 <p>You probably noticed that I&#x2019;m preparing to add some NuGet packages to the WPF application. That&#x2019;s because all of the Azure Management Libraries are available as individual NuGet packages. I&#x2019;m going to select the
-  <a>Microsoft.WindowsAzure.Management.Libraries</a>  package, as that one will pull everything in the Management Libraries into my project. If I wanted to manage one aspect of Azure rather than all of it, I&#x2019;d reference one of the more specific packages,
+  <a href="http://www.nuget.org/packages/Microsoft.WindowsAzure.Management.Libraries">Microsoft.WindowsAzure.Management.Libraries</a>  package, as that one will pull everything in the Management Libraries into my project. If I wanted to manage one aspect of Azure rather than all of it, I&#x2019;d reference one of the more specific packages,
   like
-  <a>Microsoft.WindowsAzure.Management.WebSites</a>, which provides management functionality specific only to the Azure Web Sites component. </p>
+  <a href="http://www.nuget.org/packages/Microsoft.WindowsAzure.Management.WebSites">Microsoft.WindowsAzure.Management.WebSites</a>, which provides management functionality specific only to the Azure Web Sites component. </p>
 <p>
   <img>
 </p>
@@ -82,7 +82,7 @@ Getting Started
   &#x2013; hosted services, locations, virtual machines, and so on. </p>
 <p>For the purposes of explaining these steps individually, I&apos;ve created a partial class named <strong>ManagementController </strong> that&apos;s spread across multiple files. This just breaks up the code into functional units to make it easier to explain in this
   post, and to provide for you as a
-  <a>public Gist</a>  so that you can clone all the files and use them in your own code. </p>
+  <a href="https://gist.github.com/bradygaster/4822fc0beebb7226af22">public Gist</a>  so that you can clone all the files and use them in your own code. </p>
 <p>
   <img>
 </p>
@@ -106,7 +106,7 @@ Getting Started
 </p>
 <p>Finally, all I need to do to deploy the cloud service is to upload the cloud service package file I created in Visual Studio to a blob, then call the REST API. That call will consist of the blob URI of the package I uploaded to my storage account, and
   the XML data from the cloud project&apos;s configuration file. This code will make use of the
-  <a>Azure Storage SDK, which is also available as a NuGet package</a> . </p>
+  <a href="http://www.nuget.org/packages/windowsazure.storage">Azure Storage SDK, which is also available as a NuGet package</a> . </p>
 <p>
   <img>
 </p>
@@ -137,9 +137,9 @@ Endless Automation Possibilities
   in Azure. </p>
 <p>We&apos;re also excited about your feedback and look forward to suggestions during this preview phase. Please try out the Management Libraries, use them in your own experimentation, and let us know what you&apos;re using them to facilitate. If you have ideas or
   questions about the design, we&apos;re open to that too. The code for the libraries, like many other things in the Azure stack, are open source. We encourage you to take a look at the code in
-  <a>our GitHub repository</a> . </p>
+  <a href="https://github.com/WindowsAzure/azure-sdk-for-net">our GitHub repository</a> . </p>
 <h3>This Team is Astounding. I am Not Worthy.</h3>
 <p>
-  <a>Jeff Wilcox&#x2019;s</a>  team of amazing developers have put in a lot of time on the Management Libraries and today we&#x2019;re excited to share them with you via
-  <a>NuGet</a> . Jeff&#x2019;s build script and NuGet wizardry have been a lot of fun to watch. The pride this team takes in what it does and the awesomeness of what they&#x2019;ve produced is evident in how easy the Management Libraries are to use. We think you&#x2019;ll agree,
+  <a href="http://www.jeff.wilcox.name/">Jeff Wilcox&#x2019;s</a>  team of amazing developers have put in a lot of time on the Management Libraries and today we&#x2019;re excited to share them with you via
+  <a href="http://www.nuget.org/packages?q=microsoft.windowsazure.management&amp;prerelease=true&amp;sortOrder=relevance">NuGet</a> . Jeff&#x2019;s build script and NuGet wizardry have been a lot of fun to watch. The pride this team takes in what it does and the awesomeness of what they&#x2019;ve produced is evident in how easy the Management Libraries are to use. We think you&#x2019;ll agree,
   and welcome your feedback and stories of how you&#x2019;re finding ways to use them. </p>

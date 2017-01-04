@@ -8,8 +8,8 @@ categories: Community
 ---
 
 <p>Tonight I attended the local
-  <a>Enterprise Guild&apos;s ASP.NET MVC presentation</a>  by
-  <a>Brian Hitney</a> . I don&apos;t know if I&apos;ve ever given a review of a colleague&apos;s presentation (so this might suck) but I feel one&apos;s in order.&#xA0; Brian&apos;s doing his best in this area for Microsoft to spread this and other information and I want to take a moment
+  <a href="http://www.developersguild.org/Default.aspx?tabid=32&amp;Event=123" title="Link to the ASP.NET MVC Presentation information page. ">Enterprise Guild&apos;s ASP.NET MVC presentation</a>  by
+  <a href="http://www.structuretoobig.com/home/" title="Brian Hitney&apos;s Site">Brian Hitney</a> . I don&apos;t know if I&apos;ve ever given a review of a colleague&apos;s presentation (so this might suck) but I feel one&apos;s in order.&#xA0; Brian&apos;s doing his best in this area for Microsoft to spread this and other information and I want to take a moment
   to recognize, suggest some critique of, and applaud his efforts.</p>
 <p>Brian&apos;s an excellent speaker and a major contributor to the .NET and Microsoft community in the southeast. He was patient, careful, and did his best to keep things on track without pandering to or disregarding the audience when they requested more information
   be given to specific areas of interest. He has a way with any collection of subject matter; he adds humor to the presentation, keeps the pace moving along, and overall seems to feel really cozy in front of a crowd. A truly good presenter knows the value
@@ -19,8 +19,8 @@ categories: Community
   took me about 3 years to really understand how it&apos;s supposed to work. Even now I still struggle with some of the innerworkings of the approach. So that portion of my review is, I admit, somewhat selfish in nature. I would&apos;ve like to have seen more low-level
   discussions of the technicalities.&#xA0;</p>
 <p>During the initial chat, Brian brought up
-  <a>Inversion of Control</a>  and
-  <a>Dependency Injection</a> . I think a better approach for Brian when dealing with these more complex and abstract concepts would&apos;ve been to defer to the audience&apos;s willfullness to learn more on them; maybe say something about them being important ideas
+  <a href="http://en.wikipedia.org/wiki/Inversion_of_control" title="Wikipedia article on IoC">Inversion of Control</a>  and
+  <a href="http://en.wikipedia.org/wiki/Dependency_injection" title="Wikipedia article on Dependency Injection">Dependency Injection</a> . I think a better approach for Brian when dealing with these more complex and abstract concepts would&apos;ve been to defer to the audience&apos;s willfullness to learn more on them; maybe say something about them being important ideas
   that are &quot;outside the scope&quot; of the presentation (because, well, they <em>are outside the scope of a presentation like this</em> ). Instead, Brian gave a few examples of IoC and/or DI. One in particular was to use the event model - a button-click event
   handler, to be precise - as an example of IoC. I don&apos;t claim to be a guru at IoC, but I am <em>positive </em> that I can&apos;t think of how IoC could be represented via such an example. I really can&apos;t, and I tried. My co-worker agreed with me on this matter,
   too, so I know I&apos;m not nuts (or that I have a partner in my misunderstanding of <em>something</em> ). That&apos;s my one major &quot;you didn&apos;t capitalize the &apos;N&apos; and the &apos;E&apos; and the &apos;T&apos; when you put &apos;.NET&apos; on your resume&apos;&quot;-type complaint with Brian&apos;s presentation.
@@ -35,7 +35,7 @@ categories: Community
   that there was no difference in the way the routes had to be set up and that it&apos;d all work just fine under either version. I&apos;d been bitten by this variance myself (and I have a complete lack of being able to keep my trap shut) so I raised my hand and
   commented that this wasn&apos;t the case. For the record, I said this not to <em>call Brian out and make him look like a dimwit </em> but rather <em>to make sure the correct information was given to the audience. </em> I mean, that&apos;s why we&apos;re all there, and
   it is called a <em>community group </em> so I figure that&apos;s the best thing one could do in the situation. I specifically mentioned the approach taken in the
-  <a>Kigg</a>  framework, and how it seemed to accomplish this for both versions pretty elegantly. The crowd seemed generally cool with this and we moved on, Brian relatively unscathed. No harm, no foul, but I urge (read: <em>plead with</em> ) Brian and the
+  <a href="http://www.codeplex.com/Kigg" title="Kigg">Kigg</a>  framework, and how it seemed to accomplish this for both versions pretty elegantly. The crowd seemed generally cool with this and we moved on, Brian relatively unscathed. No harm, no foul, but I urge (read: <em>plead with</em> ) Brian and the
   rest of the evangelists - don&apos;t forget that many of us in the community hinge on most of the things you say. If you tell me it works, I think it works, and when it doesn&apos;t work I think it&apos;s something I did. When I find out it&apos;s something you guys did
   and that I&apos;ve wasted many hours trying to make something work that just isn&apos;t supposed to work, I want to forget I ever loved coding I get so irritated - nothing plagues a coder like time lost on poor documentation, so just keep doing your best to keep
   the facts straight. The whole <em>with great power comes great responsibility </em> speech is implied here.&#xA0;</p>
@@ -43,7 +43,7 @@ categories: Community
   of removing a lot of the gunk between me and my HTTP protocol, so I was all about this commentary. Additionally helpful was his code example demonstrating form-collection using the BindingHelperExtensions class. This has been one of the things I&apos;ve
   not yet learned how to do with MVC - dealing with forms. I&apos;ve been more focused on link-based approaches using MVC and on JSON transmission, so the traditional forms approach had been something that&apos;d eluded me. Brian&apos;s example of this was great.&#xA0;</p>
 <p>Brian did mention
-  <a>Phil Haack&apos;s ASP.NET Routing Debugger</a>  during his presentation, which I&apos;m <em>so downloading tomorrow </em> it&apos;s not even funny. Thanks for that, Brian and
-  <a>Phil</a> .&#xA0;</p>
+  <a href="http://haacked.com/archive/2008/03/13/url-routing-debugger.aspx" title="Phil Haack&apos;s Routing Debugger">Phil Haack&apos;s ASP.NET Routing Debugger</a>  during his presentation, which I&apos;m <em>so downloading tomorrow </em> it&apos;s not even funny. Thanks for that, Brian and
+  <a href="http://haacked.com/" title="Phil Haack">Phil</a> .&#xA0;</p>
 <p>Overall, a good presentation. I would like to see a round two of this presentation (or to provide it, as sometimes the requirement of teaching something enables/forces you to learn it pretty well) or to be provided something comperable to Brian&apos;s presentation
   on a more technical, &quot;how-to&quot; level. I look forward to his evolution as a DE, his upcoming travelling show with some of the other guys in his squad, and to learning more about ASP.NET MVC.&#xA0;</p>

@@ -8,4 +8,4 @@ categories: Music
 ---
 
 We attended the opening concert for the Charlotte Bobcats arena last night. What can I say, man, its the Stones. They were awesome! Checking out my flickr
-<a>rollingstones</a>  set.
+<a href="http://www.flickr.com/photos/bradygaster/tags/rollingstones/">rollingstones</a>  set.

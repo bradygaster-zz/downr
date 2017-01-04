@@ -8,7 +8,7 @@ categories: .NET
 ---
 
 A colleague sent me an article today about
-<a>some of the new language features in C# 3.0</a> . I couldn&apos;t resist but get a little unnerved by the discussions that have begun regarding the third release of C#, bearing in mind that the second release has still not yet received complete adoption. At
+<a href="http://www.codepost.org/view/126" title="CodePost | View - [C#] New language features in C# 3.0">some of the new language features in C# 3.0</a> . I couldn&apos;t resist but get a little unnerved by the discussions that have begun regarding the third release of C#, bearing in mind that the second release has still not yet received complete adoption. At
 this point my company has made a few decisions regarding the adoption of 2.0. Mainly, we&apos;ve decided not to adopt it, or at least, not to adopt it yet, and to wait until such time as it is more popular with the IT staffers who control the computers on
 which our software runs. We don&apos;t control the state government offices in which our software packages are installed, and we don&apos;t control a lot of other things that our clients have to maintain. Too many technologists are too hardcore these days about
 harnessing the new stuff, and I think that Microsoft and other such companies do a horrible job of supporting the developers who use their stuff. I heard a client just this week complain about another software company (link not provided, but let&apos;s say

@@ -1,5 +1,5 @@
 ---
-title: Generics/Reflection Tricks Part 2 with NDecision
+title: Generics/Reflection Tricks Part 2- NDecision
 slug: generics-reflection-tricks-part-2-ndecision
 author: bradygaster
 lastModified: 2012-10-05 18:15:15

@@ -8,4 +8,4 @@ categories: Personal
 ---
 
 You have to give a developer some props when they
-<a>out their own WTF-able code</a> . Yes, folks, that&apos;s right. There is no shame amongst developers who pride themselves in their own quest to great[code]ness.
+<a href="http://thedailywtf.com/forums/thread/91407.aspx" title="The Daily WTF - Eric Sink on EricSink()">out their own WTF-able code</a> . Yes, folks, that&apos;s right. There is no shame amongst developers who pride themselves in their own quest to great[code]ness.
