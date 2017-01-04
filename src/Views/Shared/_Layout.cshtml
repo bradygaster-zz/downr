@@ -45,7 +45,7 @@
         <aside role="complementary" class="col-md-3 col-md-offset-1">
             <section>
                 <h2>
-                    bradygaster.com
+                    about this guy
                 </h2>
                 <p>
                     brady gaster makes tools for writers at microsoft who create documentation about .net, azure, and lots of other great products
@@ -62,24 +62,23 @@
                     <div class="panel-body">
                         <ul class="list-group">
                             @foreach(var tag in ViewBag.TagCloud){
-                            <a href="#" class="list-group-item">
+                            <a href="/category/@tag.Key" class="list-group-item">
                                 <span class="badge">@tag.Value</span> @tag.Key
                             </a>
                             }
                         </ul>
                     </div>
                 </div>
-    </div>
-    </section>
-    </aside>
+            </section>
+        </aside>
     </div>
     <div class="container">
-        <div class="col-md-8 pagination">
-            <div class="col-md-4 navbox-left bs-callout">
+        <div class="col-md-8 well">
+            <div class="col-md-4">
                 @if(!String.IsNullOrEmpty(ViewBag.Previous)) { string prevLink = string.Format("/posts/{0}", ViewBag.Previous);
                 <a href="@prevLink" title="@ViewBag.PreviousTitle" class="btn btn-primary">&lt; previous post</a> }
             </div>
-            <div class="col-md-4 pull-right navbox-right bs-callout">
+            <div class="col-md-4 pull-right">
                 @if(!String.IsNullOrEmpty(ViewBag.Next)) { string nextLink = string.Format("/posts/{0}", ViewBag.Next);
                 <a href="@nextLink" title="@ViewBag.NextTitle" class="btn btn-primary pull-right">next post &gt;</a> }
             </div>

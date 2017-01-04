@@ -21,15 +21,10 @@ footer
     }
 }
 
-.nav-icon {
-    height: 32px;
-    width: 32px; 
-}
-
-.pagination {
-    margin-top: 30px;
-}
-
 .list-group-item {
     border: none;
+}
+
+.post-meta .btn {
+    margin-right: 5px;
 }
