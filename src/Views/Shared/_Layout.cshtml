@@ -60,22 +60,28 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Tags</div>
                     <div class="panel-body">
+                        <ul class="list-group">
+                            @foreach(var tag in ViewBag.TagCloud){
+                            <a href="#" class="list-group-item">
+                                <span class="badge">@tag.Value</span> @tag.Key
+                            </a>
+                            }
+                        </ul>
                     </div>
                 </div>
-            </section>
-        </aside>
+    </div>
+    </section>
+    </aside>
     </div>
     <div class="container">
         <div class="col-md-8 pagination">
             <div class="col-md-4 navbox-left bs-callout">
                 @if(!String.IsNullOrEmpty(ViewBag.Previous)) { string prevLink = string.Format("/posts/{0}", ViewBag.Previous);
-                <a href="@prevLink" title="@ViewBag.PreviousTitle" class="btn btn-primary">&lt; previous post</a>
-                }
+                <a href="@prevLink" title="@ViewBag.PreviousTitle" class="btn btn-primary">&lt; previous post</a> }
             </div>
             <div class="col-md-4 pull-right navbox-right bs-callout">
                 @if(!String.IsNullOrEmpty(ViewBag.Next)) { string nextLink = string.Format("/posts/{0}", ViewBag.Next);
-                <a href="@nextLink" title="@ViewBag.NextTitle" class="btn btn-primary pull-right">next post &gt;</a>
-                }
+                <a href="@nextLink" title="@ViewBag.NextTitle" class="btn btn-primary pull-right">next post &gt;</a> }
             </div>
         </div>
     </div>

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using downr.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -43,11 +44,26 @@ namespace downr.Controllers
                     ViewBag.PreviousTitle = _indexer.Metadata.ElementAt(index + 1).Title;
                 }
 
+                // get all the categories
+                var tagCloud = new Dictionary<string, int>();
+                _indexer.Metadata.Select(x => x.Categories).ToList().ForEach(categories =>
+                {
+                    categories.ToList().ForEach(category =>
+                    {
+                        if (!tagCloud.ContainsKey(category))
+                            tagCloud.Add(category, 0);
+                        tagCloud[category] += 1;
+                    });
+                });
+
+                ViewBag.TagCloud = tagCloud.OrderBy(x => x.Key);;
+
                 return View(meta);
             }
             else
             {
-                return RedirectToAction("Index", "Posts", new {
+                return RedirectToAction("Index", "Posts", new
+                {
                     slug = _indexer.Metadata.ElementAt(0).Slug
                 });
             }

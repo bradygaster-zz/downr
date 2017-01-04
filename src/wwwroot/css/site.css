@@ -29,3 +29,7 @@ footer
 .pagination {
     margin-top: 30px;
 }
+
+.list-group-item {
+    border: none;
+}
