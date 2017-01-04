@@ -27,17 +27,20 @@ namespace downr.Controllers
                 var meta = _indexer.Metadata.First(x => x.Slug == slug);
                 ViewBag.HtmlContent = _markdownLoader.GetContentToRender(slug);
                 int index = _indexer.Metadata.FindIndex(x => x.Slug == slug);
+                ViewData["Title"] = meta.Title;
 
                 // is this the last post?
                 if (index != 0)
                 {
                     ViewBag.Next = _indexer.Metadata.ElementAt(index - 1).Slug;
+                    ViewBag.NextTitle = _indexer.Metadata.ElementAt(index - 1).Title;
                 }
 
                 // is this the first post?
                 if (index != _indexer.Metadata.Count - 1)
                 {
                     ViewBag.Previous = _indexer.Metadata.ElementAt(index + 1).Slug;
+                    ViewBag.PreviousTitle = _indexer.Metadata.ElementAt(index + 1).Title;
                 }
 
                 return View(meta);

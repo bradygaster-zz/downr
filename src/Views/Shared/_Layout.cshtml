@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - downr</title>
+    <title>@ViewData["Title"]</title>
 
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment names="Staging,Production">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css" asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+            asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
 </head>
+
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -26,20 +27,62 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="/" class="navbar-brand">downr</a>
+                <a href="/" class="button navbar-brand btn">bradygaster.com</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="/">blog</a></li>
+                    <li><a href="https://twitter.com/bradygaster">twitter</a></li>
+                    <li><a href="https://github.com/bradygaster">github</a></li>
+                    <li><a href="/feed/rss">rss</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="container body-content">
-        @RenderBody()
-        <hr />
+        <div role="main" class="col-md-8">
+            @RenderBody()
+        </div>
+        <aside role="complementary" class="col-md-3 col-md-offset-1">
+            <section>
+                <h2>
+                    bradygaster.com
+                </h2>
+                <p>
+                    brady gaster makes tools for writers at microsoft who create documentation about .net, azure, and lots of other great products
+                    used by software developers. he also tinkers with midi.
+                </p>
+                <p>
+                    <a href="https://twitter.com/bradygaster" class="twitter-follow-button" data-size="large" data-show-count="false">Follow @Html.Raw("@bradygaster")</a>
+                    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </p>
+            </section>
+            <section>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Tags</div>
+                    <div class="panel-body">
+                    </div>
+                </div>
+            </section>
+        </aside>
+    </div>
+    <div class="container">
+        <div class="col-md-8 pagination">
+            <div class="col-md-4 navbox-left bs-callout">
+                @if(!String.IsNullOrEmpty(ViewBag.Previous)) { string prevLink = string.Format("/posts/{0}", ViewBag.Previous);
+                <a href="@prevLink" title="@ViewBag.PreviousTitle" class="btn btn-primary">&lt; previous post</a>
+                }
+            </div>
+            <div class="col-md-4 pull-right navbox-right bs-callout">
+                @if(!String.IsNullOrEmpty(ViewBag.Next)) { string nextLink = string.Format("/posts/{0}", ViewBag.Next);
+                <a href="@nextLink" title="@ViewBag.NextTitle" class="btn btn-primary pull-right">next post &gt;</a>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="container">
         <footer>
-            <p>built with <a href="#">downr</a> &copy; 2016</p>
+            <hr/>
+            <p>&copy; 2016 built with <a href="#">downr</a></p>
         </footer>
     </div>
 
@@ -49,17 +92,16 @@
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
     <environment names="Staging,Production">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.3.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery">
-        </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
-        </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
-    </environment>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.3.min.js" asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+            asp-fallback-test="window.jQuery">
+            </script>
+<script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js" asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+    asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
+    </script>
+<script src="~/js/site.min.js" asp-append-version="true"></script>
+</environment>
 
-    @RenderSection("scripts", required: false)
+@RenderSection("scripts", required: false)
 </body>
+
 </html>
