@@ -40,6 +40,17 @@
     </div>
     <div class="container body-content">
         <div role="main" class="col-md-8">
+            @if(!String.IsNullOrEmpty(ViewBag.Category)) {
+            <p class="well">
+                The posts tagged with '<strong>@ViewBag.Category</strong>' are listed below. You can get to each post by clicking the title in the list. 
+            </p>
+            <ul>
+                @foreach(var post in ViewBag.TitlesInCategory) {
+                <li><a href="#@post.Key">@post.Value</a></li>
+                }
+            </ul>
+            <hr size="1"/>
+            }
             @RenderBody()
         </div>
         <aside role="complementary" class="col-md-3 col-md-offset-1">
@@ -50,6 +61,9 @@
                 <p>
                     brady gaster makes tools for writers at microsoft who create documentation about .net, azure, and lots of other great products
                     used by software developers. he also tinkers with midi.
+                </p>
+                <p>
+                    disclaimer: the ideas and opinions reflected on this site might not reflect the general consensus.
                 </p>
                 <p>
                     <a href="https://twitter.com/bradygaster" class="twitter-follow-button" data-size="large" data-show-count="false">Follow @Html.Raw("@bradygaster")</a>
@@ -76,11 +90,11 @@
         <div class="col-md-8 well">
             <div class="col-md-4">
                 @if(!String.IsNullOrEmpty(ViewBag.Previous)) { string prevLink = string.Format("/posts/{0}", ViewBag.Previous);
-                <a href="@prevLink" title="@ViewBag.PreviousTitle" class="btn btn-primary">&lt; previous post</a> }
+                <a href="@prevLink" title="@ViewBag.PreviousTitle" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> previous post</a>                }
             </div>
             <div class="col-md-4 pull-right">
                 @if(!String.IsNullOrEmpty(ViewBag.Next)) { string nextLink = string.Format("/posts/{0}", ViewBag.Next);
-                <a href="@nextLink" title="@ViewBag.NextTitle" class="btn btn-primary pull-right">next post &gt;</a> }
+                <a href="@nextLink" title="@ViewBag.NextTitle" class="btn btn-primary pull-right">next post <span class="glyphicon glyphicon-chevron-right"></a>                }
             </div>
         </div>
     </div>
