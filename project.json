@@ -66,8 +66,10 @@
       "dotnet bundle"
     ],
     "prepublish": [
-      "bower install",
-      "grunt"
+      "npm run setup"
+    ],
+    "postpublish": [
+      "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%"
     ]
   },
   "tooling": {
