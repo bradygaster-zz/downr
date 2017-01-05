@@ -1,14 +1,20 @@
 # downr
 dirt-simple markdown blog tool built using asp.net core
 
+## requirements
+1. .net core 1.0 or higher
+1. node.js
+1. grunt cli
+
 ## setup
 1. clone the repository
 1. navigate to the root in your terminal and execute these commands
 
-        cd src
+        npm install        
         dotnet restore
-        dotnet build
         bower install
+        grunt
+        dotnet build
 
 ## debugging
 here are two ways to get downr running on your local workstation. 
