@@ -1,0 +1,11 @@
+{
+  "name": "downr",
+  "version": "1.0.0",
+  "description": "simple markdown blogging tool",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

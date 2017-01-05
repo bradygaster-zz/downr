@@ -1,4 +1,7 @@
 {
+  "devDependencies": {
+    "grunt": "~0.4.5"
+  },
   "dependencies": {
     "Microsoft.NETCore.App": {
       "version": "1.0.1",
