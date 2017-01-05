@@ -10,10 +10,8 @@ dirt-simple markdown blog tool built using asp.net core
 1. clone the repository
 1. navigate to the root in your terminal and execute these commands
 
-        npm install        
+        npm run setup
         dotnet restore
-        bower install
-        grunt
         dotnet build
 
 ## debugging
