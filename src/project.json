@@ -66,9 +66,10 @@
     "precompile": [
       "npm install",
       "bower install",
+      "grunt precompile",
       "dotnet bundle"
     ],
-    "postcompile": "grunt",
+    "postcompile": "grunt postpublish",
     "postpublish": [
       "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%"
     ]
