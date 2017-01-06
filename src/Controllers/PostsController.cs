@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using downr.Models;
@@ -7,36 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace downr.Controllers
 {
-    public class PostsController : Controller
+    public class PostsController : BaseController
     {
-        IMarkdownContentLoader _markdownLoader;
-        IYamlIndexer _indexer;
-
-        public PostsController(IMarkdownContentLoader markdownLoader,
-            IYamlIndexer indexer)
-        {
-            _markdownLoader = markdownLoader;
-            _indexer = indexer;
-        }
+        public PostsController(IYamlIndexer indexer) : base(indexer) { }
 
         [Route("posts/{slug}")]
-        [Route("{slug}")]
         public IActionResult Index(string slug)
         {
-            // get all the categories
-            var tagCloud = new Dictionary<string, int>();
-            _indexer.Metadata.Select(x => x.Categories).ToList().ForEach(categories =>
-            {
-                categories.ToList().ForEach(category =>
-                {
-                    if (!tagCloud.ContainsKey(category))
-                        tagCloud.Add(category, 0);
-                    tagCloud[category] += 1;
-                });
-            });
-
-            ViewBag.TagCloud = tagCloud.OrderBy(x => x.Key);
-            
             // make sure the post is found in the index
             if (_indexer.Metadata.Any(x => x.Slug == slug))
             {
