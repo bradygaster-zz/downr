@@ -24,12 +24,17 @@ module.exports = function (grunt) {
                     expand: true
                 }]
             }
+        },
+        clean: {
+            posts: 'wwwroot/posts'
         }
     });
 
-    grunt.registerTask('postpublish', ['copy:content']);
+    grunt.registerTask('postpublish', ['clean:posts', 'copy:content']);
 
     grunt.registerTask('precompile', ['copy:views']);
 
     grunt.loadNpmTasks('grunt-contrib-copy');
+
+    grunt.loadNpmTasks('grunt-contrib-clean');
 };
