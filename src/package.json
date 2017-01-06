@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "simple markdown blogging tool",
   "main": "index.js",
-  "scripts": {
-    "setup" : "npm install && bower install && grunt"
-  },
   "author": "",
   "license": "ISC",
   "dependencies": {},

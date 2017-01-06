@@ -63,9 +63,11 @@
   },
   "scripts": {
     "precompile": [
-      "npm run setup",
+      "npm install",
+      "bower install",
       "dotnet bundle"
     ],
+    "postcompile": "grunt",
     "postpublish": [
       "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%"
     ]
