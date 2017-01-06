@@ -20,7 +20,11 @@ downr is written using [.NET Core](https://www.microsoft.com/net/core), and is p
 
 ## Getting downr Running Locally
 
-Getting downr running on a development workstation is easy. Simply clone the repository:
+Getting downr running on a development workstation is easy. The project is open source and available on GitHub. 
+
+![downr repo on GitHub](media/github.png)
+
+Simply clone the repository:
 
     git clone https://github.com/bradygaster/downr.git
 
