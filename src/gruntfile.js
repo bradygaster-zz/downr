@@ -10,9 +10,9 @@ module.exports = function (grunt) {
                     expand: true
                 },
                 {
-                    cwd: '../posts/hello-downr',
+                    cwd: '../posts',
                     src: '**/*.*',
-                    dest: 'wwwroot/posts/hello-downr',
+                    dest: 'wwwroot/posts',
                     expand: true
                 }]
             }
