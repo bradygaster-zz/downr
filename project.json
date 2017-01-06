@@ -63,10 +63,8 @@
   },
   "scripts": {
     "precompile": [
+      "npm run setup",
       "dotnet bundle"
-    ],
-    "postcompile": [
-      "npm run setup"
     ],
     "postpublish": [
       "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%"
