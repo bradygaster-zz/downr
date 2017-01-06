@@ -65,7 +65,7 @@
     "precompile": [
       "dotnet bundle"
     ],
-    "prepublish": [
+    "postcompile": [
       "npm run setup"
     ],
     "postpublish": [
