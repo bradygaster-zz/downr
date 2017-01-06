@@ -14,7 +14,7 @@ namespace downr.Controllers
             _indexer = indexer;
         }
 
-        [Route("{id}")]
+        [Route("{id?}")]
         public IActionResult Index(string id)
         {
             // if no slug was provided show the last one
