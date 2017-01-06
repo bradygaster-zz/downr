@@ -68,8 +68,6 @@ namespace downr.Controllers
                     slug = _indexer.Metadata.ElementAt(0).Slug
                 });
             }
-
-            return View();
         }
     }
 }
