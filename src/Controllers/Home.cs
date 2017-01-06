@@ -7,13 +7,10 @@ namespace downr.Controllers
 {
     public class HomeController : Controller
     {
-        IMarkdownContentLoader _markdownLoader;
         IYamlIndexer _indexer;
 
-        public HomeController(IMarkdownContentLoader markdownLoader,
-            IYamlIndexer indexer)
+        public HomeController(IYamlIndexer indexer)
         {
-            _markdownLoader = markdownLoader;
             _indexer = indexer;
         }
 

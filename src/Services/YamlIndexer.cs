@@ -16,9 +16,12 @@ namespace downr.Services
 
     public class DefaultYamlIndexer : IYamlIndexer
     {
-        public DefaultYamlIndexer()
+        IMarkdownContentLoader _markdownLoader;
+
+        public DefaultYamlIndexer(IMarkdownContentLoader markdownLoader)
         {
             Metadata = new List<Metadata>();
+            _markdownLoader = markdownLoader;
         }
 
         public List<Metadata> Metadata { get; set; }
@@ -61,7 +64,8 @@ namespace downr.Services
                             Author = result[Strings.MetadataNames.Author],
                             PublicationDate = DateTime.Parse(result[Strings.MetadataNames.PublicationDate]),
                             LastModified = DateTime.Parse(result[Strings.MetadataNames.LastModified]),
-                            Categories = result[Strings.MetadataNames.Categories].Split(',')
+                            Categories = result[Strings.MetadataNames.Categories].Split(','),
+                            Content = _markdownLoader.GetContentToRender(result[Strings.MetadataNames.Slug])
                         };
 
                         Metadata.Add(metadata);

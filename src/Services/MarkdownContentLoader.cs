@@ -33,13 +33,22 @@ namespace downr.Services
                 var htmlDoc = new HtmlDocument();
                 htmlDoc.LoadHtml(html);
 
-                foreach (HtmlNode node in htmlDoc.DocumentNode
-                                   .SelectNodes("//img[@src]"))
+                try
                 {
-                    var src = node.Attributes["src"].Value;
-                    src = src.Replace("media/", string.Format("/{0}/media/", slug));
-                    node.SetAttributeValue("src", src);
+                    foreach (HtmlNode node in htmlDoc.DocumentNode
+                                       .SelectNodes("//img[@src]"))
+                    {
+                        var src = node.Attributes["src"].Value;
+                        src = src.Replace("media/", string.Format("/posts/{0}/media/", slug));
+                        node.SetAttributeValue("src", src);
+                    }
                 }
+                catch (NullReferenceException)
+                {
+                    // no images found, keep going
+                }
+
+                html = htmlDoc.DocumentNode.OuterHtml;
 
                 return html;
             }

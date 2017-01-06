@@ -64,7 +64,7 @@ namespace downr.Controllers
 
                         writer.WriteElementString("title", article.Title);
                         writer.WriteElementString("link", "http://bradygaster.com/" + article.Slug); // todo build article path
-                        writer.WriteElementString("description", _markdownLoader.GetContentToRender(article.Slug));
+                        writer.WriteElementString("description", article.Content);
 
                         writer.WriteEndElement();
                     }

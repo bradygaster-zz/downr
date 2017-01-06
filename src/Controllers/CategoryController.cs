@@ -47,7 +47,6 @@ namespace downr.Controllers
                 var postsInCategory = _indexer.Metadata.Where(x => x.Categories.Contains(name));
                 foreach (var post in postsInCategory)
                 {
-                    post.Content = _markdownLoader.GetContentToRender(post.Slug);
                     postsForView.Add(post);
                     titlesInCategory.Add(post.Slug, post.Title);
                 }

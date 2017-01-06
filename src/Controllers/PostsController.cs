@@ -41,7 +41,6 @@ namespace downr.Controllers
             if (_indexer.Metadata.Any(x => x.Slug == slug))
             {
                 var meta = _indexer.Metadata.First(x => x.Slug == slug);
-                meta.Content = _markdownLoader.GetContentToRender(slug);
                 ViewData["Title"] = meta.Title;
 
                 // where are we in the list of posts?
