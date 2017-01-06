@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using Markdig;
 using Microsoft.AspNetCore.Hosting;
+using HtmlAgilityPack;
 
 namespace downr.Services
 {
@@ -24,10 +25,22 @@ namespace downr.Services
                 _hostingEnvironment.WebRootPath,
                 slug);
 
-            using(var rdr = File.OpenText(path))
+            using (var rdr = File.OpenText(path))
             {
                 var pipeline = new MarkdownPipelineBuilder().UseYamlFrontMatter().Build();
                 var html = Markdig.Markdown.ToHtml(rdr.ReadToEnd(), pipeline);
+
+                var htmlDoc = new HtmlDocument();
+                htmlDoc.LoadHtml(html);
+
+                foreach (HtmlNode node in htmlDoc.DocumentNode
+                                   .SelectNodes("//img[@src]"))
+                {
+                    var src = node.Attributes["src"].Value;
+                    src = src.Replace("media/", string.Format("/{0}/media/", slug));
+                    node.SetAttributeValue("src", src);
+                }
+
                 return html;
             }
         }
