@@ -6,7 +6,7 @@
     <h2>@post.Title</h2>
 
     <div class="well post-meta">
-        <a href="/@post.Slug" class="btn btn-primary"><span class="glyphicon glyphicon-link"></span> @post.PublicationDate.ToLocalTime().ToString("yyyy-MM-dd")</a>
+        <a href="/posts/@post.Slug" class="btn btn-primary"><span class="glyphicon glyphicon-link"></span> @post.PublicationDate.ToLocalTime().ToString("yyyy-MM-dd")</a>
 
         @foreach(var category in post.Categories) {
             <a href="/category/@category" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-pushpin"></span> @category</a>
@@ -16,4 +16,20 @@
     @Html.Raw(post.Content)
 
     <hr size="1"/>
+
+    <section id="comments" aria-label="Comments">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES * * */
+        var disqus_shortname = 'bradygblog';
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    </section>
 }
