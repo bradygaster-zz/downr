@@ -123,7 +123,9 @@ Getting started with downr running on Azure App Service is relatively easy:
 
 1. Once the publish completes you should see new content 
 
-**Note**: In some cases, the very first publish to Azure fails to copy the content and style files. If this happens or you see something unexpected, use the Azure portal to redeploy your previous deployment. 
+**Note**: In some cases, the very first publish to Azure fails to copy the content and style files. If this happens or you see something unexpected, use the Azure portal to redeploy your previous deployment. The screenshot below demonstrates how you can re-deploy your initial publish with one click in the portal. 
+
+![Redeploying](media/redeploy.png)
 
 ## Contributing
 
