@@ -2,14 +2,16 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         copy: {
-            content: {
+            style: {
                 files: [{
                     cwd: '../css',
                     src: '**/*.*',
                     dest: 'wwwroot/css',
                     expand: true
-                },
-                {
+                }]
+            },
+            content: {
+                files: [{
                     cwd: '../posts',
                     src: '**/*.*',
                     dest: 'wwwroot/posts',
@@ -26,13 +28,14 @@ module.exports = function (grunt) {
             }
         },
         clean: {
-            posts: 'wwwroot/posts'
+            posts: 'wwwroot/posts',
+            style: 'wwwroot/css'
         }
     });
 
     grunt.registerTask('postpublish', ['clean:posts', 'copy:content']);
 
-    grunt.registerTask('precompile', ['copy:views']);
+    grunt.registerTask('precompile', ['copy:views', 'clean:style', 'copy:style']);
 
     grunt.loadNpmTasks('grunt-contrib-copy');
 
