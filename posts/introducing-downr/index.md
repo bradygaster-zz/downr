@@ -69,7 +69,7 @@ The top section of each Markdown file must contain a YAML header with some simpl
     categories: downr
     ---
 
-## Image Pathing
+## Image Path Fix-ups
 
 As demonstrated by this file earlier, the path you'd use to link to images should be `media/[filename]`. At run-time, the `src` attributes for each image in your posts will be fixed automatically. This enables you to edit and preview your content in [Visual Studio Code](http://code.visualstudio.com) in exactly the same way it'll be rendered once you publish your blog. 
 
@@ -77,6 +77,57 @@ As demonstrated by this file earlier, the path you'd use to link to images shoul
 
 Note how the Markdown source code links to the relative path of the image in the `media` subfolder, but in the Chrome F12 tools in the top pane of the screenshot the image path is fixed up to be relative to the site's root at `/posts/introducing-downr/media/folder-structure.png`. 
 
+## Project Details
+
+downr was created using a collection of open-source web frameworks and tools. Here's a quick synopsis of the project's architecture. 
+
+* Initial project structure created using [Yeoman's](http://yeoman.io/) `yo aspnet` template. 
+* NuGet dependencies:
+    * [Markdig](https://github.com/lunet-io/markdig) is used for Markdown-to-HTML conversion
+    * [YamlDotNet](http://aaubry.net/pages/yamldotnet.html) is used to parse the YAML headers in post Markdown files
+    * The [HTML Agility Pack for .NET Core](https://github.com/zulfahmi93/HtmlAgilityPack.NetCore) is used for the image path fix-ups
+* Grunt is used to perform the build, during which:
+    * The `site.css` is cleared and restored from the root `css` folder content
+    * The `posts` folder from the `wwwroot` folder is deleted and restored from the root's `posts` folder. The root `posts` folder is where bloggers should commit Markdown content. 
+    * The Razor templates from the `templates` folder in the project root are copiled into the `src\Views` folder prior to compilation 
+* Bower is used to install the client-side JavaScript resources, specifically, Bootstrap, as this is used for the client-side experience construction
+* Obviously, NPM is being used to install the build resources
+
+## Publishing to Azure
+
+Included in the source code is an Azure Kudu deployment script (a `.deployment` file). You can learn more about these files on the [Kudu Wiki](https://github.com/projectkudu/kudu/wiki/Custom-Deployment-Script). This file specifies the `src` folder as the project folder. 
+
+Getting started with downr running on Azure App Service is relatively easy:
+
+1. Fork the GitHub repository
+1. Clone your fork
+1. Create a new Web App using the Azure portal
+1. Enable local Git repository publishing via the Azure portal
+
+    ![Local Git repo setup](media/set-up-git-repo.png)
+
+1. Copy the Web App's Git repository URL to your clipboard
+
+    ![Copy Git URL](media/copy-git-url.png)
+
+1. Use the copied URL as the URL of a new remote for your site's local repository
+
+        git remote add azure [your copied url]
+
+1. Add or edit posts in the `posts` folder, and customize your style via the root `css` folder. If you need to change the layout or want to customize the navbar or sidebar edit the `.cshtml` files in the `templates` folder. 
+1. Commit your files to your local Git repository and then push them to your azure remote 
+
+        git add .
+        git commit -m 'added content or customized style'
+        git push azure master
+
+1. Once the publish completes you should see new content 
+
+**Note**: In some cases, the very first publish to Azure fails to copy the content and style files. If this happens or you see something unexpected, use the Azure portal to redeploy your previous deployment. 
+
 ## Contributing
 
 Contributions to downr are welcome and encouraged. Fork the [downr GitHub repository](http://github.com/bradygaster/downr) and submit pull requests to your heart's content. 
+
+### Naming Disclaimer
+*Note: Product naming is difficult. I noticed that there were a few other projects out there [named](https://github.com/duhruh/Downr) [similarly](https://downr.codeplex.com/) to this one. The dotnet markdown blogging tool known as downr has no implied or accidental relationship to any of these other awesome projects.*
