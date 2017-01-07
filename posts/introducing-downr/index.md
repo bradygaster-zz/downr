@@ -73,6 +73,10 @@ The top section of each Markdown file must contain a YAML header with some simpl
 
 As demonstrated by this file earlier, the path you'd use to link to images should be `media/[filename]`. At run-time, the `src` attributes for each image in your posts will be fixed automatically. This enables you to edit and preview your content in [Visual Studio Code](http://code.visualstudio.com) in exactly the same way it'll be rendered once you publish your blog. 
 
+![Image path fix-ups](media/image-pathing.png)
+
+Note how the Markdown source code links to the relative path of the image in the `media` subfolder, but in the Chrome F12 tools in the top pane of the screenshot the image path is fixed up to be relative to the site's root at `/posts/introducing-downr/media/folder-structure.png`. 
+
 ## Contributing
 
 Contributions to downr are welcome and encouraged. Fork the [downr GitHub repository](http://github.com/bradygaster/downr) and submit pull requests to your heart's content. 
