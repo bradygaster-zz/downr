@@ -2,8 +2,8 @@
 title: Introducing downr
 slug: introducing-downr
 author: bradygaster
-lastModified: 2017-01-06 12:00:00
-pubDate: 2017-01-06 12:00:00
+lastModified: 2017-01-07 12:00:00
+pubDate: 2017-01-07 12:00:00
 categories: downr
 ---
 
