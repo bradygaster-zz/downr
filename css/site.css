@@ -13,17 +13,11 @@ footer
     .container {
         width: 1500px;
     }
-    img {
-        max-width: 700px;
-    }
 }
 
 @media (min-width: 1900px) {
     .container {
         width: 1900px;
-    }
-    img {
-        max-width: 900px;
     }
 }
 
@@ -33,4 +27,8 @@ footer
 
 .post-meta .btn {
     margin-right: 5px;
+}
+
+img {
+    max-width: 700px;
 }
