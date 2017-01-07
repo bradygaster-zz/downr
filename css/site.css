@@ -1,5 +1,18 @@
 /* add customizations here */
-.about, [role=main], [role=complementary]
+body {
+    font-family: 'Droid Sans', 'Segoe UI', 'Arial', 'Helvetica', sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Arvo', 'Segoe UI Light', 'Arial', 'Helvetica', sans-serif;
+}
+
+[role=complementary]
+{
+    margin-top: 50px;
+}
+
+.about, [role=main]
 {
     margin-top: 60px;
 }
@@ -51,4 +64,10 @@ footer
 
 .post-meta .btn {
     margin-right: 5px;
+}
+
+.aside-header-img {
+    background-image: url('blog-photo.png');
+    height: 400px;
+    width: 100%;
 }

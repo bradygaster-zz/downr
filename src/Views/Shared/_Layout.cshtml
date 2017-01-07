@@ -15,6 +15,9 @@
             asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Arvo">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans">
 </head>
 
 <body>
@@ -27,10 +30,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="/" class="button navbar-brand btn">downr</a>
+                <a href="/" class="button navbar-brand btn">bradygaster.com</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li><a href="https://twitter.com/bradygaster">twitter</a></li>
                     <li><a href="https://github.com/bradygaster/downr">github</a></li>
                     <li><a href="/feed/rss">rss</a></li>
                 </ul>
@@ -41,24 +45,31 @@
         <div role="main" class="col-md-8">
             @if(!String.IsNullOrEmpty(ViewBag.Category)) {
             <p class="well">
-                The posts tagged with '<strong>@ViewBag.Category</strong>' are listed below. You can get to each post by clicking the title in the list. 
+                The posts tagged with '<strong>@ViewBag.Category</strong>' are listed below. You can get to each post by
+                clicking the title in the list.
             </p>
             <ul>
                 @foreach(var post in ViewBag.TitlesInCategory) {
                 <li><a href="#@post.Key">@post.Value</a></li>
                 }
             </ul>
-            <hr size="1"/>
-            }
-            @RenderBody()
+            <hr size="1" /> } @RenderBody()
         </div>
         <aside role="complementary" class="col-md-3 col-md-offset-1">
             <section>
+                <div class="aside-header-img"></div>
                 <h2>
-                    about downr
+                    bradygaster.com
                 </h2>
                 <p>
-                    <a href="http://github.com/bradygaster/downr">downr</a> is a simple blogging engine written using dotnet core and markdown. 
+                    Brady Gaster is a christian dad who lives near Seattle, plays music on various midi devices, and enjoys the technological
+                    and natural opportunities the Pacific Northwest provides.</p>
+                <p>He works at Microsoft on the <a href="http://docs.microsoft.com">docs.microsoft.com</a> team building tools
+                    for writers who teach developers how to use our frameworks to build their own applications. For fun,
+                    he builds tools that make it more fun for developers who want to party in the cloud.
+                </p>
+                <p>
+                    The words and opinions reflected on this site may not reflect reality or popular opinion.
                 </p>
             </section>
             <section>
@@ -105,9 +116,9 @@
             asp-fallback-test="window.jQuery"></script>
         <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js" asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
             asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"></script>
-</environment>
+    </environment>
 
-@RenderSection("scripts", required: false)
+    @RenderSection("scripts", required: false)
 </body>
 
 </html>
