@@ -9,15 +9,30 @@ footer
     margin-top: 10px;
 }
 
+@media (min-width: 1200px) {
+    .container {
+        width: 1200px;
+    }
+    img {
+        max-width: 750px;
+    }
+}
+
 @media (min-width: 1600px) {
     .container {
         width: 1500px;
+    }
+    img {
+        max-width: 950px;
     }
 }
 
 @media (min-width: 1900px) {
     .container {
         width: 1900px;
+    }
+    img {
+        max-width: 1220px;
     }
 }
 
@@ -27,8 +42,4 @@ footer
 
 .post-meta .btn {
     margin-right: 5px;
-}
-
-img {
-    max-width: 700px;
 }
