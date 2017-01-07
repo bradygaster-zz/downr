@@ -9,6 +9,15 @@ footer
     margin-top: 10px;
 }
 
+@media (min-width: 900px) {
+    .container {
+        width: 800px;
+    }
+    img {
+        max-width: 640px;
+    }
+}
+
 @media (min-width: 1200px) {
     .container {
         width: 1200px;
