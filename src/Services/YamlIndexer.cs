@@ -65,7 +65,7 @@ namespace downr.Services
                             PublicationDate = DateTime.Parse(result[Strings.MetadataNames.PublicationDate]),
                             LastModified = DateTime.Parse(result[Strings.MetadataNames.LastModified]),
                             Categories = result[Strings.MetadataNames.Categories].Split(','),
-                            Content = _markdownLoader.GetContentToRender(result[Strings.MetadataNames.Slug])
+                            Content = new Content(_markdownLoader.GetContentToRender(result[Strings.MetadataNames.Slug]), ContentType.HTML)
                         };
 
                         Metadata.Add(metadata);

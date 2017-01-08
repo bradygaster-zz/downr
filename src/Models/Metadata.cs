@@ -10,6 +10,6 @@ namespace downr.Models
         public DateTime LastModified { get; set; }
         public string Author { get; set; }
         public string[] Categories { get; set; }
-        public string Content { get; set; }
+        public Content Content { get; set; }
     }
 }
