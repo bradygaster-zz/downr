@@ -22,21 +22,21 @@ footer
     margin-top: 10px;
 }
 
-@media (min-width: 300px) {
+@media (min-width: 400px) {
     .container {
-        width: 300px;
+        width: 400px;
     }
     img {
-        max-width: 250px;
+        max-width: 360px;
     }
 }
 
-@media (min-width: 500px) {
+@media (min-width: 700px) {
     .container {
-        width: 500px;
+        width: 700;
     }
     img {
-        max-width: 400px;
+        max-width: 580px;
     }
 }
 
