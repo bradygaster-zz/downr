@@ -22,9 +22,18 @@ footer
     margin-top: 10px;
 }
 
+@media (min-width: 500px) {
+    .container {
+        width: 500px;
+    }
+    img {
+        max-width: 400px;
+    }
+}
+
 @media (min-width: 900px) {
     .container {
-        width: 800px;
+        width: 900px;
     }
     img {
         max-width: 640px;
@@ -42,7 +51,7 @@ footer
 
 @media (min-width: 1600px) {
     .container {
-        width: 1500px;
+        width: 1600px;
     }
     img {
         max-width: 950px;
