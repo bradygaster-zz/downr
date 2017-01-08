@@ -8,39 +8,44 @@ namespace downr.Controllers
 {
     public class PostsController : BaseController
     {
-        public PostsController(IYamlIndexer indexer) : base(indexer) { }
+        IPostsIndexer _indexer;
+
+        public PostsController(IPostsIndexer indexer)
+          : base(indexer)
+        {
+            _indexer = indexer;
+        }
 
         [Route("posts/{slug}")]
         public IActionResult Index(string slug)
         {
-            // make sure the post is found in the index
-            if (_indexer.Metadata.Any(x => x.Slug == slug))
+            Metadata metadata;
+            if (_indexer.TryGet(slug, out metadata))
             {
-                var meta = _indexer.Metadata.First(x => x.Slug == slug);
-                ViewData["Title"] = meta.Title;
+                ViewData["Title"] = metadata.Title;
 
                 // where are we in the list of posts?
-                // last post?
-                int index = _indexer.Metadata.FindIndex(x => x.Slug == slug);
+
+                int index = _indexer.Metadata.Select(x => x.Value).ToList().FindIndex(x => x.Slug == slug);
                 if (index != 0)
                 {
-                    ViewBag.Next = _indexer.Metadata.ElementAt(index - 1).Slug;
-                    ViewBag.NextTitle = _indexer.Metadata.ElementAt(index - 1).Title;
+                    ViewBag.Next = _indexer.Metadata.ElementAt(index - 1).Value.Slug;
+                    ViewBag.NextTitle = _indexer.Metadata.ElementAt(index - 1).Value.Title;
                 }
                 // first post?
-                if (index != _indexer.Metadata.Count - 1)
+                if (index != _indexer.Count - 1)
                 {
-                    ViewBag.Previous = _indexer.Metadata.ElementAt(index + 1).Slug;
-                    ViewBag.PreviousTitle = _indexer.Metadata.ElementAt(index + 1).Title;
+                    ViewBag.Previous = _indexer.Metadata.ElementAt(index + 1).Value.Slug;
+                    ViewBag.PreviousTitle = _indexer.Metadata.ElementAt(index + 1).Value.Title;
                 }
 
-                return View("Post", new Metadata[] { meta });
+                return View("Post", new Metadata[] { metadata });
             }
             else
             {
                 return RedirectToAction("Index", "Posts", new
                 {
-                    slug = _indexer.Metadata.ElementAt(0).Slug
+                    slug = _indexer.Metadata.ElementAt(0).Value.Slug
                 });
             }
         }

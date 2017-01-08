@@ -16,6 +16,12 @@ module.exports = function (grunt) {
                     src: '**/*.*',
                     dest: 'wwwroot/posts',
                     expand: true
+                },
+                {
+                    cwd: '../pages',
+                    src: '**/*.*',
+                    dest: 'wwwroot/pages',
+                    expand: true
                 }]
             },
             views: {
@@ -28,12 +34,13 @@ module.exports = function (grunt) {
             }
         },
         clean: {
-            posts: 'wwwroot/posts',
+            posts: 'wwwroot/pages',
+            pages: 'wwwroot/posts',
             style: 'wwwroot/css'
         }
     });
 
-    grunt.registerTask('postpublish', ['clean:posts', 'copy:content']);
+    grunt.registerTask('postpublish', ['clean:posts','clean:pages',  'copy:content']);
 
     grunt.registerTask('precompile', ['copy:views', 'clean:style', 'copy:style']);
 

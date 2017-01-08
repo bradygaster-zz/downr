@@ -61,20 +61,23 @@
                     <a href="http://github.com/bradygaster/downr">downr</a> is a simple blogging engine written using dotnet core and markdown. 
                 </p>
             </section>
-            <section>
-                <div class="panel panel-default">
-                    <div class="panel-heading">Tags</div>
-                    <div class="panel-body">
-                        <ul class="list-group">
-                            @foreach(var tag in ViewBag.TagCloud){
-                            <a href="/category/@tag.Key" class="list-group-item">
-                                <span class="badge">@tag.Value</span> @tag.Key
-                            </a>
-                            }
-                        </ul>
+            @if(ViewBag.TagCloud != null)
+            {
+                <section>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Tags</div>
+                        <div class="panel-body">
+                            <ul class="list-group">
+                                @foreach(var tag in ViewBag.TagCloud){
+                                <a href="/category/@tag.Key" class="list-group-item">
+                                    <span class="badge">@tag.Value</span> @tag.Key
+                                </a>
+                                }
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            }
         </aside>
     </div>
     <div class="container">

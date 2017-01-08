@@ -10,9 +10,9 @@ namespace downr.Controllers
 {
     public abstract class BaseController : Controller
     {
-        protected IYamlIndexer _indexer;
+        IPostsIndexer _indexer;
 
-        public BaseController(IYamlIndexer indexer)
+        public BaseController(IPostsIndexer indexer)
         {
             _indexer = indexer;
         }
@@ -21,7 +21,7 @@ namespace downr.Controllers
         {
             // get all the categories
             var tagCloud = new Dictionary<string, int>();
-            _indexer.Metadata.Select(x => x.Categories).ToList().ForEach(categories =>
+            _indexer.Metadata.Select(x => x.Value.Categories).ToList().ForEach(categories =>
             {
                 categories.ToList().ForEach(category =>
                 {

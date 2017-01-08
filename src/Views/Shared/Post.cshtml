@@ -1,11 +1,15 @@
-@using downr.Models @model downr.Models.Metadata[]
+@using downr.Models
+@model downr.Models.Metadata[]
 
-@foreach(var post in Model) {
+@foreach(var post in Model)
+{
     <a id="@post.Slug"></a>
+
+    <h1>Post</h1>
 
     <h2>@post.Title</h2>
 
-    <h3>Except:</h3>
+    <h3>Excerpt:</h3>
     <p>
         @post.Content.StripHtml().Excerpt(50);
     </p>
@@ -19,5 +23,5 @@
     <h3>Content:</h3>
     @Html.Raw(post.Content)
 
-    <hr size="1" /> 
+    <hr size="1" />
 }
