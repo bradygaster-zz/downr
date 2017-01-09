@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using downr.Models;
 using YamlDotNet.Serialization;
 using System.Text;
+using System.Linq;
 
 namespace downr.Services
 {
@@ -12,18 +13,28 @@ namespace downr.Services
     {
         IMarkdownContentLoader _markdownLoader;
 
-        public IDictionary<string, Metadata> Metadata { get; set; }
-        public int Count => Metadata.Count;
+        public IDictionary<string, Metadata> PostsMetadata { get; set; }
+        public IDictionary<string, Metadata> PagesMetadata { get; set; }
+        public IDictionary<string, int> TagCloud { get; set; }
+
+        public int PostsCount => PostsMetadata.Count;
+        public int PagesCount => PagesMetadata.Count;
 
         public DefaultYamlIndexer(IMarkdownContentLoader markdownLoader)
         {
             _markdownLoader = markdownLoader;
-            Metadata = new Dictionary<string, Metadata>(StringComparer.OrdinalIgnoreCase);
+            PostsMetadata = new Dictionary<string, Metadata>(StringComparer.OrdinalIgnoreCase);
+            PagesMetadata = new Dictionary<string, Metadata>(StringComparer.OrdinalIgnoreCase);
+            TagCloud = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
         }
 
-        public bool TryGet(string slug, out Metadata metadata)
+        public bool TryGetPost(string slug, out Metadata metadata)
         {
-            return Metadata.TryGetValue(slug, out metadata);
+            return PostsMetadata.TryGetValue(slug, out metadata);
+        }
+        public bool TryGetPage(string slug, out Metadata metadata)
+        {
+            return PagesMetadata.TryGetValue(slug, out metadata);
         }
 
         public bool TryReadSiteYaml(StreamReader streamReader, out string yaml)
@@ -31,25 +42,16 @@ namespace downr.Services
             var stringBuilder = new StringBuilder();
 
             string line;
-            bool started = false;
-            while ((line = streamReader.ReadLine()) != null)
+            if ((line = streamReader.ReadLine()) == "---")
             {
-                if (line == "---")
+                while ((line = streamReader.ReadLine()) != null)
                 {
-                    if (started)
+                    if (line == "---")
                     {
                         yaml = stringBuilder.ToString();
                         return true;
                     }
 
-                    started = true;
-                }
-                else if (!started)
-                {
-                    break;
-                }
-                else
-                {
                     stringBuilder.AppendLine(line);
                 }
             }
@@ -82,15 +84,30 @@ namespace downr.Services
                 // read content
                 string rawContent = rdr.ReadToEnd();
 
+                // read yaml
                 var yamlDeserializer = new Deserializer();
                 var siteConfig = yamlDeserializer.Deserialize<Dictionary<string, string>>(new StringReader(yaml));
 
                 var content = new Content(_markdownLoader.GetContentToRender(rawContent, relativeContentPath), ContentType.HTML);
 
+                // optional data
+                string slug;
+                if (!siteConfig.ContainsKey(Strings.MetadataNames.Slug))
+                {
+                    // use folder name as slug if not present
+                    Uri slugUri = slugPathUri.MakeRelativeUri(fileDirectoryUri);
+                    slug = slugUri.OriginalString;
+                }
+                else
+                {
+                    // use slug if set
+                    slug = siteConfig[Strings.MetadataNames.Slug];
+                }
+
                 // convert the dictionary into a model
                 metadata = new Metadata
                 {
-                    Slug = siteConfig[Strings.MetadataNames.Slug],
+                    Slug = slug,
                     Title = siteConfig[Strings.MetadataNames.Title],
                     Author = siteConfig[Strings.MetadataNames.Author],
                     PublicationDate = DateTime.Parse(siteConfig[Strings.MetadataNames.PublicationDate]),
@@ -98,26 +115,108 @@ namespace downr.Services
                     Categories = siteConfig[Strings.MetadataNames.Categories].Split(','),
                     Content = content
                 };
+
                 return true;
             }
         }
 
-        public void IndexContentFiles(string contentPath)
+        public IYamlIndexer IndexPageFiles(string contentPath)
         {
-            var subDirectories = Directory.GetDirectories(contentPath);
-
-            foreach (var subDirectory in subDirectories)
+            var stack = new Stack<string>();
+            foreach (var subDir in Directory.GetDirectories(contentPath))
             {
-                string filePath = Path.Combine(subDirectory, "index.md");
-                if (File.Exists(filePath))
+                stack.Push(subDir);
+            }
+
+            while (stack.Count > 0)
+            {
+                var currentDir = stack.Pop();
+
+                // determine all files
+                Metadata metadata;
+                if (IndexContent(contentPath, currentDir, MetadataType.Page, out metadata))
                 {
-                    Metadata metadata;
-                    if (TryIndexFile(filePath, contentPath, out metadata))
+                    PagesMetadata.Add(metadata.Slug, metadata);
+                }
+
+                // support page sub folders
+                foreach (var subDir in Directory.GetDirectories(currentDir))
+                {
+                    Metadata subMetadata;
+                    if (IndexContent(contentPath, subDir, MetadataType.Page, out subMetadata))
                     {
-                        Metadata.Add(metadata.Slug, metadata);
+                        PagesMetadata.Add(subMetadata.Slug, subMetadata);
                     }
                 }
+
+
             }
+
+            return this;
+        }
+
+        public IYamlIndexer IndexPostFiles(string contentPath)
+        {
+            foreach (var subDir in Directory.GetDirectories(contentPath))
+            {
+                Metadata metadata;
+                if (IndexContent(contentPath, subDir, MetadataType.Post, out metadata))
+                {
+                    PostsMetadata.Add(metadata.Slug, metadata);
+                }
+            }
+
+            return this;
+        }
+
+
+        public bool IndexContent(string contentPath, string path, MetadataType type, out Metadata metadata)
+        {
+            string filePath = Path.Combine(path, "index.md");
+            if (File.Exists(filePath))
+            {
+                if (TryIndexFile(filePath, contentPath, out metadata))
+                {
+                    metadata.Type = type;
+                    return true;
+                }
+            }
+
+            metadata = null;
+            return false;
+        }
+
+        public IYamlIndexer Build()
+        {
+            SortMetadata();
+            BuildTagCloud(PostsMetadata);
+            BuildTagCloud(PagesMetadata);
+            SortTagCloud();
+
+            return this;
+        }
+
+        public void SortMetadata()
+        {
+            PostsMetadata = PostsMetadata.OrderByDescending(x => x.Value.PublicationDate).ToDictionary(x => x.Key, x => x.Value);
+        }
+
+        public void BuildTagCloud(IDictionary<string, Metadata> metadata)
+        {        // get all the categories
+            foreach (var entry in metadata)
+            {
+                foreach (var category in entry.Value.Categories)
+                {
+                    int count;
+                    TagCloud.TryGetValue(category, out count);
+                    TagCloud[category] = count + 1;
+                }
+            }
+        }
+
+        public void SortTagCloud()
+        {
+            TagCloud = TagCloud.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
         }
     }
 }

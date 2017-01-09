@@ -8,9 +8,9 @@ namespace downr.Controllers
 {
     public class CategoryController : BaseController
     {
-        IPostsIndexer _indexer;
+        IYamlIndexer _indexer;
 
-        public CategoryController(IPostsIndexer indexer) : base(indexer)
+        public CategoryController(IYamlIndexer indexer) : base(indexer)
         {
             _indexer = indexer;
         }
@@ -26,7 +26,7 @@ namespace downr.Controllers
 
                 var titlesInCategory = new Dictionary<string, string>();
                 var postsForView = new List<Metadata>();
-                var entriesOfCategory = _indexer.Metadata.Where(x => x.Value.Categories.Contains(name));
+                var entriesOfCategory = _indexer.PostsMetadata.Where(x => x.Value.Categories.Contains(name));
                 foreach (var entry in entriesOfCategory)
                 {
                     var key = entry.Key;

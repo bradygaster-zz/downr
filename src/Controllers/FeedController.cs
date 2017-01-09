@@ -12,9 +12,9 @@ namespace downr.Controllers
     public class FeedController : Controller
     {
         IMarkdownContentLoader _markdownLoader;
-        IPostsIndexer _indexer;
+        IYamlIndexer _indexer;
 
-        public FeedController(IMarkdownContentLoader markdownLoader,IPostsIndexer indexer)
+        public FeedController(IMarkdownContentLoader markdownLoader,IYamlIndexer indexer)
         {
             _markdownLoader = markdownLoader;
             _indexer = indexer;
@@ -24,7 +24,7 @@ namespace downr.Controllers
         public IActionResult Rss(string name)
         {
             // get the last 10 posts
-            var last10posts = _indexer.Metadata.Take(10);
+            var last10posts = _indexer.PostsMetadata.Take(10);
 
 
             var feed = BuildXmlFeed(last10posts.Select(x=>x.Value));

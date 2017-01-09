@@ -30,6 +30,4 @@ namespace downr.Models
             return Raw;
         }
     }
-
-
 }

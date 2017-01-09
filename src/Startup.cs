@@ -35,16 +35,14 @@ namespace downr
 
             // add site services
             services.AddSingleton<IMarkdownContentLoader, DefaultMarkdownContentLoader>();
-            services.AddSingleton<IPagesIndexer, PagesYamlIndexer>();
-            services.AddSingleton<IPostsIndexer, PostsYamlIndexer>();
+            services.AddSingleton<IYamlIndexer, DefaultYamlIndexer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app,
             IHostingEnvironment env,
             ILoggerFactory loggerFactory,
-            IPagesIndexer pagesIndexer,
-            IPostsIndexer postsIndexer)
+            IYamlIndexer yamlIndexer)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -70,8 +68,9 @@ namespace downr
             });
 
             // get the path to the content directory so the yaml headers can be indexed as metadata
-            pagesIndexer.IndexContentFiles($@"{ env.WebRootPath}\pages\");
-            postsIndexer.IndexContentFiles($@"{ env.WebRootPath}\posts\");
+            yamlIndexer.IndexPageFiles($@"{ env.WebRootPath }\pages\")
+                        .IndexPostFiles($@"{ env.WebRootPath }\posts\")
+                        .Build();
         }
     }
 }

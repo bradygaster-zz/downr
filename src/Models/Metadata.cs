@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace downr.Models
 {
@@ -12,5 +11,6 @@ namespace downr.Models
         public string Author { get; set; }
         public string[] Categories { get; set; }
         public Content Content { get; set; }
+        public MetadataType Type {get;set;}
     }
 }
