@@ -14,8 +14,7 @@ namespace downr.Controllers
         IMarkdownContentLoader _markdownLoader;
         IYamlIndexer _indexer;
 
-        public FeedController(IMarkdownContentLoader markdownLoader,
-            IYamlIndexer indexer)
+        public FeedController(IMarkdownContentLoader markdownLoader,IYamlIndexer indexer)
         {
             _markdownLoader = markdownLoader;
             _indexer = indexer;
@@ -25,10 +24,10 @@ namespace downr.Controllers
         public IActionResult Rss(string name)
         {
             // get the last 10 posts
-            var last10posts = _indexer.Metadata.Take(10);
+            var last10posts = _indexer.PostsMetadata.Take(10);
 
 
-            var feed = BuildXmlFeed(last10posts);
+            var feed = BuildXmlFeed(last10posts.Select(x=>x.Value));
             return Content(feed, "text/xml");
         }
 
@@ -64,7 +63,7 @@ namespace downr.Controllers
 
                         writer.WriteElementString("title", article.Title);
                         writer.WriteElementString("link", "http://bradygaster.com/" + article.Slug); // todo build article path
-                        writer.WriteElementString("description", article.Content);
+                        writer.WriteElementString("description", article.Content.StripHtml().Excerpt(150)); // show just an excerpt without html stuff
 
                         writer.WriteEndElement();
                     }

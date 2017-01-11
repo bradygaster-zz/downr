@@ -8,7 +8,12 @@ namespace downr.Controllers
 {
     public class CategoryController : BaseController
     {
-        public CategoryController(IYamlIndexer indexer) : base(indexer) { }
+        IYamlIndexer _indexer;
+
+        public CategoryController(IYamlIndexer indexer) : base(indexer)
+        {
+            _indexer = indexer;
+        }
 
         [Route("category/{name}")]
         public IActionResult Index(string name)
@@ -21,11 +26,14 @@ namespace downr.Controllers
 
                 var titlesInCategory = new Dictionary<string, string>();
                 var postsForView = new List<Metadata>();
-                var postsInCategory = _indexer.Metadata.Where(x => x.Categories.Contains(name));
-                foreach (var post in postsInCategory)
+                var entriesOfCategory = _indexer.PostsMetadata.Where(x => x.Value.Categories.Contains(name));
+                foreach (var entry in entriesOfCategory)
                 {
-                    postsForView.Add(post);
-                    titlesInCategory.Add(post.Slug, post.Title);
+                    var key = entry.Key;
+                    var metadata = entry.Value;
+
+                    postsForView.Add(metadata);
+                    titlesInCategory.Add(metadata.Slug, metadata.Title);
                 }
 
                 ViewBag.TitlesInCategory = titlesInCategory;

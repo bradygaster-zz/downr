@@ -68,8 +68,9 @@ namespace downr
             });
 
             // get the path to the content directory so the yaml headers can be indexed as metadata
-            var contentPath = string.Format("{0}\\posts\\", env.WebRootPath);
-            yamlIndexer.IndexContentFiles(contentPath);
+            yamlIndexer.IndexPageFiles($@"{ env.WebRootPath }\pages\")
+                        .IndexPostFiles($@"{ env.WebRootPath }\posts\")
+                        .Build();
         }
     }
 }
