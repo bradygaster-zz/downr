@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.IO;
 using downr.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -68,7 +69,8 @@ namespace downr
             });
 
             // get the path to the content directory so the yaml headers can be indexed as metadata
-            var contentPath = string.Format("{0}\\posts\\", env.WebRootPath);
+            var contentPath = Path.Combine(env.WebRootPath, "posts");
+            //var contentPath = string.Format("{0}\\posts\\", env.WebRootPath);
             yamlIndexer.IndexContentFiles(contentPath);
         }
     }
