@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.ResponseCompression;
 
 namespace downr
 {
@@ -31,6 +32,10 @@ namespace downr
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddResponseCompression(options =>
+            {
+                options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { "image/svg+xml", "application/font-woff2" });
+            });
             // Add framework services.
             services.AddMvc();
 
@@ -57,7 +62,8 @@ namespace downr
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
+            
+            app.UseResponseCompression();
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
