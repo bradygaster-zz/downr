@@ -64,16 +64,16 @@ namespace downr
                 app.UseExceptionHandler("/Home/Error");
             }
             
-            app.UseResponseCompression();
+            app.UseResponseCompression();        
             app.UseStaticFiles(new StaticFileOptions
             {
                 OnPrepareResponse =
                     _ => _.Context.Response.Headers[HeaderNames.CacheControl] = 
-                            "public,max-age=604800"
+            "public,max-age=604800"  
             });
 
             app.UseMvc(routes =>
-            {
+            {   
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
