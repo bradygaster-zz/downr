@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.Net.Http.Headers;
 
 namespace downr
 {
@@ -64,7 +65,12 @@ namespace downr
             }
             
             app.UseResponseCompression();
-            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                OnPrepareResponse =
+                    _ => _.Context.Response.Headers[HeaderNames.CacheControl] = 
+                            "public,max-age=604800"
+            });
 
             app.UseMvc(routes =>
             {
