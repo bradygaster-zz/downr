@@ -1,0 +1,3 @@
+templates/*.* merge=ours
+css/*.* merge=ours
+posts/*.* merge=ours
