@@ -33,7 +33,7 @@ namespace downr.Services
             foreach (var subDirectory in subDirectories)
             {
                 using (var rdr = File.OpenText(
-                    string.Format("{0}\\index.md", subDirectory)
+                        Path.Combine(subDirectory, "index.md")
                     ))
                 {
                     // make sure the file has the header at the first line

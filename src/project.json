@@ -28,7 +28,8 @@
     "Markdig": "0.10.4",
     "YamlDotNet.NetCore": "1.0.0",
     "System.Xml.ReaderWriter": "4.3.0",
-    "HtmlAgilityPack.NetCore": "1.5.0.1"
+    "HtmlAgilityPack.NetCore": "1.5.0.1",
+    "Microsoft.AspNetCore.ResponseCompression" : "1.0.0"
   },
   "tools": {
     "BundlerMinifier.Core": "2.0.238",

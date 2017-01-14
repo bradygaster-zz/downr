@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.IO;
 using downr.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -9,6 +10,8 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.Net.Http.Headers;
 
 namespace downr
 {
@@ -30,6 +33,10 @@ namespace downr
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddResponseCompression(options =>
+            {
+                options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { "image/svg+xml", "application/font-woff2" });
+            });
             // Add framework services.
             services.AddMvc();
 
@@ -56,11 +63,17 @@ namespace downr
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
-            app.UseStaticFiles();
+            
+            app.UseResponseCompression();        
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                OnPrepareResponse =
+                    _ => _.Context.Response.Headers[HeaderNames.CacheControl] = 
+            "public,max-age=604800"  
+            });
 
             app.UseMvc(routes =>
-            {
+            {   
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
@@ -68,7 +81,7 @@ namespace downr
             });
 
             // get the path to the content directory so the yaml headers can be indexed as metadata
-            var contentPath = string.Format("{0}\\posts\\", env.WebRootPath);
+            var contentPath = Path.Combine(env.WebRootPath, "posts");
             yamlIndexer.IndexContentFiles(contentPath);
         }
     }

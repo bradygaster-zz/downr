@@ -21,9 +21,12 @@ namespace downr.Services
         }
         public string GetContentToRender(string slug)
         {
-            string path = string.Format("{0}\\posts\\{1}\\index.md",
-                _hostingEnvironment.WebRootPath,
-                slug);
+
+            string path = Path.Combine(_hostingEnvironment.WebRootPath,"posts",slug,"index.md");
+
+            // string path = string.Format("{0}\\posts\\{1}\\index.md",
+            //     _hostingEnvironment.WebRootPath,
+            //     slug);
 
             using (var rdr = File.OpenText(path))
             {
