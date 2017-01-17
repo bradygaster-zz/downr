@@ -1,6 +1,6 @@
 ---
 title: Performance Upgrades
-slug: perf-upgrades
+slug: performance
 author: bradygaster
 lastModified: 2017-01-17 12:00:00
 pubDate: 2017-01-17 12:00:00
