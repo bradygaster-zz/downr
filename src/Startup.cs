@@ -61,7 +61,6 @@ namespace downr
             }
             else
             {
-                app.UseDeveloperExceptionPage();
                 app.UseExceptionHandler("/Home/Error");
             }
             
