@@ -11,6 +11,7 @@ wwwroot/
 *.userprefs
 
 # Build results
+[Pp]ublish/
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/

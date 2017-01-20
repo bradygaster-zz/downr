@@ -1,0 +1,11 @@
+
+version: '2'
+
+services:
+  downr:
+    image: downr:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
