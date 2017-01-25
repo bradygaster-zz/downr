@@ -81,6 +81,10 @@ namespace downr
             });
 
             // get the path to the content directory so the yaml headers can be indexed as metadata
+            if (string.IsNullOrWhiteSpace(env.WebRootPath))
+            {
+                env.WebRootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+            }
             var contentPath = Path.Combine(env.WebRootPath, "posts");
             yamlIndexer.IndexContentFiles(contentPath);
         }
