@@ -36,6 +36,7 @@ namespace downr
             // add site services
             services.AddSingleton<IMarkdownContentLoader, DefaultMarkdownContentLoader>();
             services.AddSingleton<IYamlIndexer, DefaultYamlIndexer>();
+            services.AddTransient<IFeedBuilder, FeedBuilder>();
 
             // Configure downr by using options.json
             services.Configure<DownrOptions>(Configuration.GetSection("downr"));

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using downr.Feed;
+using downr.Services;
 using downr.Models;
 using downr.Resources;
 using Microsoft.AspNetCore.Mvc;
@@ -13,16 +13,16 @@ namespace downr.Controllers
     {
         private readonly IYamlIndexer _indexer;
         private readonly DownrOptions _options;
-        private readonly FeedBuilder _feedBuilder;
+        private readonly IFeedBuilder _feedBuilder;
         private readonly IStringLocalizer<Texts> _sharedLocalizer;
 
-        public DownrController(IYamlIndexer indexer, IOptions<DownrOptions> optionsAccessor, IStringLocalizer<Texts> sharedLocalizer)
+        public DownrController(IYamlIndexer indexer, IFeedBuilder feedBuilder, IOptions<DownrOptions> optionsAccessor, IStringLocalizer<Texts> sharedLocalizer)
           : base(indexer)
         {
             _indexer = indexer;
             _sharedLocalizer = sharedLocalizer;
             _options = optionsAccessor.Value;
-            _feedBuilder = new FeedBuilder(optionsAccessor);
+            _feedBuilder = feedBuilder;
         }
 
         public IActionResult Rss()

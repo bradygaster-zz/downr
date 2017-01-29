@@ -1,7 +1,7 @@
 {
   "downr": {
     "Title": "downr - a ASP.NET Core hybrid blog engine",
-    "Url": "http://bradygaster.com",
+    "Url": "http://bradygaster.com/",
     "FeedSlug": "feed",
     "PostCountFeed": 10
   }

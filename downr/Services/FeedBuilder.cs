@@ -4,9 +4,9 @@ using System.Xml;
 using downr.Models;
 using Microsoft.Extensions.Options;
 
-namespace downr.Feed
+namespace downr.Services
 {
-    public class FeedBuilder
+    public class FeedBuilder : IFeedBuilder
     {
         private readonly DownrOptions _options;
         public FeedBuilder(IOptions<DownrOptions> optionsAccessor)
@@ -17,10 +17,7 @@ namespace downr.Feed
         public string BuildXmlFeed(IEnumerable<Metadata> posts)
         {
             StringWriter parent = new StringWriter();
-            using (XmlWriter writer = XmlWriter.Create(parent, new XmlWriterSettings
-            {
-                OmitXmlDeclaration = true
-            }))
+            using (XmlWriter writer = XmlWriter.Create(parent, new XmlWriterSettings { OmitXmlDeclaration = true }))
             {
                 writer.WriteStartElement("rss");
                 writer.WriteAttributeString("version", "2.0");
