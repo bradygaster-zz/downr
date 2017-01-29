@@ -1,4 +1,5 @@
-﻿using downr.Middleware;
+﻿using System.IO;
+using downr.Middleware;
 using downr.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -62,6 +63,12 @@ namespace downr
             }
 
             app.UseStaticFiles();
+
+            // workaround if env.WebRootPath is not properly set
+            if (string.IsNullOrWhiteSpace(env.WebRootPath))
+            {
+                env.WebRootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+            }
 
             app.UseMvc(routes =>
             {
