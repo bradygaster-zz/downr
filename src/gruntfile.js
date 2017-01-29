@@ -13,13 +13,13 @@ module.exports = function (grunt) {
             content: {
                 files: [{
                     cwd: '../posts',
-                    src: '**/*.*',
+                    src: ['**/*', '!**/media/**'],
                     dest: 'wwwroot/posts',
                     expand: true
                 },
                 {
                     cwd: '../pages',
-                    src: '**/*.*',
+                    src: ['**/*', '!**/media/**'],
                     dest: 'wwwroot/pages',
                     expand: true
                 }]
@@ -34,17 +34,34 @@ module.exports = function (grunt) {
             }
         },
         clean: {
-            posts: 'wwwroot/pages',
-            pages: 'wwwroot/posts',
+            pages: 'wwwroot/pages',
+            posts: 'wwwroot/posts',
             style: 'wwwroot/css'
+        },
+        imagemin: {
+            dynamic: {
+                files: [{
+                    expand: true,                  // Enable dynamic expansion
+                    cwd: '../posts',               // Src matches are relative to this path
+                    src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match
+                    dest: 'wwwroot/posts'          // Destination path prefix
+                }, {
+                    expand: true,                  // Enable dynamic expansion
+                    cwd: '../pages',               // Src matches are relative to this path
+                    src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match
+                    dest: 'wwwroot/pages'          // Destination path prefix
+                }]
+            }
         }
     });
 
-    grunt.registerTask('postpublish', ['clean:posts','clean:pages',  'copy:content']);
+    grunt.registerTask('postpublish', ['clean:posts', 'copy:content', 'imagemin']);
 
     grunt.registerTask('precompile', ['copy:views', 'clean:style', 'copy:style']);
 
     grunt.loadNpmTasks('grunt-contrib-copy');
 
     grunt.loadNpmTasks('grunt-contrib-clean');
+
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
 };

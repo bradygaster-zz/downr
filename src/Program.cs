@@ -13,9 +13,9 @@ namespace downr
         public static void Main(string[] args)
         {
             var config = new ConfigurationBuilder()
-               .AddCommandLine(args)
-               .AddEnvironmentVariables(prefix: "ASPNETCORE_")
-               .Build();
+                           .AddCommandLine(args)
+                           .AddEnvironmentVariables(prefix: "ASPNETCORE_")
+                           .Build();
 
             var host = new WebHostBuilder()
                 .CaptureStartupErrors(true)
@@ -24,7 +24,6 @@ namespace downr
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
-                .UseApplicationInsights()
                 .Build();
 
             host.Run();
