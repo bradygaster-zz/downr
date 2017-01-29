@@ -1,7 +1,7 @@
-﻿using downr.Services;
+﻿using downr.Middleware;
+using downr.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -11,6 +11,8 @@ namespace downr
 {
     public class Startup
     {
+        public IConfigurationRoot Configuration { get; }
+
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -19,10 +21,10 @@ namespace downr
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddJsonFile("options.json", optional: false, reloadOnChange: true)
                 .AddEnvironmentVariables();
+
             Configuration = builder.Build();
         }
 
-        public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -35,8 +37,7 @@ namespace downr
             services.AddSingleton<IMarkdownContentLoader, DefaultMarkdownContentLoader>();
             services.AddSingleton<IYamlIndexer, DefaultYamlIndexer>();
 
-            // downr
-            // Configure using a sub-section of the appsettings.json file.
+            // Configure downr by using options.json
             services.Configure<DownrOptions>(Configuration.GetSection("downr"));
         }
 
@@ -61,75 +62,14 @@ namespace downr
 
             app.UseStaticFiles();
 
-
-            // get the path to the content directory so the yaml headers can be indexed as metadata
-            yamlIndexer.IndexPageFiles($@"{ env.WebRootPath }\" + "pages")
-                        .IndexPostFiles($@"{ env.WebRootPath }\" + "posts")
-                        .Build();
-
             app.UseMvc(routes =>
             {
-                InitDownrContent(routes, downrOptions, yamlIndexer);
+                app.UseDownr(env, routes, downrOptions, yamlIndexer);
 
                 routes.MapRoute(
                    name: "default",
                    template: "{controller=Home}/{action=Index}/{id?}");
-
             });
-        }
-
-        public void InitDownrContent(IRouteBuilder routes, DownrOptions downrOptions, IYamlIndexer yamlIndexer)
-        {
-            // Downr Feed
-            routes.MapRoute(
-                "downrFeed",
-                downrOptions.FeedSlug,
-                new
-                {
-                    controller = "Downr",
-                    action = "Rss"
-                }
-            );
-            // Downr Categories
-            routes.MapRoute(
-                "downrCategories",
-                "category/{name}",
-                new
-                {
-                    controller = "Downr",
-                    action = "Category"
-                }
-            );
-
-            foreach (var post in yamlIndexer.PostsMetadata)
-            {
-                routes.MapRoute(
-                    name: post.Key,
-                    template: post.Key,
-                    defaults: new
-                      {
-                          controller = "Downr",
-                          action = "Post",
-                          slug = post.Key
-                      }
-                  );
-            }
-
-            foreach (var page in yamlIndexer.PagesMetadata)
-            {
-                routes.MapRoute(
-                    name: page.Key,
-                    template: page.Key,
-                    defaults: new
-                    {
-                          controller = "Downr",
-                          action = "Page",
-                          slug = page.Key
-                      }
-                  );
-            }
-
-
         }
     }
 }
