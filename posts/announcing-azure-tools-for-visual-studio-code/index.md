@@ -23,7 +23,7 @@ After a few days I'd made some decisions about the extension in order to come up
 * Not persist authentication tokens between Visual Studio Code user sessions
 * Be exposed primarily via the Visual Studio Code command palette
 
-Realistically, I didn't have a lot of time to dedicate to the development so I recruited help, too. My good friends and colleagues [Ian Philpot](https://twitter.com/tripdubroot) from Atlanta and [Anze Vodovnik](https://twitter.com/Avodovnik) from Slovenia (who's now in the UK), offered some ideas and coding assistance on a few features in the extension. We also ran some of our ideas by [Stuart Leeks](https://twitter.com/stuartleeks), who naturally had some great feedback. 
+Realistically, I didn't have a lot of time to dedicate to the development so I recruited help, too. My good friends and colleagues [Ian Philpot](https://twitter.com/tripdubroot) from Atlanta and [Anze Vodovnik](https://twitter.com/Avodovnik) from Slovenia (who's now in the UK), offered some ideas and coding assistance on a few features in the extension. We also ran some of our ideas by [Stuart Leeks](https://twitter.com/stuartleeks), who naturally had some great feedback. During the 1.1.0 release, [Christos](https://twitter.com/ChristosMatskas) [Matskas](https://cmatskas.com/) got involved and contributed a great list of features like Key Vault and Batch account creation functionality. 
 
 > All of the folks working on the extension did so in their spare time. We worked for a few hours here and there in the evenings and put this together skunkworks-style. The ATVSC is free-form, open-source, and unsupported aside from the growing community of folks interested in it. 
 
