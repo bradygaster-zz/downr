@@ -18,6 +18,7 @@ namespace downr
                .Build();
 
             var host = new WebHostBuilder()
+                .CaptureStartupErrors(true)
                 .UseConfiguration(config)
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())

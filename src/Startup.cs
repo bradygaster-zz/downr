@@ -1,12 +1,15 @@
 ﻿using System.IO;
+using System.Linq;
 using downr.Middleware;
 using downr.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.Net.Http.Headers;
 
 namespace downr
 {
@@ -30,6 +33,11 @@ namespace downr
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddResponseCompression(options =>
+            {
+                options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { "image/svg+xml", "application/font-woff2" });
+            });
+
             // Add framework services.
             services.AddMvc();
             services.AddLocalization(options => options.ResourcesPath = "Resources");
@@ -62,7 +70,12 @@ namespace downr
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseStaticFiles();
+            app.UseResponseCompression();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                OnPrepareResponse =
+                _ => _.Context.Response.Headers[HeaderNames.CacheControl] = "public,max-age=604800"
+            });
 
             // workaround if env.WebRootPath is not properly set
             if (string.IsNullOrWhiteSpace(env.WebRootPath))
