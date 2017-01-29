@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Xml;
+using downr.Extensions;
 using downr.Models;
 using Microsoft.Extensions.Options;
 
@@ -43,7 +44,7 @@ namespace downr.Services
                         writer.WriteStartElement("item");
 
                         writer.WriteElementString("title", article.Title);
-                        writer.WriteElementString("link", _options.Url + article.Slug); // todo build article path
+                        writer.WriteElementString("link", UriExtensions.Combine(_options.Url, article.Slug));
                         writer.WriteElementString("description", article.Content.StripHtml().Excerpt(150)); // show just an excerpt without html stuff
 
                         writer.WriteEndElement();
