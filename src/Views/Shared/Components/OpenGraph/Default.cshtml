@@ -1,13 +1,13 @@
 ﻿@using downr.ViewComponents
-@model MetadataViewComponentModel
+@model OpenGraphViewComponentModel
 @{
     if (Model != null)
     {
-        if (!String.IsNullOrEmpty(Model.Keywords))
+        if (!String.IsNullOrEmpty(Model.Title))
         {
-            <meta name="keywords" content="@(Model.Keywords)"/>
+            <meta property="og:title" content="@(Model.Title)" />
         }
-        if (!String.IsNullOrEmpty(Model.Description))
+        if (!String.IsNullOrEmpty(Model.Keywords))
         {
             <meta name="description" content="@(Model.Description)">
         }
