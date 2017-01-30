@@ -1,4 +1,5 @@
-﻿using downr.Models;
+﻿using System.Threading.Tasks;
+using downr.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
@@ -12,7 +13,6 @@ namespace downr.ViewComponents
         {
             _downrOptions = options.Value;
         }
-
         public IViewComponentResult Invoke(Metadata metadata = null)
         {
             MetadataViewComponentModel model;
@@ -34,7 +34,7 @@ namespace downr.ViewComponents
                 {
                     Author = metadata.Author,
                     Description = metadata.Description,
-                    Keywords = _downrOptions.Keywords
+                    Keywords = metadata.Keywords
                 };
             }
 

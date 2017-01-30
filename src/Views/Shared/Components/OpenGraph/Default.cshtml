@@ -7,13 +7,13 @@
         {
             <meta property="og:title" content="@(Model.Title)" />
         }
-        if (!String.IsNullOrEmpty(Model.Keywords))
+        if (!String.IsNullOrEmpty(Model.Description))
         {
-            <meta name="description" content="@(Model.Description)">
+            <meta name="og:description" content="@(Model.Description)">
         }
-        if (!String.IsNullOrEmpty(Model.Author))
+        if (!String.IsNullOrEmpty(Model.Image))
         {
-            <meta name="author" content="@(Model.Author)">
+            <meta property="og:image" content="@(Model.Image)">
         }
     }
 }

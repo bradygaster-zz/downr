@@ -1,7 +1,8 @@
 @model downr.Models.Metadata
 
-@section Metadata {
+@section Head {
     @Component.Invoke("Metadata", Model)
+    @Component.Invoke("Opengraph", Model)
 }
 
 <a id="@Model.Slug"></a>

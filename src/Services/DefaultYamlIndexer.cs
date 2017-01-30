@@ -84,10 +84,10 @@ namespace downr.Services
                 string rawContent = rdr.ReadToEnd();
 
                 // read yaml
-                var yamlDeserializer = new Deserializer();
-                var siteConfig = yamlDeserializer.Deserialize<Dictionary<string, string>>(new StringReader(yaml));
+                Deserializer yamlDeserializer = new Deserializer();
+                Dictionary<string, string> siteConfig = yamlDeserializer.Deserialize<Dictionary<string, string>>(new StringReader(yaml));
 
-                var content = new Content(_markdownLoader.GetContentToRender(rawContent, relativeContentPath), ContentType.HTML);
+                Content content = new Content(_markdownLoader.GetContentToRender(rawContent, relativeContentPath), ContentType.HTML);
 
                 // optional data
                 string slug;
@@ -102,17 +102,26 @@ namespace downr.Services
                     // use slug if set
                     slug = siteConfig[Strings.MetadataNames.Slug];
                 }
+                siteConfig.TryGetValue("description", out string description);
+                siteConfig.TryGetValue("image", out string image);
+                siteConfig.TryGetValue("keywords", out string keywords);
 
                 // convert the dictionary into a model
                 metadata = new Metadata
                 {
                     Slug = slug,
+
                     Title = siteConfig[Strings.MetadataNames.Title],
                     Author = siteConfig[Strings.MetadataNames.Author],
                     PublicationDate = DateTime.Parse(siteConfig[Strings.MetadataNames.PublicationDate]),
                     LastModified = DateTime.Parse(siteConfig[Strings.MetadataNames.LastModified]),
                     Categories = siteConfig[Strings.MetadataNames.Categories].Split(','),
-                    Content = content
+                    Content = content,
+
+                    // Seo
+                    Description = description,
+                    Image = image,
+                    Keywords = keywords
                 };
 
                 return true;
@@ -145,8 +154,6 @@ namespace downr.Services
                         PagesMetadata.Add(subMetadata.Slug, subMetadata);
                     }
                 }
-
-
             }
 
             return this;
@@ -198,7 +205,8 @@ namespace downr.Services
         }
 
         public void BuildTagCloud(IDictionary<string, Metadata> metadata)
-        {        // get all the categories
+        {   
+            // get all the categories
             foreach (var entry in metadata)
             {
                 foreach (var category in entry.Value.Categories)
@@ -214,14 +222,8 @@ namespace downr.Services
             TagCloud = TagCloud.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
         }
 
-        public bool PageSlugExists(string slug)
-        {
-            return PagesMetadata.ContainsKey(slug);
-        }
+        public bool PageSlugExists(string slug) => PagesMetadata.ContainsKey(slug);
 
-        public bool PostSlugExists(string slug)
-        {
-            return PostsMetadata.ContainsKey(slug);
-        }
+        public bool PostSlugExists(string slug) => PostsMetadata.ContainsKey(slug);
     }
 }

@@ -1,4 +1,5 @@
-﻿using downr.Models;
+﻿using System.Threading.Tasks;
+using downr.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
@@ -15,26 +16,25 @@ namespace downr.ViewComponents
 
         public IViewComponentResult Invoke(Metadata metadata = null)
         {
-            MetadataViewComponentModel model;
+            OpenGraphViewComponentModel model;
 
             // defaults
             if (metadata == null)
             {
-                model = new MetadataViewComponentModel
+                model = new OpenGraphViewComponentModel
                 {
-                    Author = _downrOptions.Author,
+                    Title = _downrOptions.Title,
                     Description = _downrOptions.Description,
-                    Keywords = _downrOptions.Keywords
                 };
             }
             // post or page with metadata
             else
             {
-                model = new MetadataViewComponentModel
+                model = new OpenGraphViewComponentModel
                 {
-                    Author = metadata.Author,
+                    Title = metadata.Title,
                     Description = metadata.Description,
-                    Keywords = _downrOptions.Keywords
+                    Image = metadata.Image
                 };
             }
 
