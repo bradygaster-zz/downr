@@ -27,7 +27,7 @@ module.exports = function (grunt) {
             views: {
                 files: [{
                     cwd: '../templates',
-                    src: '**/*.*',
+                    src: '**/*',
                     dest: 'Views/Shared',
                     expand: true
                 }]

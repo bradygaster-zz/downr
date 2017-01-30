@@ -1,0 +1,19 @@
+﻿@using downr.ViewComponents
+@model MetadataViewComponentModel
+@{
+    if (Model != null)
+    {
+        if (!String.IsNullOrEmpty(Model.Keywords))
+        {
+            <meta name="keywords" content="@(Model.Keywords)"/>
+        }
+        if (!String.IsNullOrEmpty(Model.Keywords))
+        {
+            <meta name="description" content="@(Model.Description)">
+        }
+        if (!String.IsNullOrEmpty(Model.Author))
+        {
+            <meta name="author" content="@(Model.Author)">
+        }
+    }
+}

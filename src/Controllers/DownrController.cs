@@ -33,7 +33,7 @@ namespace downr.Controllers
             return Content(feed, "text/xml");
         }
 
-        public IActionResult Posts(string slug)
+        public IActionResult Posts()
         {
             return RedirectToAction("Post", new
             {
@@ -46,7 +46,7 @@ namespace downr.Controllers
             if (_indexer.TryGetPage(slug, out Metadata metadata))
             {
                 ViewBag.Title = metadata.Title;
-                return View("Page", new[] { metadata });
+                return View("Page", metadata);
             }
 
             return RedirectToAction("Posts");
@@ -57,7 +57,7 @@ namespace downr.Controllers
             if (_indexer.TryGetPost(slug, out Metadata metadata))
             {
                 ViewBag.Title = metadata.Title;
-                return View("Post", new[] { metadata });
+                return View("Post", metadata);
             }
 
             return RedirectToAction("Posts"); // todo: could be a endless redirection if empty
