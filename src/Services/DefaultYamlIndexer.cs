@@ -11,7 +11,7 @@ namespace downr.Services
 
     public class DefaultYamlIndexer : IYamlIndexer
     {
-        IMarkdownContentLoader _markdownLoader;
+        readonly IMarkdownContentLoader _markdownLoader;
 
         public IDictionary<string, Metadata> PostsMetadata { get; set; }
         public IDictionary<string, Metadata> PagesMetadata { get; set; }
@@ -73,8 +73,7 @@ namespace downr.Services
             using (var rdr = File.OpenText(filePath))
             {
                 // read head
-                string yaml;
-                if (!TryReadSiteYaml(rdr, out yaml))
+                if (!TryReadSiteYaml(rdr, out string yaml))
                 {
                     // Todo: exception
                     metadata = null;
@@ -133,8 +132,7 @@ namespace downr.Services
                 var currentDir = stack.Pop();
 
                 // determine all files
-                Metadata metadata;
-                if (IndexContent(contentPath, currentDir, MetadataType.Page, out metadata))
+                if (IndexContent(contentPath, currentDir, MetadataType.Page, out Metadata metadata))
                 {
                     PagesMetadata.Add(metadata.Slug, metadata);
                 }
@@ -142,8 +140,7 @@ namespace downr.Services
                 // support page sub folders
                 foreach (var subDir in Directory.GetDirectories(currentDir))
                 {
-                    Metadata subMetadata;
-                    if (IndexContent(contentPath, subDir, MetadataType.Page, out subMetadata))
+                    if (IndexContent(contentPath, subDir, MetadataType.Page, out Metadata subMetadata))
                     {
                         PagesMetadata.Add(subMetadata.Slug, subMetadata);
                     }
@@ -159,8 +156,7 @@ namespace downr.Services
         {
             foreach (var subDir in Directory.GetDirectories(contentPath))
             {
-                Metadata metadata;
-                if (IndexContent(contentPath, subDir, MetadataType.Post, out metadata))
+                if (IndexContent(contentPath, subDir, MetadataType.Post, out Metadata metadata))
                 {
                     PostsMetadata.Add(metadata.Slug, metadata);
                 }
@@ -207,8 +203,7 @@ namespace downr.Services
             {
                 foreach (var category in entry.Value.Categories)
                 {
-                    int count;
-                    TagCloud.TryGetValue(category, out count);
+                    TagCloud.TryGetValue(category, out int count);
                     TagCloud[category] = count + 1;
                 }
             }
@@ -217,6 +212,16 @@ namespace downr.Services
         public void SortTagCloud()
         {
             TagCloud = TagCloud.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
+        }
+
+        public bool PageSlugExists(string slug)
+        {
+            return PagesMetadata.ContainsKey(slug);
+        }
+
+        public bool PostSlugExists(string slug)
+        {
+            return PostsMetadata.ContainsKey(slug);
         }
     }
 }

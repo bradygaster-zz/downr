@@ -1,49 +1,62 @@
-using System;
-using System.Collections.Generic;
+﻿using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
+using downr.Middleware;
 using downr.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Microsoft.Net.Http.Headers;
 
 namespace downr
 {
     public class Startup
     {
+        public IConfigurationRoot Configuration { get; }
+
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile("options.json", optional: false, reloadOnChange: true)
                 .AddEnvironmentVariables();
 
             Configuration = builder.Build();
         }
 
-        public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddResponseCompression(options =>
+            {
+                options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { "image/svg+xml", "application/font-woff2" });
+            });
+
             // Add framework services.
             services.AddMvc();
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
 
             // add site services
             services.AddSingleton<IMarkdownContentLoader, DefaultMarkdownContentLoader>();
             services.AddSingleton<IYamlIndexer, DefaultYamlIndexer>();
+            services.AddTransient<IFeedBuilder, FeedBuilder>();
+
+            // Configure downr by using options.json
+            services.Configure<DownrOptions>(Configuration.GetSection("downr"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app,
-            IHostingEnvironment env,
-            ILoggerFactory loggerFactory,
-            IYamlIndexer yamlIndexer)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
+            IYamlIndexer yamlIndexer, IOptions<DownrOptions> options)
         {
+            DownrOptions downrOptions = options.Value;
+
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
@@ -57,20 +70,27 @@ namespace downr
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseStaticFiles();
+            app.UseResponseCompression();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                OnPrepareResponse =
+                _ => _.Context.Response.Headers[HeaderNames.CacheControl] = "public,max-age=604800"
+            });
+
+            // workaround if env.WebRootPath is not properly set
+            if (string.IsNullOrWhiteSpace(env.WebRootPath))
+            {
+                env.WebRootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+            }
 
             app.UseMvc(routes =>
             {
+                app.UseDownr(env, routes, downrOptions, yamlIndexer);
+
                 routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-
+                   name: "default",
+                   template: "{controller=Home}/{action=Index}/{id?}");
             });
-
-            // get the path to the content directory so the yaml headers can be indexed as metadata
-            yamlIndexer.IndexPageFiles($@"{ env.WebRootPath }\pages\")
-                        .IndexPostFiles($@"{ env.WebRootPath }\posts\")
-                        .Build();
         }
     }
 }

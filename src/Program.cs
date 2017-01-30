@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,11 +13,12 @@ namespace downr
         public static void Main(string[] args)
         {
             var config = new ConfigurationBuilder()
-                .AddCommandLine(args)
-                .AddEnvironmentVariables(prefix: "ASPNETCORE_")
-                .Build();
+                           .AddCommandLine(args)
+                           .AddEnvironmentVariables(prefix: "ASPNETCORE_")
+                           .Build();
 
             var host = new WebHostBuilder()
+                .CaptureStartupErrors(true)
                 .UseConfiguration(config)
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())

@@ -5,9 +5,9 @@ namespace downr.Controllers
 {
     public abstract class BaseController : Controller
     {
-        IYamlIndexer _indexer;
+        private readonly IYamlIndexer _indexer;
 
-        public BaseController(IYamlIndexer indexer)
+        protected BaseController(IYamlIndexer indexer)
         {
             _indexer = indexer;
         }
