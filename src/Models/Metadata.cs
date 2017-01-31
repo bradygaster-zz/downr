@@ -10,7 +10,14 @@ namespace downr.Models
         public DateTime LastModified { get; set; }
         public string Author { get; set; }
         public string[] Categories { get; set; }
+
+        // Content
         public Content Content { get; set; }
         public MetadataType Type {get;set;}
+
+        // Seo
+        public string Image { get; set; }
+        public string Description { get; set; }
+        public string Keywords { get; set; }
     }
 }

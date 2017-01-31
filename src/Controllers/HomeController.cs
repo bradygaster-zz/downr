@@ -10,7 +10,7 @@ namespace downr.Controllers
 
         public IActionResult Index()
         {
-            return Redirect("home");
+            return RedirectToAction("Page", "Downr", new {slug = "home"});
         }
     }
 }

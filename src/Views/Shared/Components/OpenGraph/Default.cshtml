@@ -1,0 +1,19 @@
+﻿@using downr.ViewComponents
+@model OpenGraphViewComponentModel
+@{
+    if (Model != null)
+    {
+        if (!String.IsNullOrEmpty(Model.Title))
+        {
+            <meta property="og:title" content="@(Model.Title)" />
+        }
+        if (!String.IsNullOrEmpty(Model.Description))
+        {
+            <meta name="og:description" content="@(Model.Description)">
+        }
+        if (!String.IsNullOrEmpty(Model.Image))
+        {
+            <meta property="og:image" content="@(Model.Image)">
+        }
+    }
+}
