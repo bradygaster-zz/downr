@@ -13,8 +13,8 @@ namespace downr.Middleware
         {
             // Build Indexer
             yamlIndexer
-                .IndexPageFiles(Path.Combine($@"{ env.WebRootPath }", "pages"))
-                .IndexPostFiles(Path.Combine($@"{ env.WebRootPath }", "posts"))
+                .IndexPageFiles(Path.Combine(env.WebRootPath, "pages"))
+                .IndexPostFiles(Path.Combine(env.WebRootPath, "posts"))
                 .Build();
 
 
