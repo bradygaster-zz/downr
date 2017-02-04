@@ -5,6 +5,7 @@ using downr.Models;
 using YamlDotNet.Serialization;
 using System.Text;
 using System.Linq;
+using downr.Extensions;
 
 namespace downr.Services
 {
@@ -63,7 +64,7 @@ namespace downr.Services
         public bool TryIndexFile(string filePath, string contentPath, out Metadata metadata)
         {
             string slugFolderPath = Path.GetDirectoryName(filePath);
-            string slug = MakeRelativePath(contentPath, slugFolderPath);
+            string slug = UriExtensions.Urify(MakeRelativePath(contentPath, slugFolderPath));
  
             using (var rdr = File.OpenText(filePath))
             {
@@ -81,7 +82,7 @@ namespace downr.Services
                 // read yaml
                 Deserializer yamlDeserializer = new Deserializer();
                 Dictionary<string, string> siteConfig = yamlDeserializer.Deserialize<Dictionary<string, string>>(new StringReader(yaml));
-                Content content = new Content(_markdownLoader.GetContentToRender(rawContent, MakeRelativePath(Path.GetDirectoryName(contentPath), slugFolderPath)), ContentType.HTML);
+                Content content = new Content(_markdownLoader.GetContentToRender(rawContent, MakeRelativePath(Path.GetDirectoryName(contentPath), UriExtensions.Urify(slugFolderPath))), ContentType.HTML);
 
                 // optional data
 
