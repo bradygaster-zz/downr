@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using downr.Services;
 using downr.Models;
-using downr.Resources;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
@@ -14,13 +13,11 @@ namespace downr.Controllers
         private readonly IYamlIndexer _indexer;
         private readonly DownrOptions _options;
         private readonly IFeedBuilder _feedBuilder;
-        private readonly IStringLocalizer<Texts> _sharedLocalizer;
 
-        public DownrController(IYamlIndexer indexer, IFeedBuilder feedBuilder, IOptions<DownrOptions> optionsAccessor, IStringLocalizer<Texts> sharedLocalizer)
+        public DownrController(IYamlIndexer indexer, IFeedBuilder feedBuilder, IOptions<DownrOptions> optionsAccessor)
           : base(indexer)
         {
             _indexer = indexer;
-            _sharedLocalizer = sharedLocalizer;
             _options = optionsAccessor.Value;
             _feedBuilder = feedBuilder;
         }
@@ -69,7 +66,7 @@ namespace downr.Controllers
             // get all the posts in this category
             if (!string.IsNullOrEmpty(name))
             {
-                ViewData["Title"] = string.Format(_sharedLocalizer["TitleCategoryPageWithName"], name);
+                ViewData["Title"] = name;
                 ViewBag.Category = name;
 
                 var titlesInCategory = new Dictionary<string, string>();

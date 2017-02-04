@@ -29,19 +29,6 @@ dotnet bundle</PreBuildEvent>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0-msbuild3-final" />
     <DotNetCliToolReference Include="BundlerMinifier.Core" Version="2.2.306" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Update="Resources\Texts.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Texts.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Update="Resources\Texts.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Texts.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
   <Target Name="PrepublishScript" BeforeTargets="Publish" Condition=" '$(IsCrossTargetingBuild)' != 'true' ">
     <Exec Command="npm install" />
     <Exec Command="bower install" />
