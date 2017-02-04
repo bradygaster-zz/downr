@@ -1,0 +1,31 @@
+@model downr.Models.Metadata[]
+
+
+<h2>Categories</h2>
+
+@if (Model == null || !Model.Any())
+{
+    <i>No categories found ;-(</i>
+}
+else
+{
+    foreach (var post in Model)
+    {
+    <a id="@post.Slug"></a>
+
+    <h2>@post.Title</h2>
+
+    <div class="well post-meta">
+        <a href="/@post.Slug" class="btn btn-primary"><span class="glyphicon glyphicon-link"></span> @post.PublicationDate.ToLocalTime().ToString("yyyy-MM-dd")</a>
+
+        @foreach (var category in post.Categories)
+            {
+            <a href="/category/@category" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-pushpin"></span> @category</a>
+            }
+    </div>
+
+    @Html.Raw(post.Content)
+
+    <hr size="1" />
+    }
+}
