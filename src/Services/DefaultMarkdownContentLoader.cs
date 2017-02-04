@@ -19,7 +19,7 @@ namespace downr.Services
                 foreach (HtmlNode node in htmlDoc.DocumentNode.SelectNodes("//img[@src]"))
                 {
                     var src = node.Attributes["src"].Value;
-                    src = src.Replace("media/", string.Format("/{0}/media/", contentFolder.Replace("\\", "/")));
+                    src = src.Replace("media/", string.Format("/{0}/media/", contentFolder));
                     node.SetAttributeValue("src", src);
                 }
             }
