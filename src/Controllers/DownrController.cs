@@ -63,6 +63,8 @@ namespace downr.Controllers
         [Route("category/{name}")]
         public IActionResult Category(string name)
         {
+            var postsForView = new List<Metadata>();
+
             // get all the posts in this category
             if (!string.IsNullOrEmpty(name))
             {
@@ -70,7 +72,7 @@ namespace downr.Controllers
                 ViewBag.Category = name;
 
                 var titlesInCategory = new Dictionary<string, string>();
-                var postsForView = new List<Metadata>();
+               
                 var entriesOfCategory = _indexer.PostsMetadata.Where(x => x.Value.Categories.Contains(name));
                 foreach (var entry in entriesOfCategory)
                 {
@@ -82,10 +84,9 @@ namespace downr.Controllers
                 }
 
                 ViewBag.TitlesInCategory = titlesInCategory;
-                return View("Post", postsForView.ToArray());
             }
 
-            return View();
+            return View("Categories", postsForView.ToArray());
         }
     }
 }

@@ -6,7 +6,7 @@
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <PostBuildEvent>grunt postpublish</PostBuildEvent>
-  <!--  <PreBuildEvent>npm install \
+    <!--  <PreBuildEvent>npm install \
 bower install \
 grunt precompile \
 dotnet bundle</PreBuildEvent> -->
