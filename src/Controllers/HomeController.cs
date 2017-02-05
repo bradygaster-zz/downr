@@ -12,5 +12,10 @@ namespace downr.Controllers
         {
             return RedirectToAction("Page", "Downr", new {slug = "home"});
         }
+
+        public IActionResult Error()
+        {
+            return View();
+        }
     }
 }
