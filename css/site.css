@@ -9,12 +9,13 @@ footer
     margin-top: 10px;
 }
 
+.container img {
+    max-width: 100%;
+}
+
 @media (min-width: 900px) {
     .container {
         width: 800px;
-    }
-    img {
-        max-width: 640px;
     }
 }
 
@@ -22,26 +23,17 @@ footer
     .container {
         width: 1200px;
     }
-    img {
-        max-width: 750px;
-    }
 }
 
 @media (min-width: 1600px) {
     .container {
         width: 1500px;
     }
-    img {
-        max-width: 950px;
-    }
 }
 
 @media (min-width: 1900px) {
     .container {
         width: 1900px;
-    }
-    img {
-        max-width: 1220px;
     }
 }
 
