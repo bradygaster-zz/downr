@@ -9,6 +9,10 @@ footer
     margin-top: 10px;
 }
 
+.container img {
+    max-width: 100%;
+}
+
 @media (min-width: 900px) {
     .container {
         width: 800px;
