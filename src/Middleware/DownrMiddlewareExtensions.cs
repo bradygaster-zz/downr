@@ -3,6 +3,7 @@ using downr.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Routing;
+using System.IO;
 
 namespace downr.Middleware
 {
@@ -12,8 +13,8 @@ namespace downr.Middleware
         {
             // Build Indexer
             yamlIndexer
-                .IndexPageFiles($@"{ env.WebRootPath }\" + "pages")
-                .IndexPostFiles($@"{ env.WebRootPath }\" + "posts")
+                .IndexPageFiles(Path.Combine(env.WebRootPath, "pages"))
+                .IndexPostFiles(Path.Combine(env.WebRootPath, "posts"))
                 .Build();
 
 

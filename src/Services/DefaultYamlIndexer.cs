@@ -5,6 +5,7 @@ using downr.Models;
 using YamlDotNet.Serialization;
 using System.Text;
 using System.Linq;
+using downr.Extensions;
 
 namespace downr.Services
 {
@@ -60,16 +61,11 @@ namespace downr.Services
             return false;
         }
 
-
         public bool TryIndexFile(string filePath, string contentPath, out Metadata metadata)
         {
-            Uri fileDirectoryUri = new Uri(Path.GetDirectoryName(filePath));
-            Uri contentPathUri = new Uri(Path.GetDirectoryName(contentPath));
-            Uri slugPathUri = new Uri(contentPath);
-
-            Uri relativeContentUri = contentPathUri.MakeRelativeUri(fileDirectoryUri);
-            string relativeContentPath = relativeContentUri.OriginalString;
-
+            string slugFolderPath = Path.GetDirectoryName(filePath);
+            string slug = UriExtensions.Urify(MakeRelativePath(contentPath, slugFolderPath));
+ 
             using (var rdr = File.OpenText(filePath))
             {
                 // read head
@@ -86,18 +82,11 @@ namespace downr.Services
                 // read yaml
                 Deserializer yamlDeserializer = new Deserializer();
                 Dictionary<string, string> siteConfig = yamlDeserializer.Deserialize<Dictionary<string, string>>(new StringReader(yaml));
-
-                Content content = new Content(_markdownLoader.GetContentToRender(rawContent, relativeContentPath), ContentType.HTML);
+                Content content = new Content(_markdownLoader.GetContentToRender(rawContent, MakeRelativePath(Path.GetDirectoryName(contentPath), UriExtensions.Urify(slugFolderPath))), ContentType.HTML);
 
                 // optional data
-                string slug;
-                if (!siteConfig.ContainsKey(Strings.MetadataNames.Slug))
-                {
-                    // use folder name as slug if not present
-                    Uri slugUri = slugPathUri.MakeRelativeUri(fileDirectoryUri);
-                    slug = slugUri.OriginalString;
-                }
-                else
+
+                if (siteConfig.ContainsKey(Strings.MetadataNames.Slug))
                 {
                     // use slug if set
                     slug = siteConfig[Strings.MetadataNames.Slug];
@@ -204,8 +193,10 @@ namespace downr.Services
             PostsMetadata = PostsMetadata.OrderByDescending(x => x.Value.PublicationDate).ToDictionary(x => x.Key, x => x.Value);
         }
 
+        public static string MakeRelativePath(string fromPath, string toPath) => Path.GetFullPath(toPath).Substring(Path.GetFullPath(fromPath).Length + 1);
+
         public void BuildTagCloud(IDictionary<string, Metadata> metadata)
-        {   
+        {
             // get all the categories
             foreach (var entry in metadata)
             {
