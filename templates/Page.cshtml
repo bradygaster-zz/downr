@@ -1,8 +1,8 @@
 @model downr.Models.Metadata
 
 @section Head {
-    @Component.InvokeAsync("Metadata", new { metadata = Model })
-    @Component.InvokeAsync("OpenGraph", new { metadata = Model })
+    @await Component.InvokeAsync("Metadata", new { metadata = Model })
+    @await Component.InvokeAsync("OpenGraph", new { metadata = Model })
 }
 
 <a id="@Model.Slug"></a>
