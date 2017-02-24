@@ -53,6 +53,21 @@ namespace downr.Controllers
         {
             if (_indexer.TryGetPost(slug, out Metadata metadata))
             {
+                var posts = _indexer.PostsMetadata.Values.ToList();
+                var index = posts.FindIndex(x => x.Slug == slug);
+
+                if (index != 0)
+                {
+                    ViewBag.Next = posts.ElementAt(index - 1).Slug;
+                    ViewBag.NextTitle = posts.ElementAt(index - 1).Title;
+                }
+                
+                if (index != posts.Count - 1)
+                {
+                    ViewBag.Previous = posts.ElementAt(index + 1).Slug;
+                    ViewBag.PreviousTitle = posts.ElementAt(index + 1).Title;
+                }
+
                 ViewBag.Title = metadata.Title;
                 return View("Post", metadata);
             }
