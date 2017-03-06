@@ -4,7 +4,7 @@ using HtmlAgilityPack;
 
 namespace downr.Services
 {
-    public class DefaultMarkdownContentLoader : IMarkdownContentLoader
+    public class DefaultMarkdownContentLoader : IContentLoader
     {
         public string GetContentToRender(string content, string contentFolder)
         {

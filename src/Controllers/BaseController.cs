@@ -1,3 +1,4 @@
+using downr.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
@@ -5,16 +6,16 @@ namespace downr.Controllers
 {
     public abstract class BaseController : Controller
     {
-        private readonly IYamlIndexer _indexer;
+        private readonly ITagCloudBuilder _tagCloudBuilder;
 
-        protected BaseController(IYamlIndexer indexer)
+        protected BaseController(ITagCloudBuilder tagCloudBuilder)
         {
-            _indexer = indexer;
+            _tagCloudBuilder = tagCloudBuilder;
         }
 
         public override void OnActionExecuted(ActionExecutedContext context)
         {
-            ViewBag.TagCloud = _indexer.TagCloud;            
+            ViewBag.TagCloud = _tagCloudBuilder.GetTagCloud();            
         }
     }
 }
