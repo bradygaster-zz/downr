@@ -1,6 +1,6 @@
 ---
 title: Performance Upgrades
-slug: posts/performace
+
 author: bradygaster
 lastModified: 2017-01-17 12:00:00
 pubDate: 2017-01-17 12:00:00

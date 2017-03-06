@@ -1,4 +1,4 @@
-@model object
+﻿@model object
 <!DOCTYPE html>
 <html>
 
@@ -40,26 +40,27 @@
                 </ul>
                 <ul class="nav navbar-nav pull-right">
                     <li><a href="https://github.com/bradygaster/downr">github</a></li>
-                    <li><a href="/rss">rss</a></li>
+                    <li><a href="/feed/rss">rss</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="container body-content">
-        <div role="main" class="col-md-8">
+        <div class="row">
+            <div role="main" class="col-md-8">
 
-            @RenderBody()
-        </div>
-        <aside role="complementary" class="col-md-3 col-md-offset-1">
-            <section>
-                <h2>
-                    about downr
-                </h2>
-                <p>
-                    <a href="http://github.com/bradygaster/downr">downr</a> is a simple blogging engine written using dotnet core and markdown.
-                </p>
-            </section>
-            @if (ViewBag.TagCloud != null)
+                @RenderBody()
+            </div>
+            <aside role="complementary" class="col-md-3 col-md-offset-1">
+                <section>
+                    <h2>
+                        about downr
+                    </h2>
+                    <p>
+                        <a href="http://github.com/bradygaster/downr">downr</a> is a simple blogging engine written using dotnet core and markdown.
+                    </p>
+                </section>
+                @if (ViewBag.TagCloud != null)
             {
                 <section>
                     <div class="panel panel-default">
@@ -67,30 +68,31 @@
                         <div class="panel-body">
                             <ul class="list-group">
                                 @foreach (var tag in ViewBag.TagCloud)
-                                {
+                                    {
                                     <a href="/category/@tag.Key" class="list-group-item">
                                         <span class="badge">@tag.Value</span> @tag.Key
                                     </a>
-                                }
+                                    }
                             </ul>
                         </div>
                     </div>
                 </section>
-            }
-        </aside>
-   </div>
+                }
+            </aside>
+        </div>
+    </div>
     <div class="container">
         <div class="col-md-8 well">
             <div class="col-md-4">
                 @if (!String.IsNullOrEmpty(ViewBag.Previous))
                 {
-                    string prevLink = string.Format("/{0}", ViewBag.Previous);
+                    string prevLink = string.Format("/posts/{0}", ViewBag.Previous);
                     <a href="@prevLink" title="@ViewBag.PreviousTitle" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> previous post</a>                }
             </div>
             <div class="col-md-4 pull-right">
                 @if (!String.IsNullOrEmpty(ViewBag.Next))
                 {
-                    string nextLink = string.Format("/{0}", ViewBag.Next);
+                    string nextLink = string.Format("/posts/{0}", ViewBag.Next);
                     <a href="@nextLink" title="@ViewBag.NextTitle" class="btn btn-primary pull-right">next post <span class="glyphicon glyphicon-chevron-right"></a>                }
             </div>
         </div>
