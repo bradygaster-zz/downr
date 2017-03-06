@@ -16,7 +16,7 @@ namespace downr.Services
         {
         }
 
-        public override IContentIndexer Index(string contentPath)
+        public override IContentIndexer Index(string contentPath, string slugPrefix = "")
         {
             var stack = new Stack<string>();
             foreach (var subDir in Directory.GetDirectories(contentPath))
@@ -29,7 +29,7 @@ namespace downr.Services
                 var currentDir = stack.Pop();
 
                 // determine all files
-                if (IndexContent(contentPath, currentDir, MetadataType.Page, out Metadata metadata))
+                if (IndexContent(contentPath, currentDir, MetadataType.Page, slugPrefix, out Metadata metadata))
                 {
                     Metadata.Add(metadata.Slug, metadata);
                 }
@@ -37,7 +37,7 @@ namespace downr.Services
                 // support page sub folders
                 foreach (var subDir in Directory.GetDirectories(currentDir))
                 {
-                    if (IndexContent(contentPath, subDir, MetadataType.Page, out Metadata subMetadata))
+                    if (IndexContent(contentPath, subDir, MetadataType.Page, slugPrefix, out Metadata subMetadata))
                     {
                         Metadata.Add(subMetadata.Slug, subMetadata);
                     }

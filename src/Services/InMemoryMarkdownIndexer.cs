@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using downr.Extensions;
 using downr.Models;
 using Microsoft.Extensions.Options;
 using YamlDotNet.Serialization;
@@ -53,17 +54,17 @@ namespace downr.Services
         /// <summary>
         /// Indexer logic
         /// </summary>
-        public abstract IContentIndexer Index(string contentPath);
+        public abstract IContentIndexer Index(string contentPath, string slugPrefix = "");
 
         /// <summary>
         /// Indexes defined content
         /// </summary>
-        protected bool IndexContent(string contentPath, string path, MetadataType type, out Metadata metadata)
+        protected bool IndexContent(string contentPath, string path, MetadataType type, string slugPrefix, out Metadata metadata)
         {
             string filePath = Path.Combine(path, "index.md");
             if (File.Exists(filePath))
             {
-                if (TryIndexFile(filePath, contentPath, out metadata))
+                if (TryIndexFile(filePath, contentPath, slugPrefix, out metadata))
                 {
                     metadata.Type = type;
                     return true;
@@ -77,10 +78,10 @@ namespace downr.Services
         /// <summary>
         /// Indexes a markdown file
         /// </summary>
-        public bool TryIndexFile(string filePath, string contentPath, out Metadata metadata)
+        public bool TryIndexFile(string filePath, string contentPath, string slugPrefix, out Metadata metadata)
         {
             string slugFolderPath = Path.GetDirectoryName(filePath);
-            string slug = MakeRelativePath(contentPath, slugFolderPath);
+            string slug = UriExtensions.Urify(MakeRelativePath(contentPath, slugFolderPath));
 
             using (var rdr = File.OpenText(filePath))
             {
@@ -107,6 +108,11 @@ namespace downr.Services
                     // use slug if set
                     slug = siteConfig[Strings.MetadataNames.Slug];
                 }
+                else if (!String.IsNullOrEmpty(slugPrefix))
+                {
+                    slug = UriExtensions.Combine(slugPrefix, slug);
+                }
+
                 siteConfig.TryGetValue("description", out string description);
                 siteConfig.TryGetValue("image", out string image);
                 siteConfig.TryGetValue("keywords", out string keywords);

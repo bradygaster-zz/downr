@@ -11,11 +11,11 @@ namespace downr.Services
         {
         }
 
-        public override IContentIndexer Index(string contentPath)
+        public override IContentIndexer Index(string contentPath, string slugPrefix = "")
         {
             foreach (var subDir in Directory.GetDirectories(contentPath))
             {
-                if (IndexContent(contentPath, subDir, MetadataType.Post, out Metadata metadata))
+                if (IndexContent(contentPath, subDir, MetadataType.Post, slugPrefix, out Metadata metadata))
                 {
                     Metadata.Add(metadata.Slug, metadata);
                 }

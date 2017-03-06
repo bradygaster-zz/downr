@@ -35,7 +35,7 @@ namespace downr.Middleware
         {
             // Build Indexer
             pageIndexer.Index(Path.Combine(env.WebRootPath, "pages"));
-            postIndexer.Index(Path.Combine(env.WebRootPath, "posts"));
+            postIndexer.Index(Path.Combine(env.WebRootPath, "posts"), "posts");
 
             // Downr 
             routes.MapRoute("downrFeed", downrOptions.FeedSlug, new { controller = "Downr", action = "Rss" });
