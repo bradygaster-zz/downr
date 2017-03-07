@@ -4,7 +4,7 @@ using HtmlAgilityPack;
 
 namespace downr.Services
 {
-    public class DefaultMarkdownContentLoader : IMarkdownContentLoader
+    public class DefaultMarkdownContentLoader : IContentLoader
     {
         public string GetContentToRender(string content, string contentFolder)
         {
@@ -19,7 +19,7 @@ namespace downr.Services
                 foreach (HtmlNode node in htmlDoc.DocumentNode.SelectNodes("//img[@src]"))
                 {
                     var src = node.Attributes["src"].Value;
-                    src = src.Replace("media/", string.Format("/{0}/media/", contentFolder));
+                    src = src.Replace("media/", string.Format("/{0}/media/", contentFolder.Replace("\\", "/")));
                     node.SetAttributeValue("src", src);
                 }
             }

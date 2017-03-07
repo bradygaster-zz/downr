@@ -10,21 +10,23 @@ namespace downr.Controllers
 {
     public class DownrController : BaseController
     {
-        private readonly IYamlIndexer _indexer;
         private readonly DownrOptions _options;
+        private readonly IPostIndexer _postIndexer;
+        private readonly IPageIndexer _pageIndexer;
         private readonly IFeedBuilder _feedBuilder;
 
-        public DownrController(IYamlIndexer indexer, IFeedBuilder feedBuilder, IOptions<DownrOptions> optionsAccessor)
-          : base(indexer)
+        public DownrController(IPostIndexer postIndexer, IPageIndexer pageIndexer, ITagCloudBuilder tagCloudBuilder, IFeedBuilder feedBuilder, IOptions<DownrOptions> optionsAccessor)
+          : base(tagCloudBuilder)
         {
-            _indexer = indexer;
             _options = optionsAccessor.Value;
+            _postIndexer = postIndexer;
+            _pageIndexer = pageIndexer;
             _feedBuilder = feedBuilder;
         }
 
         public IActionResult Rss()
         {
-            IEnumerable<KeyValuePair<string, Metadata>> posts = _indexer.PostsMetadata.Take(_options.PostCountFeed);
+            IEnumerable<KeyValuePair<string, Metadata>> posts = _postIndexer.Metadata.Take(_options.PostCountFeed);
 
             string feed = _feedBuilder.BuildXmlFeed(posts.Select(x => x.Value));
             return Content(feed, "text/xml");
@@ -34,13 +36,13 @@ namespace downr.Controllers
         {
             return RedirectToAction("Post", new
             {
-                slug = _indexer.PostsMetadata.ElementAt(0).Value.Slug // todo: will fail if empty
+                slug = _postIndexer.Metadata.ElementAt(0).Value.Slug // todo: will fail if empty
             });
         }
 
         public IActionResult Page(string slug)
         {
-            if (_indexer.TryGetPage(slug, out Metadata metadata))
+            if (_pageIndexer.TryGet(slug, out Metadata metadata))
             {
                 ViewBag.Title = metadata.Title;
                 return View("Page", metadata);
@@ -51,23 +53,8 @@ namespace downr.Controllers
 
         public IActionResult Post(string slug)
         {
-            if (_indexer.TryGetPost(slug, out Metadata metadata))
+            if (_postIndexer.TryGet(slug, out Metadata metadata))
             {
-                var posts = _indexer.PostsMetadata.Values.ToList();
-                var index = posts.FindIndex(x => x.Slug == slug);
-
-                if (index != 0)
-                {
-                    ViewBag.Next = posts.ElementAt(index - 1).Slug;
-                    ViewBag.NextTitle = posts.ElementAt(index - 1).Title;
-                }
-                
-                if (index != posts.Count - 1)
-                {
-                    ViewBag.Previous = posts.ElementAt(index + 1).Slug;
-                    ViewBag.PreviousTitle = posts.ElementAt(index + 1).Title;
-                }
-
                 ViewBag.Title = metadata.Title;
                 return View("Post", metadata);
             }
@@ -87,8 +74,8 @@ namespace downr.Controllers
                 ViewBag.Category = name;
 
                 var titlesInCategory = new Dictionary<string, string>();
-               
-                var entriesOfCategory = _indexer.PostsMetadata.Where(x => x.Value.Categories.Contains(name));
+
+                var entriesOfCategory = _postIndexer.Metadata.Where(x => x.Value.Categories.Contains(name));
                 foreach (var entry in entriesOfCategory)
                 {
                     var key = entry.Key;

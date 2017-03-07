@@ -11,7 +11,7 @@ namespace downr.Extensions
         {
             return $"{u1.TrimEnd('/')}/{u2.TrimStart('/')}";
         }
-        
+
         public static string Urify(string uri)
         {
             return uri.Replace("\\", "/");

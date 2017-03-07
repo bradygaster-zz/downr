@@ -38,22 +38,20 @@ namespace downr
                 options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { "image/svg+xml", "application/font-woff2" });
             });
 
+            // Configure downr by using options.json
+            services.Configure<DownrOptions>(Configuration.GetSection("downr"));
+
             // Add framework services.
             services.AddMvc();
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
-            // add site services
-            services.AddSingleton<IMarkdownContentLoader, DefaultMarkdownContentLoader>();
-            services.AddSingleton<IYamlIndexer, DefaultYamlIndexer>();
-            services.AddTransient<IFeedBuilder, FeedBuilder>();
-
-            // Configure downr by using options.json
-            services.Configure<DownrOptions>(Configuration.GetSection("downr"));
+            // add downr services
+            services.AddDownr();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
-            IYamlIndexer yamlIndexer, IOptions<DownrOptions> options)
+            IOptions<DownrOptions> options, IPageIndexer pageIndexer, IPostIndexer postIndexer)
         {
             DownrOptions downrOptions = options.Value;
 
@@ -85,7 +83,7 @@ namespace downr
 
             app.UseMvc(routes =>
             {
-                app.UseDownr(env, routes, downrOptions, yamlIndexer);
+                app.UseDownr(env, routes, downrOptions, pageIndexer, postIndexer);
 
                 routes.MapRoute(
                    name: "default",

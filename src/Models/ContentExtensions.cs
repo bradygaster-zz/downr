@@ -7,7 +7,7 @@ namespace downr.Models
     {
         // http://stackoverflow.com/questions/19523913/remove-html-tags-from-string-including-nbsp-in-c-sharp
 
-        private static Regex StripHtmlRegex = new Regex(@"<[^>]+>|&nbsp;", RegexOptions.Compiled);
+        private static readonly Regex StripHtmlRegex = new Regex(@"<[^>]+>|&nbsp;", RegexOptions.Compiled);
         public static Content StripHtml(this Content content)
         {
             return new Content(StripHtmlRegex.Replace(content.Raw, ""), ContentType.Plaintext);
