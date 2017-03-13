@@ -11,7 +11,7 @@ namespace downr.Controllers
 
         public IActionResult Index()
         {
-            return RedirectToAction("Page", "Downr", new {slug = "home"});
+            return RedirectToAction("Page", "Downr", new { slug = "" });
         }
 
         [Route("error/{0}")]

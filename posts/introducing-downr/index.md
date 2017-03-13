@@ -1,6 +1,6 @@
 ---
 title: Introducing downr
-slug: posts/introducing-downr
+slug: /posts/introducing-downr
 author: bradygaster
 lastModified: 2017-01-07 12:00:00
 pubDate: 2017-01-07 12:00:00

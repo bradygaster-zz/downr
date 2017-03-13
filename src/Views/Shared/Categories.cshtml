@@ -16,7 +16,7 @@ else
     <h2>@post.Title</h2>
 
     <div class="well post-meta">
-        <a href="/@post.Slug" class="btn btn-primary"><span class="glyphicon glyphicon-link"></span> @post.PublicationDate.ToLocalTime().ToString("yyyy-MM-dd")</a>
+        <a href="@post.Slug" class="btn btn-primary"><span class="glyphicon glyphicon-link"></span> @post.PublicationDate.ToLocalTime().ToString("yyyy-MM-dd")</a>
 
         @foreach (var category in post.Categories)
             {

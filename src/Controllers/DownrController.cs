@@ -40,7 +40,7 @@ namespace downr.Controllers
             });
         }
 
-        public IActionResult Page(string slug)
+        public IActionResult Page(string slug= "")
         {
             if (_pageIndexer.TryGet(slug, out Metadata metadata))
             {
