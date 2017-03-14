@@ -52,6 +52,44 @@ namespace downr.Services
         }
 
         /// <summary>
+        /// returns the next entry of given metadata
+        /// </summary>
+        /// <returns>true if found, false if not</returns>
+        public bool TryGetNext(Metadata metadata, out Metadata nextMetadata)
+        {
+            List<Metadata> contents = Metadata.Values.ToList();
+            int index = contents.FindIndex(m => m == metadata);
+
+            if (index != 0)
+            {
+                nextMetadata = contents.ElementAt(index - 1);
+                return true;
+            }
+
+            nextMetadata = null;
+            return false;
+        }
+
+        /// <summary>
+        /// returns the previous entry of given metadata
+        /// </summary>
+        /// <returns>true if found, false if not</returns>
+        public bool TryGetPrevious(Metadata metadata, out Metadata previousMetadata)
+        {
+            List<Metadata> contents = Metadata.Values.ToList();
+            int index = contents.FindIndex(m => m == metadata);
+
+            if (index != contents.Count - 1)
+            {
+                previousMetadata = contents.ElementAt(index + 1);
+                return true;
+            }
+
+            previousMetadata = null;
+            return false;
+        }
+
+        /// <summary>
         /// Indexer logic
         /// </summary>
         public abstract IContentIndexer Index(string contentPath, string slugPrefix = "");
