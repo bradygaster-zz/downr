@@ -33,7 +33,6 @@ namespace downr.Middleware
 
             // Downr 
             routes.MapRoute("downrFeed", downrOptions.FeedSlug, new { controller = "Downr", action = "Rss" });
-            routes.MapRoute("downrCategories", "category/{name}", new { controller = "Downr", action = "Category" });
 
             var rewriteOptions = new RewriteOptions()
                 .Add(ctx =>

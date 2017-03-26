@@ -9,10 +9,11 @@ namespace downr.Controllers
         {
         }
 
-        public IActionResult Index()
-        {
-            return RedirectToAction("Page", "Downr", new { slug = "" });
-        }
+        // [Route("")]
+        // public IActionResult Index()
+        // {
+        //     return RedirectToAction("Page", "Downr", new { slug = "" });
+        // }
 
         [Route("error/{0}")]
         public IActionResult Error(int errorCode)

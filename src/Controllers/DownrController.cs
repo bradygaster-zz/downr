@@ -32,6 +32,7 @@ namespace downr.Controllers
             return Content(feed, "text/xml");
         }
 
+        [Route("downr/posts")]
         public IActionResult Posts()
         {
             return RedirectToAction("Post", new
@@ -40,6 +41,7 @@ namespace downr.Controllers
             });
         }
 
+        [Route("downr/page")]
         public IActionResult Page(string slug= "")
         {
             if (_pageIndexer.TryGet(slug, out Metadata metadata))
@@ -51,6 +53,7 @@ namespace downr.Controllers
             return RedirectToAction("Posts");
         }
 
+        [Route("downr/post")]
         public IActionResult Post(string slug)
         {
             if (_postIndexer.TryGet(slug, out Metadata metadata))
