@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Routing;
 using System.IO;
 using downr.Services;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Rewrite;
+using Microsoft.AspNetCore.Http;
 
 namespace downr.Middleware
 {
@@ -20,14 +22,6 @@ namespace downr.Middleware
             services.AddTransient<IFeedBuilder, FeedBuilder>();
         }
 
-        public static void RegisterMetadataRoutes(this IRouteBuilder routes, IContentIndexer contentIndexer, string controller, string action)
-        {
-            foreach (KeyValuePair<string, Metadata> page in contentIndexer.Metadata)
-            {
-                routes.MapRoute(page.Key, page.Key, new { controller, action, slug = page.Key });
-            }
-        }
-
         public static void UseDownr(this IApplicationBuilder app, IHostingEnvironment env, IRouteBuilder routes,
             DownrOptions downrOptions,
             IPageIndexer pageIndexer,
@@ -35,15 +29,34 @@ namespace downr.Middleware
         {
             // Build Indexer
             pageIndexer.Index(Path.Combine(env.WebRootPath, "pages"));
-            postIndexer.Index(Path.Combine(env.WebRootPath, "posts"), "posts");
+            postIndexer.Index(Path.Combine(env.WebRootPath, "posts"), "/posts");
 
             // Downr 
             routes.MapRoute("downrFeed", downrOptions.FeedSlug, new { controller = "Downr", action = "Rss" });
-            routes.MapRoute("downrCategories", "category/{name}", new { controller = "Downr", action = "Category" });
 
-            // Register controllers of metadata
-            routes.RegisterMetadataRoutes(postIndexer, "Downr", "Post");
-            routes.RegisterMetadataRoutes(pageIndexer, "Downr", "Page");
+            var rewriteOptions = new RewriteOptions()
+                .Add(ctx =>
+                {
+                    var request = ctx.HttpContext.Request;
+                    var requestPath = request.Path;
+                    if (pageIndexer.TryGet(requestPath, out Metadata metadata))
+                    {
+                        // TODO - look this up in routing table!
+                        request.Path = "/Downr/Page";
+                        request.QueryString = QueryString.Create("slug", requestPath);
+                        ctx.Result = RuleResult.SkipRemainingRules;
+                        return;
+                    }
+                    if (postIndexer.TryGet(requestPath, out metadata))
+                    {
+                        // TODO - look this up in routing table!
+                        request.Path = "/Downr/Post";
+                        request.QueryString = QueryString.Create("slug", requestPath);
+                        ctx.Result = RuleResult.SkipRemainingRules;
+                        return;
+                    }
+                });
+            app.UseRewriter(rewriteOptions);
         }
     }
 }

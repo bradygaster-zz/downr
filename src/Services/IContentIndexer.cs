@@ -18,6 +18,6 @@ namespace downr.Services
         /// <summary>
         /// Implement indexer logic here
         /// </summary>
-        IContentIndexer Index(string contentPath, string slugPrefix = "");
+        IContentIndexer Index(string contentPath, string slugPrefix = null);
     }
 }

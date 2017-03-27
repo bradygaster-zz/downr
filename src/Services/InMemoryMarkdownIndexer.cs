@@ -54,7 +54,7 @@ namespace downr.Services
         /// <summary>
         /// Indexer logic
         /// </summary>
-        public abstract IContentIndexer Index(string contentPath, string slugPrefix = "");
+        public abstract IContentIndexer Index(string contentPath, string slugPrefix = null);
 
         /// <summary>
         /// Indexes defined content
