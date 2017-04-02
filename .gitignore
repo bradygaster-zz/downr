@@ -77,3 +77,6 @@ artifacts/
 # node, bower, grunt related
 node_modules/
 bower_components/
+
+# miscellany
+**/.DS_Store
