@@ -14,7 +14,7 @@ namespace downr.ViewComponents
             _downrOptions = options.Value;
         }
 
-        public IViewComponentResult Invoke(Metadata metadata = null)
+        public async Task<IViewComponentResult> InvokeAsync(Metadata metadata = null)
         {
             OpenGraphViewComponentModel model;
 

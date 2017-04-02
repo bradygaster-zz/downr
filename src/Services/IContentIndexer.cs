@@ -18,6 +18,18 @@ namespace downr.Services
         /// <summary>
         /// Implement indexer logic here
         /// </summary>
-        IContentIndexer Index(string contentPath, string slugPrefix = null);
+        IContentIndexer Index(string contentPath, string slugPrefix = "");
+
+        /// <summary>
+        /// returns the next entry of given metadata
+        /// </summary>
+        /// <returns>true if found, false if not</returns>
+        bool TryGetNext(Metadata metadata, out Metadata nextMetadata);
+
+        /// <summary>
+        /// returns the previous entry of given metadata
+        /// </summary>
+        /// <returns>true if found, false if not</returns>
+        bool TryGetPrevious(Metadata metadata, out Metadata previousMetadata);
     }
 }

@@ -46,6 +46,17 @@ namespace downr.Controllers
         {
             if (_pageIndexer.TryGet(slug, out Metadata metadata))
             {
+                if (_pageIndexer.TryGetNext(metadata, out Metadata nextMetadata))
+                {
+                    ViewBag.Next = nextMetadata.Slug;
+                    ViewBag.NextTitle = nextMetadata.Title;
+                }
+                if (_pageIndexer.TryGetPrevious(metadata, out Metadata prevMetadata))
+                {
+                    ViewBag.Previous = prevMetadata.Slug;
+                    ViewBag.PreviousTitle = prevMetadata.Title;
+                }
+
                 ViewBag.Title = metadata.Title;
                 return View("Page", metadata);
             }
@@ -58,6 +69,18 @@ namespace downr.Controllers
         {
             if (_postIndexer.TryGet(slug, out Metadata metadata))
             {
+                if(_postIndexer.TryGetNext(metadata, out Metadata nextMetadata))
+                {
+                    ViewBag.Next = nextMetadata.Slug;
+                    ViewBag.NextTitle = nextMetadata.Title;
+                }
+                if (_postIndexer.TryGetPrevious(metadata, out Metadata prevMetadata))
+                {
+                    ViewBag.Previous = prevMetadata.Slug;
+                    ViewBag.PreviousTitle = prevMetadata.Title;
+                }
+
+
                 ViewBag.Title = metadata.Title;
                 return View("Post", metadata);
             }
