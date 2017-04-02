@@ -16,8 +16,10 @@ namespace downr.Services
         {
         }
 
-        public override IContentIndexer Index(string contentPath, string slugPrefix = "")
+        public override IContentIndexer Index(string contentPath, string slugPrefix = null)
         {
+            slugPrefix = slugPrefix ?? "/";
+
             var stack = new Stack<string>();
             foreach (var subDir in Directory.GetDirectories(contentPath))
             {

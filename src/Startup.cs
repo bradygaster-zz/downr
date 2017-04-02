@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
+using Microsoft.AspNetCore.Rewrite;
 
 namespace downr
 {
@@ -84,10 +85,6 @@ namespace downr
             app.UseMvc(routes =>
             {
                 app.UseDownr(env, routes, downrOptions, pageIndexer, postIndexer);
-
-                routes.MapRoute(
-                   name: "default",
-                   template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

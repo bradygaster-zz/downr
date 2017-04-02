@@ -11,8 +11,10 @@ namespace downr.Services
         {
         }
 
-        public override IContentIndexer Index(string contentPath, string slugPrefix = "")
+        public override IContentIndexer Index(string contentPath, string slugPrefix = null)
         {
+            slugPrefix = slugPrefix ?? "/";
+
             foreach (var subDir in Directory.GetDirectories(contentPath))
             {
                 if (IndexContent(contentPath, subDir, MetadataType.Post, slugPrefix, out Metadata metadata))
