@@ -10,7 +10,7 @@
 <h2>@Model.Title</h2>
 
 <div class="well post-meta">
-    <a href="/@Model.Slug" class="btn btn-primary">
+    <a href="@Model.Slug" class="btn btn-primary">
     <span class="glyphicon glyphicon-link"></span>
     @Model.PublicationDate.ToLocalTime().ToString("yyyy-MM-dd")</a>
     @foreach (var category in Model.Categories)

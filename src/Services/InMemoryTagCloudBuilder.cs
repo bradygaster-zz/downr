@@ -31,10 +31,13 @@ namespace downr.Services
 
             foreach (var entry in allSources)
             {
-                foreach (var category in entry.Value.Categories)
+                if (entry.Value.Categories != null)
                 {
-                    tags.TryGetValue(category, out int count);
-                    tags[category] = count + 1;
+                    foreach (var category in entry.Value.Categories)
+                    {
+                        tags.TryGetValue(category, out int count);
+                        tags[category] = count + 1;
+                    }
                 }
             }
 

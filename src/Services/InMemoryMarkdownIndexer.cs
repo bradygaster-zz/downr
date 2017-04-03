@@ -164,7 +164,6 @@ namespace downr.Services
                     Author = siteConfig[Strings.MetadataNames.Author],
                     PublicationDate = DateTime.Parse(siteConfig[Strings.MetadataNames.PublicationDate]),
                     LastModified = DateTime.Parse(siteConfig[Strings.MetadataNames.LastModified]),
-                    Categories = siteConfig[Strings.MetadataNames.Categories].Split(',').Select(c => c.Trim()).ToArray(),
                     Content = content,
 
                     // Seo
@@ -172,6 +171,11 @@ namespace downr.Services
                     Image = image,
                     Keywords = keywords
                 };
+
+                if(siteConfig.ContainsKey(Strings.MetadataNames.Categories))
+                {
+                    metadata.Categories = siteConfig[Strings.MetadataNames.Categories].Split(',').Select(c => c.Trim()).ToArray();
+                }
 
                 return true;
             }

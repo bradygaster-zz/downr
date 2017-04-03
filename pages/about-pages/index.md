@@ -4,7 +4,6 @@ slug: /about-pages
 author: BenjaminAbt
 lastModified: 2017-01-09 12:00:00
 pubDate: 2017-01-09 12:00:00
-categories: pages
 ---
 
 downr pages are markdown files that are stored hierarchically in the `pages` directory at the root of the downr repository. To create pages, just make a new folder in the `pages` folder and create an `index.md` file, then add the downr metadata to the top of the file as shown in the code block below. 
