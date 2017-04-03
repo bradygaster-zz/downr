@@ -9,12 +9,32 @@
 
 <h2>@Model.Title</h2>
 
-<div class="well Model-meta">
-    <a href="/@Model.Slug" class="btn btn-primary"><span class="glyphicon glyphicon-link"></span> @Model.PublicationDate.ToLocalTime().ToString("yyyy-MM-dd")</a>    @foreach (var category in Model.Categories)
+<div class="well post-meta">
+    <a href="/@Model.Slug" class="btn btn-primary">
+    <span class="glyphicon glyphicon-link"></span>
+    @Model.PublicationDate.ToLocalTime().ToString("yyyy-MM-dd")</a>
+    @foreach (var category in Model.Categories)
     {
-        <a href="/category/@category" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-pushpin"></span> @category</a>    }
+        <a href="/category/@category" class="btn btn-primary pull-right">
+            <span class="glyphicon glyphicon-pushpin"></span>@category
+        </a>    
+    }
 </div>
 
 @Html.Raw(Model.Content)
 
-<hr size="1" />
+@if (!String.IsNullOrEmpty(ViewBag.Previous) || !String.IsNullOrEmpty(ViewBag.Next)) 
+{
+<div class="well post-meta">
+    @if (!String.IsNullOrEmpty(ViewBag.Previous))
+    {
+        string prevLink = string.Format("{0}", ViewBag.Previous);
+        <a href="@prevLink" title="@ViewBag.PreviousTitle" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> previous post</a>
+    }
+    @if (!String.IsNullOrEmpty(ViewBag.Next))
+    {
+        string nextLink = string.Format("{0}", ViewBag.Next);
+        <a href="@nextLink" title="@ViewBag.NextTitle" class="btn btn-primary pull-right">next post <span class="glyphicon glyphicon-chevron-right"></span></a>                
+    }
+</div>
+}

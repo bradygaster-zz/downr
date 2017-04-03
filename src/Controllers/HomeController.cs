@@ -1,3 +1,4 @@
+using System.Linq;
 using downr.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -5,15 +6,20 @@ namespace downr.Controllers
 {
     public class HomeController : BaseController
     {
-        public HomeController(ITagCloudBuilder tagCloudBuilder) : base(tagCloudBuilder)
+        private readonly IPostIndexer _postIndexer;
+        
+        public HomeController(ITagCloudBuilder tagCloudBuilder,
+            IPostIndexer postIndexer) : base(tagCloudBuilder)
         {
+            _postIndexer = postIndexer;
         }
 
-        // [Route("")]
-        // public IActionResult Index()
-        // {
-        //     return RedirectToAction("Page", "Downr", new { slug = "" });
-        // }
+        [Route("")]
+        public IActionResult Index()
+        {
+            var slug = _postIndexer.Metadata.ElementAt(0).Value.Slug;
+            return Redirect(slug);
+        }
 
         [Route("error/{0}")]
         public IActionResult Error(int errorCode)

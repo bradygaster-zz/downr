@@ -32,15 +32,6 @@ namespace downr.Controllers
             return Content(feed, "text/xml");
         }
 
-        [Route("downr/posts")]
-        public IActionResult Posts()
-        {
-            return RedirectToAction("Post", new
-            {
-                slug = _postIndexer.Metadata.ElementAt(0).Value.Slug // todo: will fail if empty
-            });
-        }
-
         [Route("downr/page")]
         public IActionResult Page(string slug= "")
         {
@@ -54,7 +45,7 @@ namespace downr.Controllers
         }
 
         [Route("downr/post")]
-        public IActionResult Post(string slug)
+        public IActionResult Post(string slug = "")
         {
             if (_postIndexer.TryGet(slug, out Metadata metadata))
             {

@@ -4,7 +4,7 @@ slug: /posts/downr-performance-upgrades
 author: bradygaster
 lastModified: 2017-01-17 12:00:00
 pubDate: 2017-01-17 12:00:00
-categories: downr, performance
+categories: downr
 ---
 
 Recent PR(s) by [Shayne Boyer](http://twitter.com/spboyer) have added the following performace upgrades.
