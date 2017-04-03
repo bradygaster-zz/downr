@@ -1,5 +1,6 @@
 ---
 title: Home
+slug: /about-pages/sub-page
 author: BenjaminAbt
 lastModified: 2017-01-09 12:00:00
 pubDate: 2017-01-09 12:00:00
