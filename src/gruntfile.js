@@ -53,7 +53,7 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('postpublish', ['clean', 'copy:content','imagemin']);
+    grunt.registerTask('postpublish', ['clean:posts','clean:pages', 'copy:content','imagemin']);
 
     grunt.registerTask('precompile', ['copy:views']);
 
