@@ -1,8 +1,4 @@
-dotnet restore
-cd src
-npm install
-bower install
-grunt precompile
+:: dotnet build runs a build on downr.proj
+:: inside downr.proj a pre build task (pre-build.cmd) and post build task (post-build.bat) is defined
+
 dotnet build
-grunt postpublish
-dotnet bundle
