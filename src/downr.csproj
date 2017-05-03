@@ -5,6 +5,13 @@
   <PropertyGroup>
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <PreBuildEvent>cd $(ProjectDir)
+npm install
+bower install
+grunt precompile</PreBuildEvent>
+    <PostBuildEvent>cd $(ProjectDir)
+grunt postpublish
+dotnet bundle</PostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="HtmlAgilityPack.NetCore" Version="1.5.0.1" />
@@ -20,7 +27,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.0" />
     <PackageReference Include="System.ValueTuple" Version="4.3.0" />
     <PackageReference Include="YamlDotNet.NetCore" Version="1.0.0" />
-    <PackageReference Include="BundlerMinifier.Core" Version="2.3.327"/>
+    <PackageReference Include="BundlerMinifier.Core" Version="2.3.327" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0-msbuild3-final" />
