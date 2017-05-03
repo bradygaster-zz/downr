@@ -6,4 +6,4 @@ grunt precompile
 dotnet build
 grunt postpublish
 dotnet bundle
-dotnet watch run
+cd ..
