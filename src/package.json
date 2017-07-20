@@ -2,6 +2,10 @@
   "name": "downr",
   "version": "1.0.0",
   "description": "simple markdown blogging tool",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bradygaster/downr"
+  },
   "main": "index.js",
   "author": "",
   "license": "ISC",
