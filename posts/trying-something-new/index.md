@@ -19,7 +19,7 @@ The past year, my sixth at Microsoft, I worked for an exciting team of folks bui
 
 The past just-over-a-year included activities like working closely with my old team in the Azure SDK world to use Swagger to document REST APIs, to use various code-commenting techniques and conventions to output rich reference documentation, and so much more. I'm proud of the docs.ms.com team, and I'm excited to see how the team of talented Cloud Developer Advocates will round out my old team. I was also able to see the sheer, massive amounts of heroic work the team does to deliver amazing content in so many languages. 
 
-> It isn't ever leaving a team of talented people, especially when the product you've built is so obviously valuable to customers. 
+> It isn't ever easy to leave a team of talented people, especially when the product you've built is so obviously valuable to customers. 
 
 But sometimes, your aspirations evolve, and you learn things. Or, in my case, you remember things. 
 
