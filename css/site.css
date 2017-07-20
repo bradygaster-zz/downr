@@ -22,12 +22,13 @@ footer
     margin-top: 10px;
 }
 
+.container img {
+    max-width: 100%;
+}
+
 @media (min-width: 400px) {
     .container {
         width: 400px;
-    }
-    img {
-        max-width: 360px;
     }
 }
 
@@ -35,17 +36,11 @@ footer
     .container {
         width: 750px;
     }
-    img {
-        max-width: 540px;
-    }
 }
 
 @media (min-width: 900px) {
     .container {
         width: 900px;
-    }
-    img {
-        max-width: 640px;
     }
 }
 
@@ -53,26 +48,17 @@ footer
     .container {
         width: 1200px;
     }
-    img {
-        max-width: 750px;
-    }
 }
 
 @media (min-width: 1600px) {
     .container {
         width: 1600px;
     }
-    img {
-        max-width: 950px;
-    }
 }
 
 @media (min-width: 1900px) {
     .container {
         width: 1900px;
-    }
-    img {
-        max-width: 1220px;
     }
 }
 
@@ -85,7 +71,8 @@ footer
 }
 
 .aside-header-img {
-    background-image: url('blog-photo.png');
-    height: 400px;
-    width: 100%;
+    background-image:url('brady.jpg');
+    height:234px;
+    width:100%;
+    background-repeat: no-repeat;
 }
