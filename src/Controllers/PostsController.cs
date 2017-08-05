@@ -10,8 +10,18 @@ namespace downr.Controllers
     {
         public PostsController(IYamlIndexer indexer) : base(indexer) { }
 
+        [Route("{id?}")]
+        public IActionResult Index(string id)
+        {
+            //Go to a slug if provided otherwise go to latest.
+            var slug = _indexer.Metadata.FirstOrDefault(x => x.Slug == id)?.Slug;
+            return RedirectToAction("Post", "Posts", new
+                {
+                    slug = slug ?? _indexer.Metadata.ElementAt(0).Slug
+                });
+        }
         [Route("posts/{slug}")]
-        public IActionResult Index(string slug)
+        public IActionResult Post(string slug)
         {
             // make sure the post is found in the index
             if (_indexer.Metadata.Any(x => x.Slug == slug))
