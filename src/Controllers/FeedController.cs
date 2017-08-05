@@ -21,8 +21,7 @@ namespace downr.Controllers
             _indexer = indexer;
         }
 
-        [Route("feed/rss")]
-        public IActionResult Rss(string name)
+        public IActionResult Rss()
         {
             // get the last 10 posts
             var last10posts = _indexer.Metadata.Take(10);

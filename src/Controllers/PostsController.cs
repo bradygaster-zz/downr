@@ -10,7 +10,6 @@ namespace downr.Controllers
     {
         public PostsController(IYamlIndexer indexer) : base(indexer) { }
 
-        [Route("{id?}")]
         public IActionResult Index(string id)
         {
             //Go to a slug if provided otherwise go to latest.
@@ -20,7 +19,6 @@ namespace downr.Controllers
                     slug = slug ?? _indexer.Metadata.ElementAt(0).Slug
                 });
         }
-        [Route("posts/{slug}")]
         public IActionResult Post(string slug)
         {
             // make sure the post is found in the index

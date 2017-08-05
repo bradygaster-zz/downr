@@ -63,21 +63,41 @@ namespace downr
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-            
-            app.UseResponseCompression();        
+
+            app.UseResponseCompression();
             app.UseStaticFiles(new StaticFileOptions
             {
                 OnPrepareResponse =
-                    _ => _.Context.Response.Headers[HeaderNames.CacheControl] = 
-            "public,max-age=604800"  
+                    _ => _.Context.Response.Headers[HeaderNames.CacheControl] =
+            "public,max-age=604800"
             });
 
             app.UseMvc(routes =>
-            {   
+            {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
 
+                routes.MapRoute(
+                    name: "blog-root",
+                    template: "",
+                    defaults: new { controller = "Posts", Action = "Index" }
+                );
+                routes.MapRoute(
+                    name: "blog-post",
+                    template: "posts/{slug}",
+                    defaults: new { controller = "Posts", Action = "Post" }
+                );
+                routes.MapRoute(
+                    name: "blog-categories",
+                    template: "category/{name}",
+                    defaults: new { controller = "Category", Action = "Index" }
+                );
+                routes.MapRoute(
+                    name: "blog-feed-rss",
+                    template: "feed/rss",
+                    defaults: new { controller = "Feed", Action = "Rss"}
+                );
             });
 
             // get the path to the content directory so the yaml headers can be indexed as metadata
