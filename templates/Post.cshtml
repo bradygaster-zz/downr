@@ -1,19 +1,27 @@
-@model downr.Models.Metadata[]
-
-@foreach(var post in Model) {
-    <a id="@post.Slug"></a>
-
-    <h2>@post.Title</h2>
-
-    <div class="well post-meta">
-        <a asp-route="blog-post" asp-route-slug="@post.Slug" class="btn btn-primary"><span class="glyphicon glyphicon-link"></span> @post.PublicationDate.ToLocalTime().ToString("yyyy-MM-dd")</a>
-
-        @foreach(var category in post.Categories) {
-            <a asp-route="blog-categories" asp-route-name="@category" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-pushpin"></span> @category</a>
-        }
-    </div>
-
-    @Html.Raw(post.Content)
-
-    <hr size="1"/>
+@model downr.Models.PostModel
+@{
+    var post = Model.Post;
 }
+
+<h2>@post.Title</h2>
+
+<div class="well post-meta">
+    <a asp-route="blog-post" asp-route-slug="@post.Slug" class="btn btn-primary"><span class="glyphicon glyphicon-link"></span> @post.PublicationDate.ToLocalTime().ToString("yyyy-MM-dd")</a>
+
+    @foreach(var category in post.Categories) {
+        <a asp-route="blog-categories" asp-route-name="@category" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-pushpin"></span> @category</a>
+    }
+</div>
+
+@Html.Raw(post.Content)
+
+<div class="col-md-12 well">
+    <div class="col-md-4">
+        @if(!String.IsNullOrEmpty(Model.PreviousPostSlug)) { 
+        <a asp-route="blog-post" asp-route-slug="@Model.PreviousPostSlug" title="@Model.PreviousPostTitle" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> previous post</a>                }
+    </div>
+    <div class="col-md-4 pull-right">
+        @if(!String.IsNullOrEmpty(Model.NextPostSlug)) { 
+        <a asp-route="blog-post" asp-route-slug="@Model.NextPostSlug" title="@Model.NextPostTitle" class="btn btn-primary pull-right">next post <span class="glyphicon glyphicon-chevron-right"></a>                }
+    </div>
+</div>

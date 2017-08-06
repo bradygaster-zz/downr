@@ -28,10 +28,15 @@ namespace downr.Controllers
                 }
 
                 ViewBag.TitlesInCategory = titlesInCategory;
-                return View("Post", postsForView.ToArray());
+                var model = new PostListModel
+                {
+                    Posts = postsForView.ToArray()
+                    // TODO - add paging
+                };
+                return View("PostList", model);
             }
 
-            return View();
+            return RedirectToRoute("blog-index");
         }
     }
 }

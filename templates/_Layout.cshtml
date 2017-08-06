@@ -51,7 +51,7 @@
             <hr size="1"/>
             }
             @RenderBody()
-        </div>
+         </div>
         <aside role="complementary" class="col-md-3 col-md-offset-1">
             <section>
                 <h2>
@@ -76,18 +76,6 @@
                 </div>
             </section>
         </aside>
-    </div>
-    <div class="container">
-        <div class="col-md-8 well">
-            <div class="col-md-4">
-                @if(!String.IsNullOrEmpty(ViewBag.Previous)) { 
-                <a asp-route="blog-post" asp-route-slug="@ViewBag.Previous" title="@ViewBag.PreviousTitle" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> previous post</a>                }
-            </div>
-            <div class="col-md-4 pull-right">
-                @if(!String.IsNullOrEmpty(ViewBag.Next)) { 
-                <a asp-route="blog-post" asp-route-slug="@ViewBag.Next" title="@ViewBag.NextTitle" class="btn btn-primary pull-right">next post <span class="glyphicon glyphicon-chevron-right"></a>                }
-            </div>
-        </div>
     </div>
     <div class="container">
         <footer>
