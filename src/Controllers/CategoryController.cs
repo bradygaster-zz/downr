@@ -10,7 +10,6 @@ namespace downr.Controllers
     {
         public CategoryController(IYamlIndexer indexer) : base(indexer) { }
 
-        [Route("category/{name}")]
         public IActionResult Index(string name)
         {
             // get all the posts in this category

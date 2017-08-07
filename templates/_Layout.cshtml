@@ -32,7 +32,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="https://github.com/bradygaster/downr">github</a></li>
-                    <li><a href="/feed/rss">rss</a></li>
+                    <li><a asp-route="blog-feed-rss">rss</a></li>
                 </ul>
             </div>
         </div>
@@ -67,7 +67,7 @@
                     <div class="panel-body">
                         <ul class="list-group">
                             @foreach(var tag in ViewBag.TagCloud){
-                            <a href="/category/@tag.Key" class="list-group-item">
+                            <a asp-route="blog-categories" asp-route-name="@tag.Key" class="list-group-item">
                                 <span class="badge">@tag.Value</span> @tag.Key
                             </a>
                             }
@@ -80,12 +80,12 @@
     <div class="container">
         <div class="col-md-8 well">
             <div class="col-md-4">
-                @if(!String.IsNullOrEmpty(ViewBag.Previous)) { string prevLink = string.Format("/posts/{0}", ViewBag.Previous);
-                <a href="@prevLink" title="@ViewBag.PreviousTitle" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> previous post</a>                }
+                @if(!String.IsNullOrEmpty(ViewBag.Previous)) { 
+                <a asp-route="blog-post" asp-route-slug="@ViewBag.Previous" title="@ViewBag.PreviousTitle" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> previous post</a>                }
             </div>
             <div class="col-md-4 pull-right">
-                @if(!String.IsNullOrEmpty(ViewBag.Next)) { string nextLink = string.Format("/posts/{0}", ViewBag.Next);
-                <a href="@nextLink" title="@ViewBag.NextTitle" class="btn btn-primary pull-right">next post <span class="glyphicon glyphicon-chevron-right"></a>                }
+                @if(!String.IsNullOrEmpty(ViewBag.Next)) { 
+                <a asp-route="blog-post" asp-route-slug="@ViewBag.Next" title="@ViewBag.NextTitle" class="btn btn-primary pull-right">next post <span class="glyphicon glyphicon-chevron-right"></a>                }
             </div>
         </div>
     </div>

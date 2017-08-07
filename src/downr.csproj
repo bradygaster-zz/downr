@@ -1,14 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp1.0</TargetFramework>
     <DebugType>portable</DebugType>
     <PreserveCompilationContext>true</PreserveCompilationContext>
-    <AssemblyName>src</AssemblyName>
+    <AssemblyName>downr</AssemblyName>
     <OutputType>Exe</OutputType>
-    <PackageId>src</PackageId>
+    <PackageId>downr</PackageId>
     <RuntimeFrameworkVersion>1.0.4</RuntimeFrameworkVersion>
     <PackageTargetFallback>$(PackageTargetFallback);net451;dotnet5.6;portable-net45+win8</PackageTargetFallback>
+    <RootNamespace>downr</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

@@ -6,6 +6,7 @@ using System.Xml;
 using downr.Models;
 using downr.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace downr.Controllers
 {
@@ -13,16 +14,18 @@ namespace downr.Controllers
     {
         IMarkdownContentLoader _markdownLoader;
         IYamlIndexer _indexer;
+        DownrOptions _options;
 
         public FeedController(IMarkdownContentLoader markdownLoader,
-            IYamlIndexer indexer)
+            IYamlIndexer indexer,
+            IOptions<DownrOptions> options)
         {
             _markdownLoader = markdownLoader;
             _indexer = indexer;
+            _options = options.Value;
         }
 
-        [Route("feed/rss")]
-        public IActionResult Rss(string name)
+        public IActionResult Rss()
         {
             // get the last 10 posts
             var last10posts = _indexer.Metadata.Take(10);
@@ -35,7 +38,8 @@ namespace downr.Controllers
         public string BuildXmlFeed(IEnumerable<Metadata> posts)
         {
             StringWriter parent = new StringWriter();
-            using (XmlWriter writer = XmlWriter.Create(parent, new XmlWriterSettings {
+            using (XmlWriter writer = XmlWriter.Create(parent, new XmlWriterSettings
+            {
                 OmitXmlDeclaration = true
             }))
             {
@@ -46,9 +50,10 @@ namespace downr.Controllers
                 // write out 
                 writer.WriteStartElement("channel");
 
+                var rootUri = new Uri(_options.RootUrl);
                 // write out -level elements
-                writer.WriteElementString("title", $"bradygaster.com");
-                writer.WriteElementString("link", "http://bradygaster.com");
+                writer.WriteElementString("title", _options.Title);
+                writer.WriteElementString("link", rootUri.ToString());
                 writer.WriteElementString("ttl", "60");
 
                 //writer.WriteStartElement("atom:link");
@@ -63,7 +68,8 @@ namespace downr.Controllers
                         writer.WriteStartElement("item");
 
                         writer.WriteElementString("title", article.Title);
-                        writer.WriteElementString("link", "http://bradygaster.com/" + article.Slug); // todo build article path
+                        var relativeUrl = Url.Action("Post", "Posts", new {article.Slug});
+                        writer.WriteElementString("link", new Uri(rootUri, relativeUrl).ToString());
                         writer.WriteElementString("description", article.Content);
 
                         writer.WriteEndElement();
