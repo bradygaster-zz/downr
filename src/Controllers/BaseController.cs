@@ -23,7 +23,7 @@ namespace downr.Controllers
             var tagCloud = new Dictionary<string, int>();
             _indexer.Metadata.Select(x => x.Categories).ToList().ForEach(categories =>
             {
-                categories.ToList().ForEach(category =>
+                categories?.ToList().ForEach(category =>
                 {
                     if (!tagCloud.ContainsKey(category))
                         tagCloud.Add(category, 0);
