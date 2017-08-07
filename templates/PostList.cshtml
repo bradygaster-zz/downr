@@ -1,0 +1,30 @@
+@model downr.Models.PostListModel
+@foreach(var post in Model.Posts) {
+    <a id="@post.Slug"></a>
+
+    <h2>@post.Title</h2>
+
+    <div class="well post-meta">
+        <a asp-route="blog-post" asp-route-slug="@post.Slug" class="btn btn-primary"><span class="glyphicon glyphicon-link"></span> @post.PublicationDate.ToLocalTime().ToString("yyyy-MM-dd")</a>
+
+        @foreach(var category in post.Categories) {
+            <a asp-route="blog-categories" asp-route-name="@category" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-pushpin"></span> @category</a>
+        }
+    </div>
+
+    @post.GetHtmlSnippet()
+
+    <hr size="1"/>
+}
+
+<div class="col-md-12 well">
+    <div class="col-md-4">
+        @if(!String.IsNullOrEmpty(Model.PreviousPageLink)) { 
+        <a href="@Model.PreviousPageLink" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> previous </a>                }
+    </div>
+    <div class="col-md-4 pull-right">
+        @if(!String.IsNullOrEmpty(Model.NextPageLink)) { 
+        <a href="@Model.NextPageLink" class="btn btn-primary pull-right">next  <span class="glyphicon glyphicon-chevron-right"></a>                }
+    </div>
+</div>
+

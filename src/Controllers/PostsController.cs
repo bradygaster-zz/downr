@@ -1,56 +1,101 @@
 using System.Collections.Generic;
 using System.Linq;
+using downr;
 using downr.Models;
 using downr.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace downr.Controllers
 {
     public class PostsController : BaseController
     {
-        public PostsController(IYamlIndexer indexer) : base(indexer) { }
+        private readonly DownrOptions _options;
 
-        public IActionResult Index(string id)
+        public PostsController(
+            IYamlIndexer indexer,
+            IOptions<DownrOptions> options
+            )
+            : base(indexer)
         {
-            //Go to a slug if provided otherwise go to latest.
-            var slug = _indexer.Metadata.FirstOrDefault(x => x.Slug == id)?.Slug;
-            return RedirectToAction("Post", "Posts", new
-                {
-                    slug = slug ?? _indexer.Metadata.ElementAt(0).Slug
-                });
+            _options = options.Value;
         }
+
+        public IActionResult Index(int? page = null)
+        {
+            switch (_options.HomePageStyle)
+            {
+                case HomePageStyle.SummaryList:
+                    return Index_SummaryList(page);
+
+                case HomePageStyle.LatestPost:
+                default: // make this the default - beats throwing an exception etc ;-)
+                    return Index_LatestPost();
+            }
+        }
+
+        [NonAction]
+        private IActionResult Index_SummaryList(int? page = null)
+        {
+            const int pageSize = 2;
+            page = page ?? 1;
+            var pageIndex = page.Value - 1;
+            var posts = _indexer.Metadata
+                                .Skip(pageIndex * pageSize)
+                                .Take(pageSize)
+                                .ToArray();
+
+            var model = new PostListModel
+            {
+                Posts = posts,
+                NextPageLink = (page > 1) ? Url.Action("Index", new { page = page - 1 }) : null,
+                PreviousPageLink = (_indexer.Metadata.Count > (pageIndex + 1) * pageSize) ? Url.Action("Index", new { page = page + 1 }) : null
+            };
+            return View("PostList", model);
+        }
+
+        [NonAction]
+        private IActionResult Index_LatestPost()
+        {
+            return RedirectToAction("Post", "Posts", new
+            {
+                slug = _indexer.Metadata.ElementAt(0).Slug
+            });
+        }
+
         public IActionResult Post(string slug)
         {
             // make sure the post is found in the index
-            if (_indexer.Metadata.Any(x => x.Slug == slug))
+            var meta = _indexer.Metadata.FirstOrDefault(x => x.Slug == slug);
+            if (meta == null)
             {
-                var meta = _indexer.Metadata.First(x => x.Slug == slug);
-                ViewData["Title"] = meta.Title;
-
-                // where are we in the list of posts?
-                // last post?
-                int index = _indexer.Metadata.FindIndex(x => x.Slug == slug);
-                if (index != 0)
-                {
-                    ViewBag.Next = _indexer.Metadata.ElementAt(index - 1).Slug;
-                    ViewBag.NextTitle = _indexer.Metadata.ElementAt(index - 1).Title;
-                }
-                // first post?
-                if (index != _indexer.Metadata.Count - 1)
-                {
-                    ViewBag.Previous = _indexer.Metadata.ElementAt(index + 1).Slug;
-                    ViewBag.PreviousTitle = _indexer.Metadata.ElementAt(index + 1).Title;
-                }
-
-                return View("Post", new Metadata[] { meta });
+                // not found - send to homepage
+                return RedirectToAction("Index", "Posts");
             }
-            else
+            ViewData["Title"] = meta.Title;
+
+            // where are we in the list of posts?
+            // last post?
+            var model = new PostModel
             {
-                return RedirectToAction("Index", "Posts", new
-                {
-                    slug = _indexer.Metadata.ElementAt(0).Slug
-                });
+                Post = meta
+            };
+            int index = _indexer.Metadata.FindIndex(x => x.Slug == slug);
+            if (index != 0)
+            {
+                var next = _indexer.Metadata[index - 1];
+                model.NextPostSlug = next.Slug;
+                model.NextPostTitle = next.Title;
             }
+            // first post?
+            if (index != _indexer.Metadata.Count - 1)
+            {
+                var previous = _indexer.Metadata[index + 1];
+                model.PreviousPostSlug = previous.Slug;
+                model.PreviousPostTitle = previous.Title;
+            }
+
+            return View("Post", model);
         }
     }
 }
