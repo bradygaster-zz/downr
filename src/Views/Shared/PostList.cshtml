@@ -16,7 +16,7 @@
 
     <hr size="1"/>
 }
-
+@if(Model.PreviousPageLink != null || Model.NextPageLink != null){
 <div class="col-md-12 well">
     <div class="col-md-4">
         @if(!String.IsNullOrEmpty(Model.PreviousPageLink)) { 
@@ -27,4 +27,4 @@
         <a href="@Model.NextPageLink" class="btn btn-primary pull-right">next  <span class="glyphicon glyphicon-chevron-right"></a>                }
     </div>
 </div>
-
+}

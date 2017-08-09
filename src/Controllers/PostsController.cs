@@ -37,7 +37,7 @@ namespace downr.Controllers
         [NonAction]
         private IActionResult Index_SummaryList(int? page = null)
         {
-            const int pageSize = 2;
+            var pageSize = _options.PageSize;
             page = page ?? 1;
             var pageIndex = page.Value - 1;
             var posts = _indexer.Metadata
