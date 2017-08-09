@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using downr;
@@ -21,7 +22,7 @@ namespace downr.Controllers
             _options = options.Value;
         }
 
-        public IActionResult Index(int? page = null)
+        public IActionResult Index(int page = 1)
         {
             switch (_options.HomePageStyle)
             {
@@ -35,11 +36,10 @@ namespace downr.Controllers
         }
 
         [NonAction]
-        private IActionResult Index_SummaryList(int? page = null)
+        private IActionResult Index_SummaryList(int page)
         {
             var pageSize = _options.PageSize;
-            page = page ?? 1;
-            var pageIndex = page.Value - 1;
+            var pageIndex = page - 1;
             var posts = _indexer.Metadata
                                 .Skip(pageIndex * pageSize)
                                 .Take(pageSize)
@@ -48,10 +48,19 @@ namespace downr.Controllers
             var model = new PostListModel
             {
                 Posts = posts,
-                NextPageLink = (page > 1) ? Url.Action("Index", new { page = page - 1 }) : null,
-                PreviousPageLink = (_indexer.Metadata.Count > (pageIndex + 1) * pageSize) ? Url.Action("Index", new { page = page + 1 }) : null
+                NextPageLink = (page > 1) ? GetPagedIndexLink(page - 1) : null,
+                PreviousPageLink = (_indexer.Metadata.Count > (pageIndex + 1) * pageSize) ? GetPagedIndexLink(page + 1) : null
             };
             return View("PostList", model);
+        }
+        private string GetPagedIndexLink(int page)
+        {
+            if (page > 1)
+                return Url.Action("Index", new { page });
+            if (page == 1)
+                return Url.Action("Index"); // page defaults to 1 so keep URL clean :-)
+
+            throw new ArgumentException("page must be greater than or equal to one");
         }
 
         [NonAction]
