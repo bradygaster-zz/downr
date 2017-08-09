@@ -5,6 +5,7 @@ using downr.Models;
 using downr.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using downr.Models.TagCloud;
 
 namespace downr.Controllers
 {
@@ -31,7 +32,11 @@ namespace downr.Controllers
                 });
             });
 
-            ViewBag.TagCloud = tagCloud.OrderBy(x => x.Key);            
+            ViewBag.TagCloud = new TagCloudModel{
+                Tags = tagCloud.OrderBy(x => x.Key)
+                                .Select(x=> new Tag{ Name = x.Key, Count = x.Value })
+                                .ToArray()
+            };
         }
     }
 }
