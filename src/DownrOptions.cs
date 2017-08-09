@@ -13,6 +13,9 @@ namespace downr
 
         // Show a list of summary posts on blog homepage
         public HomePageStyle HomePageStyle { get; set; }
+
+        // PageSize, i.e. the number of items to show per page in a paged list
+        public int PageSize { get; set; }
     }
 
     public enum HomePageStyle
