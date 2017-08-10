@@ -19,22 +19,16 @@ namespace downr.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-             // get all the categories
-            var tagCloud = new Dictionary<string, int>();
-            _indexer.Metadata.Select(x => x.Categories).ToList().ForEach(categories =>
-            {
-                categories?.ToList().ForEach(category =>
-                {
-                    if (!tagCloud.ContainsKey(category))
-                        tagCloud.Add(category, 0);
-                    tagCloud[category] += 1;
-                });
-            });
+            var tags = _indexer.Metadata
+                .SelectMany(p => p.Categories) // flatten post categories
+                .GroupBy(c => c)
+                .Select(g => new Tag { Name = g.Key, Count = g.Count() })
+                .OrderBy(t=>t.Name)
+                .ToArray();
 
-            var model = new TagCloudModel{
-                Tags = tagCloud.OrderBy(x => x.Key)
-                                .Select(x=> new Tag{ Name = x.Key, Count = x.Value })
-                                .ToArray()
+            var model = new TagCloudModel
+            {
+                Tags = tags
             };
             return View(model);
         }
