@@ -62,18 +62,7 @@
                 </p>
             </section>
             <section>
-                <div class="panel panel-default">
-                    <div class="panel-heading">Tags</div>
-                    <div class="panel-body">
-                        <ul class="list-group">
-                            @foreach(var tag in ViewBag.TagCloud.Tags){
-                            <a asp-route="blog-categories" asp-route-name="@tag.Name" class="list-group-item">
-                                <span class="badge">@tag.Count</span> @tag.Name
-                            </a>
-                            }
-                        </ul>
-                    </div>
-                </div>
+                @await Component.InvokeAsync("TagCloud")
             </section>
         </aside>
     </div>

@@ -1,0 +1,14 @@
+@model downr.Models.TagCloud.TagCloudModel
+
+<div class="panel panel-default">
+    <div class="panel-heading">Tags</div>
+    <div class="panel-body">
+        <ul class="list-group">
+            @foreach(var tag in Model.Tags){
+            <a asp-route="blog-categories" asp-route-name="@tag.Name" class="list-group-item">
+                <span class="badge">@tag.Count</span> @tag.Name
+            </a>
+            }
+        </ul>
+    </div>
+</div>

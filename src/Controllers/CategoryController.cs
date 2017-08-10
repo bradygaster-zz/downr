@@ -6,9 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace downr.Controllers
 {
-    public class CategoryController : BaseController
+    public class CategoryController : Controller
     {
-        public CategoryController(IYamlIndexer indexer) : base(indexer) { }
+        private readonly IYamlIndexer _indexer;
+
+        public CategoryController(IYamlIndexer indexer)
+        {
+            _indexer = indexer;
+        }
 
         public IActionResult Index(string name)
         {

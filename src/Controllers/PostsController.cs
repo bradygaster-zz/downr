@@ -9,16 +9,17 @@ using Microsoft.Extensions.Options;
 
 namespace downr.Controllers
 {
-    public class PostsController : BaseController
+    public class PostsController : Controller
     {
         private readonly DownrOptions _options;
+        private readonly IYamlIndexer _indexer;
 
         public PostsController(
             IYamlIndexer indexer,
             IOptions<DownrOptions> options
             )
-            : base(indexer)
         {
+            _indexer = indexer;
             _options = options.Value;
         }
 
