@@ -17,7 +17,7 @@ namespace downr.ViewComponents
             _indexer = indexer;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public ViewViewComponentResult Invoke()
         {
             var tags = _indexer.Metadata
                 .SelectMany(p => p.Categories) // flatten post categories
