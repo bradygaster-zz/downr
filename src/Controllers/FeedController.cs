@@ -12,15 +12,12 @@ namespace downr.Controllers
 {
     public class FeedController : Controller
     {
-        private readonly IMarkdownContentLoader _markdownLoader;
         private readonly PostService _postService;
         private readonly DownrOptions _options;
 
-        public FeedController(IMarkdownContentLoader markdownLoader,
-            PostService postService,
+        public FeedController(PostService postService,
             IOptions<DownrOptions> options)
         {
-            _markdownLoader = markdownLoader;
             _postService = postService;
             _options = options.Value;
         }

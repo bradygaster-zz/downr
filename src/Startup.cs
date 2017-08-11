@@ -45,7 +45,6 @@ namespace downr
             services.AddMvc();
 
             // add site services
-            services.AddSingleton<IMarkdownContentLoader, DefaultMarkdownContentLoader>();
             services.AddSingleton<IYamlIndexer, DefaultYamlIndexer>();
             services.AddSingleton<PostService>();
 
