@@ -64,7 +64,11 @@ namespace downr.Services
                             Author = result[Strings.MetadataNames.Author],
                             PublicationDate = DateTime.Parse(result[Strings.MetadataNames.PublicationDate]),
                             LastModified = DateTime.Parse(result[Strings.MetadataNames.LastModified]),
-                            Categories = result[Strings.MetadataNames.Categories]?.Split(',') ?? new string[]{},
+                            Categories = result[Strings.MetadataNames.Categories
+                                                ]?.Split(',')
+                                                .Select(c=>c.Trim())
+                                                .ToArray()
+                                                ?? new string[]{},
                             Content = _markdownLoader.GetContentToRender(result[Strings.MetadataNames.Slug])
                         };
 
