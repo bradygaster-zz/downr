@@ -39,17 +39,6 @@
     </div>
     <div class="container body-content">
         <div role="main" class="col-md-8">
-            @if(!String.IsNullOrEmpty(ViewBag.Category)) {
-            <p class="well">
-                The posts tagged with '<strong>@ViewBag.Category</strong>' are listed below. You can get to each post by clicking the title in the list. 
-            </p>
-            <ul>
-                @foreach(var post in ViewBag.TitlesInCategory) {
-                <li><a href="#@post.Key">@post.Value</a></li>
-                }
-            </ul>
-            <hr size="1"/>
-            }
             @RenderBody()
          </div>
         <aside role="complementary" class="col-md-3 col-md-offset-1">

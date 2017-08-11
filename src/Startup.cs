@@ -47,6 +47,7 @@ namespace downr
             // add site services
             services.AddSingleton<IMarkdownContentLoader, DefaultMarkdownContentLoader>();
             services.AddSingleton<IYamlIndexer, DefaultYamlIndexer>();
+            services.AddSingleton<PostService>();
 
             services.Configure<DownrOptions>(Configuration.GetSection("downr"));
         }
@@ -100,7 +101,7 @@ namespace downr
                 routes.MapRoute(
                     name: "blog-categories",
                     template: stem + "category/{name}",
-                    defaults: new { controller = "Category", Action = "Index" }
+                    defaults: new { controller = "Posts", Action = "Category" }
                 );
                 routes.MapRoute(
                     name: "blog-feed-rss",
@@ -111,7 +112,7 @@ namespace downr
 
             var logger = loggerFactory.CreateLogger<Startup>();
             logger.LogInformation("Options.Title: '{0}'", downrOptions.Value.Title);
-            logger.LogInformation("Options.RooUrl: '{0}'", downrOptions.Value.RootUrl);
+            logger.LogInformation("Options.RootUrl: '{0}'", downrOptions.Value.RootUrl);
             logger.LogInformation("Options.Stem: '{0}' ({1})", downrOptions.Value.Stem, stem);
 
             // get the path to the content directory so the yaml headers can be indexed as metadata

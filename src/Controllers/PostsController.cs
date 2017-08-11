@@ -12,14 +12,14 @@ namespace downr.Controllers
     public class PostsController : Controller
     {
         private readonly DownrOptions _options;
-        private readonly IYamlIndexer _indexer;
+        private readonly PostService _postService;
 
         public PostsController(
-            IYamlIndexer indexer,
+            PostService postService,
             IOptions<DownrOptions> options
             )
         {
-            _indexer = indexer;
+            _postService = postService;
             _options = options.Value;
         }
 
@@ -37,31 +37,10 @@ namespace downr.Controllers
         }
 
         [NonAction]
-        private IActionResult Index_SummaryList(int page)
+        private IActionResult Index_SummaryList(int page, string category = null)
         {
-            var pageSize = _options.PageSize;
-            var pageIndex = page - 1;
-            var posts = _indexer.Metadata
-                                .Skip(pageIndex * pageSize)
-                                .Take(pageSize)
-                                .ToArray();
-
-            var model = new PostListModel
-            {
-                Posts = posts,
-                NextPageLink = (page > 1) ? GetPagedIndexLink(page - 1) : null,
-                PreviousPageLink = (_indexer.Metadata.Count > (pageIndex + 1) * pageSize) ? GetPagedIndexLink(page + 1) : null
-            };
+            PostListModel model = GetPostList(page);
             return View("PostList", model);
-        }
-        private string GetPagedIndexLink(int page)
-        {
-            if (page > 1)
-                return Url.Action("Index", new { page });
-            if (page == 1)
-                return Url.Action("Index"); // page defaults to 1 so keep URL clean :-)
-
-            throw new ArgumentException("page must be greater than or equal to one");
         }
 
         [NonAction]
@@ -69,14 +48,14 @@ namespace downr.Controllers
         {
             return RedirectToAction("Post", "Posts", new
             {
-                slug = _indexer.Metadata.ElementAt(0).Slug
+                slug = _postService.GetLatestPost().Slug
             });
         }
 
         public IActionResult Post(string slug)
         {
             // make sure the post is found in the index
-            var meta = _indexer.Metadata.FirstOrDefault(x => x.Slug == slug);
+            var meta = _postService.GetPostBySlug(slug);
             if (meta == null)
             {
                 // not found - send to homepage
@@ -90,22 +69,66 @@ namespace downr.Controllers
             {
                 Post = meta
             };
-            int index = _indexer.Metadata.FindIndex(x => x.Slug == slug);
-            if (index != 0)
+
+            var prevNext = _postService.GetPreviousAndNextPosts(slug);
+            if (prevNext.next != null)
             {
-                var next = _indexer.Metadata[index - 1];
-                model.NextPostSlug = next.Slug;
-                model.NextPostTitle = next.Title;
+                model.NextPostSlug = prevNext.next.Slug;
+                model.NextPostTitle = prevNext.next.Title;
             }
-            // first post?
-            if (index != _indexer.Metadata.Count - 1)
+            if (prevNext.previous != null)
             {
-                var previous = _indexer.Metadata[index + 1];
-                model.PreviousPostSlug = previous.Slug;
-                model.PreviousPostTitle = previous.Title;
+                model.PreviousPostSlug = prevNext.previous.Slug;
+                model.PreviousPostTitle = prevNext.previous.Title;
             }
 
             return View("Post", model);
+        }
+
+        public IActionResult Category(string name, int page = 1)
+        {
+            var model = new CategoryPostListModel
+            {
+                CategoryName = name,
+                PostList = GetPostList(page, category: name),
+            };
+            return View("CategoryPostList", model);
+        }
+
+        private PostListModel GetPostList(int page, string category = null)
+        {
+            var pageSize = _options.PageSize;
+            var pageIndex = page - 1;
+            var posts = _postService.GetPosts(pageIndex * pageSize, pageSize, category);
+            var postCount = _postService.GetNumberOfPosts(category);
+
+            var pagingFunction = (category == null) ? (Func<int, string, string>)GetPagedIndexLink : GetPagedCategoryLink;
+            var model = new PostListModel
+            {
+                Posts = posts,
+                NextPageLink = (page > 1) ? pagingFunction(page - 1, category) : null,
+                PreviousPageLink = (postCount > (pageIndex + 1) * pageSize) ? pagingFunction(page + 1, category) : null
+            };
+            return model;
+        }
+
+        private string GetPagedIndexLink(int page, string category)
+        {
+            if (page > 1)
+                return Url.Action("Index", new { page });
+            if (page == 1)
+                return Url.Action("Index"); // page defaults to 1 so keep URL clean :-)
+
+            throw new ArgumentException("page must be greater than or equal to one");
+        }
+        private string GetPagedCategoryLink(int page, string category)
+        {
+            if (page > 1)
+                return Url.Action("Category", new { page, nameof = category });
+            if (page == 1)
+                return Url.Action("Category", new { name = category }); // page defaults to 1 so keep URL clean :-)
+
+            throw new ArgumentException("page must be greater than or equal to one");
         }
     }
 }
