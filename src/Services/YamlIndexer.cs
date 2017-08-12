@@ -19,70 +19,83 @@ namespace downr.Services
 
     public class DefaultYamlIndexer : IYamlIndexer
     {
-        public DefaultYamlIndexer()
-        {
-            Metadata = new List<Metadata>();
-        }
-
+        private readonly ILogger _logger;
         public List<Metadata> Metadata { get; set; }
 
+
+        public DefaultYamlIndexer(ILogger<DefaultYamlIndexer> logger)
+        {
+            _logger = logger;
+        }
         public void IndexContentFiles(string contentPath)
         {
-            var subDirectories = Directory.GetDirectories(contentPath);
+            Metadata = LoadMetadata(contentPath);
+        }
+
+        private List<Metadata> LoadMetadata(string contentPath)
+        {
+            _logger.LogInformation("Loading post content...");
+            List<Metadata> list = Directory.GetDirectories(contentPath)
+                                .Select(dir => Path.Combine(dir, "index.md"))
+                                .Select(ParseMetadata)
+                                .Where(m => m != null)
+                                .OrderByDescending(x => x.PublicationDate)
+                                .ToList();
+            _logger.LogInformation("Loaded {0} posts", list.Count);
+            return list;
+        }
+
+        private Metadata ParseMetadata(string indexFile)
+        {
             var deserializer = new Deserializer();
-
-            foreach (var subDirectory in subDirectories)
+            
+            using (var rdr = File.OpenText(indexFile))
             {
-                using (var rdr = File.OpenText(
-                        Path.Combine(subDirectory, "index.md")
-                    ))
+                // make sure the file has the header at the first line
+                var line = rdr.ReadLine();
+                if (line == "---")
                 {
-                    // make sure the file has the header at the first line
-                    var line = rdr.ReadLine();
-                    if (line == "---")
+                    line = rdr.ReadLine();
+
+                    var stringBuilder = new StringBuilder();
+
+                    // keep going until we reach the end of the header
+                    while (line != "---")
                     {
+                        stringBuilder.Append(line);
+                        stringBuilder.Append("\n");
                         line = rdr.ReadLine();
-
-                        var stringBuilder = new StringBuilder();
-
-                        // keep going until we reach the end of the header
-                        while (line != "---")
-                        {
-                            stringBuilder.Append(line);
-                            stringBuilder.Append("\n");
-                            line = rdr.ReadLine();
-                        }
-
-                        var htmlContent = rdr.ReadToEnd().TrimStart('\r', '\n', '\t', ' ');
-                        htmlContent = Markdig.Markdown.ToHtml(htmlContent);
-
-                        var yaml = stringBuilder.ToString();
-                        var result = deserializer.Deserialize<Dictionary<string, string>>(new StringReader(yaml));
-
-                        // convert the dictionary into a model
-                        var slug = result[Strings.MetadataNames.Slug];
-                        htmlContent = FixUpImageUrls(htmlContent, slug);
-                        var metadata = new Metadata
-                        {
-                            Slug = slug,
-                            Title = result[Strings.MetadataNames.Title],
-                            Author = result[Strings.MetadataNames.Author],
-                            PublicationDate = DateTime.Parse(result[Strings.MetadataNames.PublicationDate]),
-                            LastModified = DateTime.Parse(result[Strings.MetadataNames.LastModified]),
-                            Categories = result[Strings.MetadataNames.Categories
-                                                ]?.Split(',')
-                                                .Select(c => c.Trim())
-                                                .ToArray()
-                                                ?? new string[] { },
-                            Content = htmlContent
-                        };
-
-                        Metadata.Add(metadata);
+                    
                     }
+
+                    var htmlContent = rdr.ReadToEnd().TrimStart('\r', '\n', '\t', ' ');
+                    htmlContent = Markdig.Markdown.ToHtml(htmlContent);
+
+                    var yaml = stringBuilder.ToString();
+                    var result = deserializer.Deserialize<Dictionary<string, string>>(new StringReader(yaml));
+
+                    // convert the dictionary into a model
+                    var slug = result[Strings.MetadataNames.Slug];
+                    htmlContent = FixUpImageUrls(htmlContent, slug);
+                    var metadata = new Metadata
+                    {
+                        Slug = slug,
+                        Title = result[Strings.MetadataNames.Title],
+                        Author = result[Strings.MetadataNames.Author],
+                        PublicationDate = DateTime.Parse(result[Strings.MetadataNames.PublicationDate]),
+                        LastModified = DateTime.Parse(result[Strings.MetadataNames.LastModified]),
+                        Categories = result[Strings.MetadataNames.Categories
+                                            ]?.Split(',')
+                                            .Select(c => c.Trim())
+                                            .ToArray()
+                                            ?? new string[] { },
+                        Content = htmlContent
+                    };
+
+                    return metadata;
                 }
             }
-
-            Metadata = Metadata.OrderByDescending(x => x.PublicationDate).ToList();
+            return null;
         }
 
         private static string FixUpImageUrls(string html, string slug)
