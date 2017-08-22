@@ -148,7 +148,7 @@ By adding the `name` querystring parameter with a value I know to be in the data
 
 Once the Function is validated and seems to be working properly, the last step is publishing it to Azure App Service and configuring it to run in the cloud. 
 
-## Publishing to Function to Azure
+## Publishing the Function to Azure
 
 Luckilly, publishing is nearly a single mouse-click. By right-clicking the project I can see the familiar **Publish** context menu item. 
 
