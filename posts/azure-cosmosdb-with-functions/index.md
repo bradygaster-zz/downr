@@ -4,10 +4,21 @@ slug: azure-cosmosdb-with-functions
 author: bradygaster
 lastModified: 2017-08-22 00:00:00
 pubDate: 2017-08-22 00:00:00
-categories: Azure
+categories: Azure, Serverless & Schemaless
 ---
 
 [Azure Cosmos DB](https://azure.microsoft.com/en-us/services/cosmos-db/) is an exciting new way to store data. It offers a few approaches to data storage, one of which has been mysterious to me - Graph APIs. Cosmos DB has support for dynamic graph api structures and allows developers to use the rich [Gremlin](https://tinkerpop.apache.org/gremlin.html) query syntax to access and update data. When I read the great walk-through article on [docs.microsoft.com](http://docs.microsoft.com) describing how to use [Azure Cosmos DB's Graph API .NET Client](https://docs.microsoft.com/en-us/azure/cosmos-db/create-graph-dotnet) I was really excited how dynamic my data could be in the Cosmos DB Graph API. I'd been looking for some demo subject matter to try out the new [Azure Functions tools for Visual Studio](https://blogs.msdn.microsoft.com/appserviceteam/2017/08/14/azure-functions-tools-released-for-visual-studio-2017-update-3/), so I decided to put these three new ideas together to build an Azure Function that allows a serverless approach to searching a Cosmos DB via the Graph API. 
+
+> **Update**: I've made a few updates below after doing some due dilligence on a dependency-related exception I observed during local debugging. If SDKs evolve I'll update the post and make additional updates in this area of the post. 
+
+## Introducing the Serverless & Schemaless Series
+
+Authoring this post and learning about Graph API was really exciting, and like all good technologists I found myself becoming a little obsessed with the Graph and the opportunities the world of Functions and Cosmos DB has to offer. Functions and Cosmos DB's nature together create a **Serverless & Schemaless Scenario**, and the opportunities this scenario provides for agile developers dealing with evolving structures and processes seem vast. This post is one in what I call the **Serverless & Schemaless Series**:
+
+1. [Querying Azure Cosmos DB's Graph API using an Azure Function](/azure-cosmosdb-with-functions) (this post)
+1. [Querying Azure Cosmos DB using serverless Node.js](/azure-cosmosdb-with-functions-and-nodejs) - Walks through creating a Node.js Function that queries Cosmos DB's Graph API using an open-source Gremlin package
+1. TBD
+1. TBD
 
 ## Building a Function using Visual Studio
 
@@ -25,7 +36,13 @@ The Cosmos DB Graph API team was nice enough to give us a .NET Client SDK, so we
 
 ![Alt](media/03-add-azure-graphs.png)
 
-During debugging, I noticed a few runtime errors that indicated the `Mono.CSharp` assemblies couldn't be found. I presume this has something to do with the emulated environment, but don't quote me on that. I'll follow up [Donna Malayeri](https://twitter.com/lindydonna), one of the awesome Program Managers on the Functions team to get some details here and will post an update or a comment. Either way - to debug this guy locally you'll need to install the `Mono.CSharp` package. 
+During debugging, I noticed a few runtime errors that indicated the `Mono.CSharp` assemblies couldn't be found. I presume this has something to do with the emulated environment, but don't quote me on that. I followed up [Donna Malayeri](https://twitter.com/lindydonna), one of the awesome Program Managers on the Functions team to get some details here, thinking the reference might indicate a `func.exe` issue or potential emulator variance. She confirmed there's no dependency on `Mono.CSharp` in the Functions emulator. 
+
+So then I checked in with [Andrew Liu](https://twitter.com/aliuy8), one of the awesome Program Managers in the Cosmos DB team. He confirmed that one of the dependencies in the Cosmos DB SDK is `Mono.CSharp`. My debugging experience did error with this dependency mentioned during a Graph API call, come to think of it. 
+
+> I mention all these great folks not to name-drop, but so you know how to find them if you have questions, too. They're super receptive to feedback and love making their products better, so hit them up if you have ideas. 
+
+Either way - to debug this guy locally you'll need to install the `Mono.CSharp` package. 
 
 ![Alt](media/04-add-mono.png)
 
