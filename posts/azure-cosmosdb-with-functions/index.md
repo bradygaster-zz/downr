@@ -15,8 +15,8 @@ categories: Azure, Serverless & Schemaless
 
 Authoring this post and learning about Graph API was really exciting, and like all good technologists I found myself becoming a little obsessed with the Graph and the opportunities the world of Functions and Cosmos DB has to offer. Functions and Cosmos DB's nature together create a **Serverless & Schemaless Scenario**, and the opportunities this scenario provides for agile developers dealing with evolving structures and processes seem vast. This post is one in what I call the **Serverless & Schemaless Series**:
 
-1. [Querying Azure Cosmos DB's Graph API using an Azure Function](/azure-cosmosdb-with-functions) (this post)
-1. [Querying Azure Cosmos DB using serverless Node.js](/azure-cosmosdb-with-functions-and-nodejs) - Walks through creating a Node.js Function that queries Cosmos DB's Graph API using an open-source Gremlin package
+1. [Querying Azure Cosmos DB's Graph API using an Azure Function](/posts/azure-cosmosdb-with-functions) (this post)
+1. [Querying Azure Cosmos DB using serverless Node.js](/posts/azure-cosmosdb-with-functions-and-nodejs) - Walks through creating a Node.js Function that queries Cosmos DB's Graph API using an open-source Gremlin package
 1. TBD
 1. TBD
 
