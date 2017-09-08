@@ -7,7 +7,7 @@ pubDate: 2017-08-23 00:00:00
 categories: Azure, Serverless & Schemaless
 ---
 
-A few days ago [I blogged about using Functions, .NET, and Cosmos DB's Graph API](/azure-cosmosdb-with-functions) together, and as I pointed out in an update to that post accompanying this one, the experience of working with Cosmos DB's Graph API was exciting and had offered some interesting opportunities and mental exercises. The first [somewhat constructive] criticism I received on the initial post was from my friend and colleague [Burke Holland](https://medium.com/burke-knows-words), who asked **"where's the Node.js love?**," to which I replied "**I wanted to use the VS Functions tools and I'm more comfortable with .NET and...**" and Burke cut me off in mid-message with clear judgment and purpose:
+A few days ago [I blogged about using Functions, .NET, and Cosmos DB's Graph API](/posts/azure-cosmosdb-with-functions) together, and as I pointed out in an update to that post accompanying this one, the experience of working with Cosmos DB's Graph API was exciting and had offered some interesting opportunities and mental exercises. The first [somewhat constructive] criticism I received on the initial post was from my friend and colleague [Burke Holland](https://medium.com/burke-knows-words), who asked **"where's the Node.js love?**," to which I replied "**I wanted to use the VS Functions tools and I'm more comfortable with .NET and...**" and Burke cut me off in mid-message with clear judgment and purpose:
 
 <table style="margin-bottom: 10px;">
     <tr>
@@ -22,8 +22,8 @@ I can't ignore a strong argument that conjures that gem of filmography and chore
 
 Functions and Cosmos DB's nature together create a **Serverless & Schemaless Scenario**, and the opportunities this scenario provides for agile developers dealing with evolving structures and processes seem vast. This post is one in what I call the **Serverless & Schemaless Series**:
 
-1. [Querying Azure Cosmos DB's Graph API using an Azure Function](/azure-cosmosdb-with-functions) - Walks through creating a .NET Function that queries Cosmos DB's Graph API using the Cosmos DB Graph API .NET SDK. 
-1. [Querying Azure Cosmos DB using serverless Node.js](/azure-cosmosdb-with-functions-and-nodejs) (this post) 
+1. [Querying Azure Cosmos DB's Graph API using an Azure Function](/posts/azure-cosmosdb-with-functions) - Walks through creating a .NET Function that queries Cosmos DB's Graph API using the Cosmos DB Graph API .NET SDK. 
+1. [Querying Azure Cosmos DB using serverless Node.js](/posts/azure-cosmosdb-with-functions-and-nodejs) (this post) 
 1. TBD
 1. TBD
 
