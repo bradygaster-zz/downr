@@ -12,24 +12,20 @@ namespace downr.Controllers
 {
     public class FeedController : Controller
     {
-        IMarkdownContentLoader _markdownLoader;
-        IYamlIndexer _indexer;
-        DownrOptions _options;
+        private readonly PostService _postService;
+        private readonly DownrOptions _options;
 
-        public FeedController(IMarkdownContentLoader markdownLoader,
-            IYamlIndexer indexer,
+        public FeedController(PostService postService,
             IOptions<DownrOptions> options)
         {
-            _markdownLoader = markdownLoader;
-            _indexer = indexer;
+            _postService = postService;
             _options = options.Value;
         }
 
         public IActionResult Rss()
         {
             // get the last 10 posts
-            var last10posts = _indexer.Metadata.Take(10);
-
+            var last10posts = _postService.GetPosts(count: 10);
 
             var feed = BuildXmlFeed(last10posts);
             return Content(feed, "text/xml");

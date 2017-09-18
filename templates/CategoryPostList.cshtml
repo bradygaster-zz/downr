@@ -1,0 +1,13 @@
+@model downr.Models.CategoryPostListModel
+
+<p class="well">
+    The posts tagged with '<strong>@Model.CategoryName</strong>' are listed below. You can get to each post by clicking the title in the list. 
+</p>
+<ul>
+    @foreach(var post in Model.PostList.Posts) {
+    <li><a asp-route="blog-post" asp-route-slug="@post.Slug">@post.Title</a></li>
+    }
+</ul>
+<hr size="1"/>
+
+@Html.Partial("PostList", Model.PostList)
